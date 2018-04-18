@@ -11,6 +11,7 @@
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poMainFormCenter
   OnClose = FormClose
   PixelsPerInch = 120
   TextHeight = 16

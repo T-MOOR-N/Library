@@ -18,6 +18,7 @@ type
     Label3: TLabel;
     ADOQuery1: TADOQuery;
     procedure BitBtn1Click(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -59,6 +60,12 @@ begin
   end
   else
     ShowMessage('Неверный логин или пароль');
+end;
+
+procedure TFormAuth.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if key = #13 then
+    BitBtn1Click(Sender);
 end;
 
 end.

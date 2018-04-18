@@ -5,11 +5,11 @@ object DM: TDM
   object ADOConnection1: TADOConnection
     Connected = True
     ConnectionString = 
-      'Provider=SQLOLEDB.1;Password=P@ssw0rd;Persist Security Info=True' +
-      ';User ID=sa;Initial Catalog=LibraryDB;Data Source=(local);Use Pr' +
-      'ocedure for Prepare=1;Auto Translate=True;Packet Size=4096;Works' +
-      'tation ID=DESKTOP-A3HHT9S;Use Encryption for Data=False;Tag with' +
-      ' column collation when possible=False'
+      'Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security In' +
+      'fo=False;User ID=sa;Initial Catalog=LibraryDB;Data Source=(local' +
+      ');Use Procedure for Prepare=1;Auto Translate=True;Packet Size=40' +
+      '96;Workstation ID=DESKTOP-A3HHT9S;Use Encryption for Data=False;' +
+      'Tag with column collation when possible=False'
     LoginPrompt = False
     Provider = 'SQLOLEDB.1'
     Left = 40
@@ -172,7 +172,6 @@ object DM: TDM
     Top = 192
   end
   object note: TADOTable
-    Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
     LockType = ltReadOnly

@@ -11,7 +11,8 @@ object FormAuth: TFormAuth
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
-  Position = poDesktopCenter
+  Position = poMainFormCenter
+  OnKeyPress = FormKeyPress
   PixelsPerInch = 96
   TextHeight = 13
   object GroupBox1: TGroupBox
@@ -104,7 +105,7 @@ object FormAuth: TFormAuth
       'FROM LibraryDB.dbo.Users'
       '  WHERE login =:l '
       'AND passMD5 = CAST(HASHBYTES('#39'MD5'#39', :p) AS BINARY(16))')
-    Left = 272
+    Left = 280
     Top = 32
   end
 end

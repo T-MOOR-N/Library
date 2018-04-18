@@ -11,6 +11,7 @@ object FormLibrary: TFormLibrary
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  Position = poMainFormCenter
   OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
@@ -24,6 +25,10 @@ object FormLibrary: TFormLibrary
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = #1050#1072#1090#1086#1083#1086#1075
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Panel1: TPanel
         Left = 0
         Top = 0
@@ -213,6 +218,10 @@ object FormLibrary: TFormLibrary
     object TabSheet2: TTabSheet
       Caption = #1063#1080#1090#1072#1090#1077#1083#1100
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Panel3: TPanel
         Left = 0
         Top = 0
@@ -355,6 +364,10 @@ object FormLibrary: TFormLibrary
     object TabSheet3: TTabSheet
       Caption = #1041#1088#1086#1085#1100
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object DBGrid5: TDBGrid
         Left = 0
         Top = 0
