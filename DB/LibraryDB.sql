@@ -113,7 +113,7 @@ GO
 CREATE TABLE dbo.Exemplar (
   id int IDENTITY,
   placement varchar(10) NOT NULL,
-  ISBN nchar(13) NULL,
+  ISBN varchar(13) NULL,
   CONSTRAINT PK_Exemplar PRIMARY KEY CLUSTERED (id)
 )
 ON [PRIMARY]
@@ -138,7 +138,7 @@ GO
 PRINT (N'Создать таблицу [dbo].[Book]')
 GO
 CREATE TABLE dbo.Book (
-  ISBN nchar(13) NOT NULL,
+  ISBN varchar(13) NOT NULL,
   Title varchar(40) NOT NULL,
   publishing_id int NOT NULL,
   year date NULL,
@@ -156,7 +156,7 @@ GO
 CREATE TABLE dbo.AuthorBook (
   id int IDENTITY,
   author_id int NOT NULL,
-  ISBN nchar(13) NOT NULL,
+  ISBN varchar(13) NOT NULL,
   CONSTRAINT PK_AuthorBook PRIMARY KEY CLUSTERED (id),
   CONSTRAINT IX_AuthorBook UNIQUE (author_id, ISBN)
 )
