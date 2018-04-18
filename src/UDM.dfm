@@ -58,9 +58,29 @@ object DM: TDM
     Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
+    OnCalcFields = TAuthorCalcFields
     TableName = 'Author'
     Left = 40
     Top = 296
+    object TAuthorid: TAutoIncField
+      FieldName = 'id'
+      ReadOnly = True
+    end
+    object TAuthorFirstName: TStringField
+      FieldName = 'FirstName'
+    end
+    object TAuthorLastName: TStringField
+      FieldName = 'LastName'
+    end
+    object TAuthorMiddleName: TStringField
+      FieldName = 'MiddleName'
+    end
+    object TAuthorabr: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'abr'
+      Size = 30
+      Calculated = True
+    end
   end
   object DSAuthor: TDataSource
     DataSet = TAuthor
@@ -71,9 +91,33 @@ object DM: TDM
     Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
+    IndexFieldNames = 'ISBN'
+    MasterFields = 'ISBN'
+    MasterSource = DSBook
     TableName = 'AuthorBook'
     Left = 104
     Top = 296
+    object TAuthorBookid: TAutoIncField
+      FieldName = 'id'
+      ReadOnly = True
+    end
+    object TAuthorBookauthor_id: TIntegerField
+      FieldName = 'author_id'
+    end
+    object TAuthorBookISBN: TStringField
+      FieldName = 'ISBN'
+      Size = 13
+    end
+    object TAuthorBookauthor_lf: TStringField
+      FieldKind = fkLookup
+      FieldName = 'author_lf'
+      LookupDataSet = TAuthor
+      LookupKeyFields = 'id'
+      LookupResultField = 'abr'
+      KeyFields = 'author_id'
+      Size = 50
+      Lookup = True
+    end
   end
   object DSAuthorBook: TDataSource
     DataSet = TAuthorBook

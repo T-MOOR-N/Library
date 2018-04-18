@@ -4,19 +4,19 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Mask, DBCtrls;
+  Dialogs, StdCtrls, Mask, DBCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids;
 
 type
   TFormAddBook = class(TForm)
-    Button1: TButton;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
-    DBImage1: TDBImage;
-    DBComboBox2: TDBComboBox;
-    DBComboBox1: TDBComboBox;
     DBEdit1: TDBEdit;
     Button2: TButton;
+    DBGrid1: TDBGrid;
+    Button1: TButton;
+    DBLookupComboBox1: TDBLookupComboBox;
+    DBLookupComboBox2: TDBLookupComboBox;
   private
     { Private declarations }
   public
@@ -29,5 +29,7 @@ var
 implementation
 
 {$R *.dfm}
+
+uses UDM;
 
 end.

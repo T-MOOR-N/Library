@@ -20,7 +20,7 @@
     Top = 0
     Width = 897
     Height = 459
-    ActivePage = Бронь
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet

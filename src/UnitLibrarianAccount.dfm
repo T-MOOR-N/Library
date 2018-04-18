@@ -20,15 +20,11 @@ object FormLibrary: TFormLibrary
     Top = 0
     Width = 852
     Height = 515
-    ActivePage = TabSheet4
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = #1050#1072#1090#1086#1083#1086#1075
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel1: TPanel
         Left = 0
         Top = 0
@@ -97,6 +93,7 @@ object FormLibrary: TFormLibrary
             Height = 25
             Caption = #1050#1085#1080#1075#1072
             TabOrder = 0
+            OnClick = Button3Click
           end
           object Button4: TButton
             Left = 40
@@ -218,10 +215,6 @@ object FormLibrary: TFormLibrary
     object TabSheet2: TTabSheet
       Caption = #1063#1080#1090#1072#1090#1077#1083#1100
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel3: TPanel
         Left = 0
         Top = 0
@@ -364,10 +357,6 @@ object FormLibrary: TFormLibrary
     object TabSheet3: TTabSheet
       Caption = #1041#1088#1086#1085#1100
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object DBGrid5: TDBGrid
         Left = 0
         Top = 0

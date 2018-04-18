@@ -34,6 +34,16 @@ type
     DSReservationStatus: TDataSource;
     note: TADOTable;
     DSCatalog: TDataSource;
+    TAuthorBookid: TAutoIncField;
+    TAuthorBookauthor_id: TIntegerField;
+    TAuthorBookISBN: TStringField;
+    TAuthorBookauthor_lf: TStringField;
+    TAuthorid: TAutoIncField;
+    TAuthorFirstName: TStringField;
+    TAuthorLastName: TStringField;
+    TAuthorMiddleName: TStringField;
+    TAuthorabr: TStringField;
+    procedure TAuthorCalcFields(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -46,7 +56,18 @@ var
 implementation
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
-
 {$R *.dfm}
+
+procedure TDM.TAuthorCalcFields(DataSet: TDataSet);
+begin
+  if (DataSet.FieldByName('LastName').AsString.IsEmpty or
+    DataSet.FieldByName('FirstName').AsString.IsEmpty or
+    DataSet.FieldByName('MiddleName').AsString.IsEmpty) then
+    exit;
+
+  DataSet.FieldByName('abr').value := DataSet.FieldByName('LastName').AsString +
+    ' ' + DataSet.FieldByName('FirstName').AsString[1] + '.' +
+    DataSet.FieldByName('MiddleName').AsString[1];
+end;
 
 end.

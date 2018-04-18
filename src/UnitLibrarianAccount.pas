@@ -69,6 +69,7 @@ type
     DBComboBox2: TDBComboBox;
     DBGrid5: TDBGrid;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure Button3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -82,7 +83,12 @@ implementation
 
 {$R *.dfm}
 
-uses UDM;
+uses UDM, UnitBook;
+
+procedure TFormLibrary.Button3Click(Sender: TObject);
+begin
+  FormAddBook.Show;
+end;
 
 procedure TFormLibrary.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
