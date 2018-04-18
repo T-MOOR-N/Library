@@ -43,6 +43,26 @@ type
     TAuthorLastName: TStringField;
     TAuthorMiddleName: TStringField;
     TAuthorabr: TStringField;
+    TBookISBN: TStringField;
+    TBookTitle: TStringField;
+    TBookpublishing_id: TIntegerField;
+    TBookyear: TWideStringField;
+    TBookcategory2: TIntegerField;
+    TBookpublication_lf: TStringField;
+    TWorkerid: TAutoIncField;
+    TWorkerFirstName: TStringField;
+    TWorkerLastName: TStringField;
+    TReaderid: TAutoIncField;
+    TReaderFirstName: TStringField;
+    TReaderLastName: TStringField;
+    TReaderMiddleName: TStringField;
+    TReaderPhone: TStringField;
+    TReaderAdress: TStringField;
+    TBookCategoryid: TAutoIncField;
+    TBookCategoryname: TStringField;
+    TPublishingid: TAutoIncField;
+    TPublishingname: TStringField;
+    TPublishingcity: TStringField;
     procedure TAuthorCalcFields(DataSet: TDataSet);
   private
     { Private declarations }

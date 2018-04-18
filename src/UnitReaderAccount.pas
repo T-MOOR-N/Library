@@ -25,6 +25,8 @@ type
     Button1: TButton;
     Бронь: TTabSheet;
     DBGridBooking: TDBGrid;
+    PopupMenu1: TPopupMenu;
+    ButtonDelete: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }

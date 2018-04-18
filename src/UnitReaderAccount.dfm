@@ -158,6 +158,7 @@
         Height = 428
         Align = alClient
         DataSource = DM.DSBook
+        PopupMenu = PopupMenu1
         ReadOnly = True
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
@@ -166,6 +167,13 @@
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
       end
+    end
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 332
+    Top = 288
+    object ButtonDelete: TMenuItem
+      Caption = #1059#1076#1072#1083#1080#1090#1100
     end
   end
 end

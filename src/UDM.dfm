@@ -35,6 +35,21 @@ object DM: TDM
     TableName = 'Worker'
     Left = 96
     Top = 104
+    object TWorkerid: TAutoIncField
+      FieldName = 'id'
+      ReadOnly = True
+      Visible = False
+    end
+    object TWorkerFirstName: TStringField
+      DisplayLabel = #1060#1072#1084#1080#1083#1080#1103
+      FieldName = 'FirstName'
+      Size = 50
+    end
+    object TWorkerLastName: TStringField
+      DisplayLabel = #1048#1084#1103
+      FieldName = 'LastName'
+      Size = 50
+    end
   end
   object DSWorker: TDataSource
     DataSet = TWorker
@@ -48,6 +63,38 @@ object DM: TDM
     TableName = 'Reader'
     Left = 152
     Top = 104
+    object TReaderid: TAutoIncField
+      FieldName = 'id'
+      ReadOnly = True
+      Visible = False
+    end
+    object TReaderFirstName: TStringField
+      DisplayLabel = #1060#1072#1084#1080#1083#1080#1103
+      DisplayWidth = 21
+      FieldName = 'FirstName'
+    end
+    object TReaderLastName: TStringField
+      DisplayLabel = #1048#1084#1103
+      DisplayWidth = 21
+      FieldName = 'LastName'
+    end
+    object TReaderMiddleName: TStringField
+      DisplayLabel = #1054#1090#1095#1077#1089#1090#1074#1086
+      DisplayWidth = 22
+      FieldName = 'MiddleName'
+    end
+    object TReaderPhone: TStringField
+      DisplayLabel = #1053#1086#1084#1077#1088' '#1090#1077#1083#1077#1092#1086#1085#1072
+      DisplayWidth = 16
+      FieldName = 'Phone'
+      Size = 16
+    end
+    object TReaderAdress: TStringField
+      DisplayLabel = #1040#1076#1088#1077#1089
+      DisplayWidth = 33
+      FieldName = 'Adress'
+      Size = 30
+    end
   end
   object DSReader: TDataSource
     DataSet = TReader
@@ -63,19 +110,29 @@ object DM: TDM
     Left = 40
     Top = 296
     object TAuthorid: TAutoIncField
+      DisplayWidth = 10
       FieldName = 'id'
       ReadOnly = True
+      Visible = False
     end
     object TAuthorFirstName: TStringField
+      DisplayLabel = #1060#1072#1084#1080#1083#1080#1103
+      DisplayWidth = 24
       FieldName = 'FirstName'
     end
     object TAuthorLastName: TStringField
+      DisplayLabel = #1048#1084#1103
+      DisplayWidth = 21
       FieldName = 'LastName'
     end
     object TAuthorMiddleName: TStringField
+      DisplayLabel = #1054#1090#1095#1077#1089#1090#1074#1086
+      DisplayWidth = 22
       FieldName = 'MiddleName'
     end
     object TAuthorabr: TStringField
+      DisplayLabel = #1040#1073#1073#1088#1077#1074#1080#1072#1090#1091#1088#1072
+      DisplayWidth = 40
       FieldKind = fkCalculated
       FieldName = 'abr'
       Size = 30
@@ -131,6 +188,34 @@ object DM: TDM
     TableName = 'Book'
     Left = 168
     Top = 296
+    object TBookISBN: TStringField
+      FieldName = 'ISBN'
+      Size = 13
+    end
+    object TBookTitle: TStringField
+      FieldName = 'Title'
+      Size = 40
+    end
+    object TBookpublishing_id: TIntegerField
+      FieldName = 'publishing_id'
+    end
+    object TBookyear: TWideStringField
+      FieldName = 'year'
+      Size = 10
+    end
+    object TBookcategory2: TIntegerField
+      FieldName = 'category'
+    end
+    object TBookpublication_lf: TStringField
+      FieldKind = fkLookup
+      FieldName = 'publication_lf'
+      LookupDataSet = TPublishing
+      LookupKeyFields = 'id'
+      LookupResultField = 'name'
+      KeyFields = 'publishing_id'
+      Size = 30
+      Lookup = True
+    end
   end
   object DSBook: TDataSource
     DataSet = TBook
@@ -144,6 +229,17 @@ object DM: TDM
     TableName = 'BookCategory'
     Left = 240
     Top = 296
+    object TBookCategoryid: TAutoIncField
+      FieldName = 'id'
+      ReadOnly = True
+      Visible = False
+    end
+    object TBookCategoryname: TStringField
+      DisplayLabel = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
+      DisplayWidth = 112
+      FieldName = 'name'
+      Size = 70
+    end
   end
   object DSBookCategory: TDataSource
     DataSet = TBookCategory
@@ -183,6 +279,22 @@ object DM: TDM
     TableName = 'Publishing'
     Left = 312
     Top = 296
+    object TPublishingid: TAutoIncField
+      FieldName = 'id'
+      ReadOnly = True
+      Visible = False
+    end
+    object TPublishingname: TStringField
+      DisplayLabel = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
+      DisplayWidth = 59
+      FieldName = 'name'
+    end
+    object TPublishingcity: TStringField
+      DisplayLabel = #1043#1086#1088#1086#1076
+      DisplayWidth = 36
+      FieldName = 'city'
+      Size = 10
+    end
   end
   object DSPublishing: TDataSource
     DataSet = TPublishing
@@ -216,6 +328,7 @@ object DM: TDM
     Top = 192
   end
   object note: TADOTable
+    Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
     LockType = ltReadOnly

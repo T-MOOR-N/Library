@@ -30,7 +30,7 @@ object FormAddExemplar: TFormAddExemplar
   end
   object Label1: TLabel
     Left = 32
-    Top = 111
+    Top = 109
     Width = 18
     Height = 13
     Caption = #1043#1086#1076
