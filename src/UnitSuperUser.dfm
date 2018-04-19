@@ -2,7 +2,7 @@ object FormSuper: TFormSuper
   Left = 0
   Top = 0
   Caption = #1059#1087#1088#1072#1074#1083#1103#1102#1097#1080#1081' '#1073#1080#1073#1083#1080#1086#1090#1077#1082#1086#1081
-  ClientHeight = 651
+  ClientHeight = 687
   ClientWidth = 892
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -17,36 +17,30 @@ object FormSuper: TFormSuper
     Left = 0
     Top = 0
     Width = 892
-    Height = 651
-    ActivePage = TabSheet1
+    Height = 687
+    ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
+    ExplicitHeight = 651
     object TabSheet1: TTabSheet
       Caption = #1055#1086#1083#1100#1079#1086#1074#1072#1090#1077#1083#1080
-      ExplicitLeft = 8
-      ExplicitTop = 31
-      ExplicitWidth = 958
-      ExplicitHeight = 608
+      ExplicitHeight = 620
       object PageControl2: TPageControl
         Left = 0
         Top = 0
         Width = 884
-        Height = 233
-        ActivePage = TabSheetWorker
+        Height = 253
+        ActivePage = TabSheetReaders
         Align = alTop
         TabOrder = 0
-        ExplicitLeft = -3
-        ExplicitTop = -6
-        ExplicitWidth = 1011
         object TabSheetReaders: TTabSheet
           Caption = #1063#1080#1090#1072#1090#1077#1083#1080
-          ExplicitWidth = 1107
-          ExplicitHeight = 166
+          ExplicitHeight = 202
           object DBGridReader: TDBGrid
             Left = 0
             Top = 0
             Width = 876
-            Height = 202
+            Height = 222
             Align = alClient
             DataSource = DM.DSReader
             ReadOnly = True
@@ -61,13 +55,12 @@ object FormSuper: TFormSuper
         object TabSheetWorker: TTabSheet
           Caption = #1041#1080#1073#1083#1080#1086#1090#1077#1082#1072#1088#1080
           ImageIndex = 1
-          ExplicitLeft = 0
-          ExplicitTop = 25
+          ExplicitHeight = 202
           object DBGridLibrary: TDBGrid
             Left = 0
             Top = 0
             Width = 876
-            Height = 202
+            Height = 222
             Align = alClient
             DataSource = DM.DSWorker
             ReadOnly = True
@@ -82,12 +75,12 @@ object FormSuper: TFormSuper
       end
       object Panel1: TPanel
         Left = 0
-        Top = 233
+        Top = 253
         Width = 884
         Height = 80
         Align = alTop
         TabOrder = 1
-        ExplicitWidth = 1011
+        ExplicitTop = 233
         object SpeedButton2: TSpeedButton
           Left = 308
           Top = 26
@@ -155,14 +148,14 @@ object FormSuper: TFormSuper
       end
       object GroupBox1: TGroupBox
         Left = 0
-        Top = 313
+        Top = 333
         Width = 884
-        Height = 304
-        Align = alTop
+        Height = 323
+        Align = alClient
         Caption = #1044#1072#1085#1085#1099#1077' '#1083#1080#1095#1085#1086#1075#1086' '#1082#1072#1073#1080#1085#1077#1090#1072
         TabOrder = 2
-        ExplicitLeft = -3
-        ExplicitTop = 319
+        ExplicitTop = 313
+        ExplicitHeight = 304
         object Label1: TLabel
           Left = 48
           Top = 29
@@ -284,14 +277,14 @@ object FormSuper: TFormSuper
           Left = 48
           Top = 208
           Width = 321
-          Height = 21
+          Height = 24
           TabOrder = 5
         end
         object DBEditPhone: TDBEdit
           Left = 48
           Top = 262
           Width = 321
-          Height = 21
+          Height = 24
           TabOrder = 6
         end
         object ButtonEditLK: TButton
@@ -307,13 +300,12 @@ object FormSuper: TFormSuper
     object TabSheetCatalog: TTabSheet
       Caption = #1050#1072#1090#1072#1083#1086#1075
       ImageIndex = 1
-      ExplicitLeft = 8
-      ExplicitTop = 31
+      ExplicitHeight = 620
       object GroupBox6: TGroupBox
         Left = 0
-        Top = 442
+        Top = 437
         Width = 884
-        Height = 178
+        Height = 219
         Align = alBottom
         Caption = #1069#1082#1079#1077#1084#1087#1083#1103#1088#1099
         TabOrder = 0
@@ -324,9 +316,8 @@ object FormSuper: TFormSuper
           Height = 29
           Align = alTop
           TabOrder = 0
-          ExplicitLeft = 4
-          ExplicitTop = 26
-          object SpeedButton5: TSpeedButton
+          ExplicitTop = 12
+          object SpeedButtonAddExemplar: TSpeedButton
             Left = 758
             Top = -4
             Width = 23
@@ -359,7 +350,7 @@ object FormSuper: TFormSuper
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF3CD9DF6D5ACFDD9B4F6D5ACF6D5ACF6
               D5ACF6D5ACEEC392F3CD9DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
           end
-          object SpeedButton6: TSpeedButton
+          object SpeedButtonEditExemplar: TSpeedButton
             Left = 787
             Top = -4
             Width = 23
@@ -392,7 +383,7 @@ object FormSuper: TFormSuper
               CB0000A51C30D20000A5FFFFFFFFFFFFF1CDA1F9D5ABF9D5ABF9D5ABF9D5ABF9
               D5ABF9D5ABEEC597F1CDA1FFFFFFEFF7FA5155C51C30D25155C5}
           end
-          object SpeedButton7: TSpeedButton
+          object SpeedButtonDeleteExemplar: TSpeedButton
             Left = 816
             Top = -4
             Width = 23
@@ -430,7 +421,7 @@ object FormSuper: TFormSuper
           Left = 2
           Top = 47
           Width = 880
-          Height = 120
+          Height = 114
           Align = alTop
           DataSource = DM.DSExemplar
           TabOrder = 1
@@ -440,19 +431,83 @@ object FormSuper: TFormSuper
           TitleFont.Name = 'Tahoma'
           TitleFont.Style = []
         end
+        object Panel8: TPanel
+          Left = 2
+          Top = 161
+          Width = 880
+          Height = 56
+          Align = alClient
+          TabOrder = 2
+          ExplicitTop = 151
+          ExplicitHeight = 44
+          object DBEdit3: TDBEdit
+            Left = 60
+            Top = 6
+            Width = 169
+            Height = 24
+            TabOrder = 0
+          end
+          object Panel9: TPanel
+            Left = 1
+            Top = 1
+            Width = 878
+            Height = 54
+            Align = alClient
+            TabOrder = 1
+            ExplicitLeft = 18
+            ExplicitTop = 6
+            ExplicitHeight = 48
+            object Label13: TLabel
+              Left = 277
+              Top = 30
+              Width = 32
+              Height = 16
+              Caption = 'ISBN:'
+            end
+            object Label12: TLabel
+              Left = 13
+              Top = 30
+              Width = 41
+              Height = 16
+              Caption = #1052#1077#1089#1090#1086':'
+            end
+            object DBEdit4: TDBEdit
+              Left = 59
+              Top = 21
+              Width = 169
+              Height = 24
+              DataField = 'placement'
+              DataSource = DM.DSExemplar
+              TabOrder = 0
+            end
+            object DBEdit5: TDBEdit
+              Left = 315
+              Top = 21
+              Width = 169
+              Height = 24
+              DataField = 'ISBN'
+              DataSource = DM.DSExemplar
+              TabOrder = 1
+            end
+            object Button6: TButton
+              Left = 747
+              Top = 23
+              Width = 75
+              Height = 25
+              Caption = #1043#1086#1090#1086#1074#1086
+              TabOrder = 2
+            end
+          end
+        end
       end
       object GroupBox5: TGroupBox
         Left = 0
         Top = 0
         Width = 884
-        Height = 442
-        Align = alClient
+        Height = 441
+        Align = alTop
         Caption = #1050#1072#1090#1072#1083#1086#1075
         TabOrder = 1
-        ExplicitLeft = 288
-        ExplicitTop = 152
-        ExplicitWidth = 185
-        ExplicitHeight = 105
         object Panel5: TPanel
           Left = 2
           Top = 18
@@ -460,9 +515,7 @@ object FormSuper: TFormSuper
           Height = 29
           Align = alTop
           TabOrder = 0
-          ExplicitLeft = 4
-          ExplicitTop = 26
-          object SpeedButton1: TSpeedButton
+          object SpeedButtonAddBook: TSpeedButton
             Left = 758
             Top = -4
             Width = 23
@@ -495,7 +548,7 @@ object FormSuper: TFormSuper
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF3CD9DF6D5ACFDD9B4F6D5ACF6D5ACF6
               D5ACF6D5ACEEC392F3CD9DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
           end
-          object SpeedButton3: TSpeedButton
+          object SpeedButtonEditBook: TSpeedButton
             Left = 787
             Top = -4
             Width = 23
@@ -528,7 +581,7 @@ object FormSuper: TFormSuper
               CB0000A51C30D20000A5FFFFFFFFFFFFF1CDA1F9D5ABF9D5ABF9D5ABF9D5ABF9
               D5ABF9D5ABEEC597F1CDA1FFFFFFEFF7FA5155C51C30D25155C5}
           end
-          object SpeedButton4: TSpeedButton
+          object SpeedButtonDeleteBook: TSpeedButton
             Left = 816
             Top = -4
             Width = 23
@@ -580,7 +633,7 @@ object FormSuper: TFormSuper
           Left = 2
           Top = 167
           Width = 880
-          Height = 274
+          Height = 266
           Align = alTop
           Caption = #1050#1085#1080#1075#1072
           TabOrder = 2
@@ -588,16 +641,17 @@ object FormSuper: TFormSuper
             Left = 455
             Top = 15
             Width = 429
-            Height = 218
+            Height = 210
             Caption = #1040#1074#1090#1086#1088#1099
             TabOrder = 0
             object DBGrid2: TDBGrid
               Left = 2
-              Top = 79
+              Top = 88
               Width = 425
-              Height = 137
+              Height = 120
               Align = alBottom
               DataSource = DM.DSAuthorBook
+              PopupMenu = PopupMenu1
               TabOrder = 0
               TitleFont.Charset = DEFAULT_CHARSET
               TitleFont.Color = clWindowText
@@ -606,7 +660,7 @@ object FormSuper: TFormSuper
               TitleFont.Style = []
             end
             object DBLookupComboBox3: TDBLookupComboBox
-              Left = 32
+              Left = 40
               Top = 40
               Width = 258
               Height = 24
@@ -628,10 +682,12 @@ object FormSuper: TFormSuper
           end
           object Panel6: TPanel
             Left = 2
-            Top = 15
+            Top = 18
             Width = 447
-            Height = 254
+            Height = 246
+            Align = alLeft
             TabOrder = 1
+            ExplicitHeight = 247
             object Label4: TLabel
               Left = 16
               Top = 8
@@ -641,37 +697,37 @@ object FormSuper: TFormSuper
             end
             object Label10: TLabel
               Left = 16
-              Top = 63
+              Top = 55
               Width = 33
               Height = 16
               Caption = #1046#1072#1085#1088
             end
             object Label7: TLabel
               Left = 16
-              Top = 119
+              Top = 111
               Width = 81
               Height = 16
               Caption = #1048#1079#1076#1072#1090#1077#1083#1100#1089#1090#1074#1086
             end
             object Label11: TLabel
               Left = 16
-              Top = 181
+              Top = 165
               Width = 21
               Height = 16
               Caption = #1043#1086#1076
             end
-            object DBEdit1: TDBEdit
+            object DBEdit: TDBEdit
               Left = 16
-              Top = 24
+              Top = 25
               Width = 377
-              Height = 21
+              Height = 24
               DataField = 'Title'
               DataSource = DM.DSBook
               TabOrder = 0
             end
             object DBLookupComboBox2: TDBLookupComboBox
               Left = 16
-              Top = 85
+              Top = 77
               Width = 377
               Height = 24
               DataField = 'category'
@@ -683,7 +739,7 @@ object FormSuper: TFormSuper
             end
             object DBLookupComboBox1: TDBLookupComboBox
               Left = 16
-              Top = 141
+              Top = 133
               Width = 377
               Height = 24
               DataField = 'publication_lf'
@@ -693,9 +749,9 @@ object FormSuper: TFormSuper
             end
             object DBEdit2: TDBEdit
               Left = 16
-              Top = 203
+              Top = 187
               Width = 121
-              Height = 21
+              Height = 24
               DataField = 'year'
               DataSource = DM.DSBook
               TabOrder = 3
@@ -703,7 +759,7 @@ object FormSuper: TFormSuper
           end
           object Button4: TButton
             Left = 693
-            Top = 239
+            Top = 238
             Width = 75
             Height = 25
             Caption = #1054#1090#1084#1077#1085#1072
@@ -711,7 +767,7 @@ object FormSuper: TFormSuper
           end
           object Button3: TButton
             Left = 787
-            Top = 239
+            Top = 238
             Width = 75
             Height = 25
             Caption = #1043#1086#1090#1086#1074#1086
@@ -723,22 +779,22 @@ object FormSuper: TFormSuper
     object TabSheet2: TTabSheet
       Caption = #1057#1087#1088#1072#1074#1086#1095#1085#1080#1082#1080
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 31
+      ExplicitHeight = 620
       object GroupBox2: TGroupBox
         Left = 0
-        Top = 417
+        Top = 449
         Width = 884
-        Height = 200
-        Align = alTop
+        Height = 207
+        Align = alClient
         Caption = #1046#1072#1085#1088#1099
         TabOrder = 0
-        ExplicitTop = 247
+        ExplicitTop = 417
+        ExplicitHeight = 200
         object DBGridCategory: TDBGrid
           Left = 2
           Top = 47
           Width = 880
-          Height = 120
+          Height = 114
           Align = alTop
           DataSource = DM.DSBookCategory
           TabOrder = 0
@@ -755,8 +811,6 @@ object FormSuper: TFormSuper
           Height = 29
           Align = alTop
           TabOrder = 1
-          ExplicitLeft = 1
-          ExplicitTop = 12
           object SpeedButtonAddCategory: TSpeedButton
             Left = 758
             Top = -4
@@ -824,21 +878,55 @@ object FormSuper: TFormSuper
               D5ABFBD5ABEFC393F3CD9DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
           end
         end
+        object Panel12: TPanel
+          Left = 2
+          Top = 161
+          Width = 880
+          Height = 44
+          Align = alClient
+          TabOrder = 2
+          ExplicitLeft = 4
+          ExplicitTop = 169
+          ExplicitHeight = 31
+          object Label18: TLabel
+            Left = 35
+            Top = 15
+            Width = 91
+            Height = 16
+            Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077':'
+          end
+          object ButtonEditBookCategory: TButton
+            Left = 747
+            Top = 15
+            Width = 75
+            Height = 25
+            Caption = #1043#1086#1090#1086#1074#1086
+            TabOrder = 0
+          end
+          object DBEditBookCategoryName: TDBEdit
+            Left = 132
+            Top = 6
+            Width = 289
+            Height = 24
+            DataField = 'name'
+            DataSource = DM.DSBookCategory
+            TabOrder = 1
+          end
+        end
       end
       object GroupBox3: TGroupBox
         Left = 0
         Top = 0
         Width = 884
-        Height = 241
+        Height = 257
         Align = alTop
         Caption = #1040#1074#1090#1086#1088#1099
         TabOrder = 1
-        ExplicitTop = -6
         object DBGridAuthor: TDBGrid
           Left = 2
           Top = 47
           Width = 880
-          Height = 174
+          Height = 132
           Align = alTop
           DataSource = DM.DSAuthor
           TabOrder = 0
@@ -855,8 +943,6 @@ object FormSuper: TFormSuper
           Height = 29
           Align = alTop
           TabOrder = 1
-          ExplicitLeft = 1
-          ExplicitTop = 12
           object SpeedButtonAddAuthor: TSpeedButton
             Left = 758
             Top = -4
@@ -957,21 +1043,104 @@ object FormSuper: TFormSuper
               D5ABFBD5ABEFC393F3CD9DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
           end
         end
+        object Panel10: TPanel
+          Left = 2
+          Top = 179
+          Width = 880
+          Height = 76
+          Align = alClient
+          TabOrder = 2
+          ExplicitLeft = 18
+          ExplicitTop = 6
+          ExplicitWidth = 878
+          ExplicitHeight = 48
+          object Label14: TLabel
+            Left = 345
+            Top = 14
+            Width = 60
+            Height = 16
+            Caption = #1054#1090#1095#1077#1089#1090#1074#1086':'
+          end
+          object Label15: TLabel
+            Left = 23
+            Top = 14
+            Width = 58
+            Height = 16
+            Caption = #1060#1072#1084#1080#1083#1080#1103':'
+          end
+          object Label20: TLabel
+            Left = 53
+            Top = 45
+            Width = 28
+            Height = 16
+            Caption = #1048#1084#1103':'
+          end
+          object Label21: TLabel
+            Left = 317
+            Top = 45
+            Width = 88
+            Height = 16
+            Caption = #1040#1073#1073#1088#1077#1074#1080#1072#1090#1091#1088#1072':'
+          end
+          object DBEditAuthorFirstName: TDBEdit
+            Left = 87
+            Top = 6
+            Width = 206
+            Height = 24
+            DataField = 'FirstName'
+            DataSource = DM.DSAuthor
+            TabOrder = 0
+          end
+          object DBEditAuthorMiddleName: TDBEdit
+            Left = 411
+            Top = 6
+            Width = 230
+            Height = 24
+            DataField = 'MiddleName'
+            DataSource = DM.DSAuthor
+            TabOrder = 1
+          end
+          object ButtonEditAuthor: TButton
+            Left = 747
+            Top = 39
+            Width = 75
+            Height = 25
+            Caption = #1043#1086#1090#1086#1074#1086
+            TabOrder = 2
+          end
+          object DBEditAuthorLastName: TDBEdit
+            Left = 87
+            Top = 36
+            Width = 206
+            Height = 24
+            DataField = 'LastName'
+            DataSource = DM.DSAuthor
+            TabOrder = 3
+          end
+          object DBEditAuthorABR: TDBEdit
+            Left = 411
+            Top = 36
+            Width = 169
+            Height = 24
+            DataField = 'abr'
+            DataSource = DM.DSAuthor
+            TabOrder = 4
+          end
+        end
       end
       object GroupBox4: TGroupBox
         Left = 0
-        Top = 241
+        Top = 257
         Width = 884
-        Height = 176
+        Height = 192
         Align = alTop
         Caption = #1048#1079#1076#1072#1090#1077#1083#1100#1089#1090#1074#1072
         TabOrder = 2
-        ExplicitTop = 447
         object DBGridPublishig: TDBGrid
           Left = 2
           Top = 47
           Width = 880
-          Height = 120
+          Height = 98
           Align = alTop
           DataSource = DM.DSPublishing
           TabOrder = 0
@@ -1088,7 +1257,64 @@ object FormSuper: TFormSuper
               D5ABFBD5ABEFC393F3CD9DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
           end
         end
+        object Panel11: TPanel
+          Left = 2
+          Top = 145
+          Width = 880
+          Height = 45
+          Align = alClient
+          TabOrder = 2
+          ExplicitLeft = 3
+          ExplicitTop = 144
+          object Label16: TLabel
+            Left = 381
+            Top = 14
+            Width = 40
+            Height = 16
+            Caption = #1043#1086#1088#1086#1076':'
+          end
+          object Label17: TLabel
+            Left = 27
+            Top = 15
+            Width = 91
+            Height = 16
+            Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077':'
+          end
+          object DBEditPublishingName: TDBEdit
+            Left = 124
+            Top = 6
+            Width = 221
+            Height = 24
+            DataField = 'name'
+            DataSource = DM.DSPublishing
+            TabOrder = 0
+          end
+          object DBEditPublishingCity: TDBEdit
+            Left = 427
+            Top = 6
+            Width = 169
+            Height = 24
+            DataField = 'city'
+            DataSource = DM.DSPublishing
+            TabOrder = 1
+          end
+          object ButtonEditPublishing: TButton
+            Left = 747
+            Top = 8
+            Width = 75
+            Height = 25
+            Caption = #1043#1086#1090#1086#1074#1086
+            TabOrder = 2
+          end
+        end
       end
+    end
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 764
+    Top = 323
+    object N1: TMenuItem
+      Caption = #1059#1076#1072#1083#1080#1090#1100
     end
   end
 end
