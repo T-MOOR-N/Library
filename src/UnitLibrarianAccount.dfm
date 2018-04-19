@@ -2,7 +2,7 @@ object FormLibrary: TFormLibrary
   Left = 255
   Top = 77
   Caption = #1041#1080#1073#1083#1080#1086#1090#1077#1082#1072#1088#1100
-  ClientHeight = 515
+  ClientHeight = 508
   ClientWidth = 852
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,12 +19,13 @@ object FormLibrary: TFormLibrary
     Left = 0
     Top = 0
     Width = 852
-    Height = 515
+    Height = 508
     ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = #1050#1072#1090#1086#1083#1086#1075
+      ExplicitHeight = 487
       object Panel1: TPanel
         Left = 0
         Top = 0
@@ -33,206 +34,16 @@ object FormLibrary: TFormLibrary
         Align = alTop
         TabOrder = 0
         object GroupBox2: TGroupBox
-          Left = 366
+          Left = 0
           Top = 1
-          Width = 477
+          Width = 843
           Height = 79
           Align = alRight
           Caption = #1060#1080#1083#1100#1090#1088'/'#1055#1086#1080#1089#1082
           TabOrder = 0
           object SpeedButton1: TSpeedButton
-            Left = 232
-            Top = 26
-            Width = 25
-            Height = 25
-          end
-          object Edit1: TEdit
-            Left = 41
-            Top = 30
-            Width = 193
-            Height = 21
-            TabOrder = 0
-          end
-          object RadioButton1: TRadioButton
-            Left = 304
-            Top = 20
-            Width = 113
-            Height = 17
-            Caption = #1043#1086#1076' '#1080#1079#1076#1072#1085#1080#1103
-            TabOrder = 1
-          end
-          object RadioButton2: TRadioButton
-            Left = 304
-            Top = 39
-            Width = 113
-            Height = 17
-            Caption = #1040#1074#1090#1086#1088
-            TabOrder = 2
-          end
-          object RadioButton3: TRadioButton
-            Left = 304
-            Top = 55
-            Width = 113
-            Height = 17
-            Caption = #1053#1072#1079#1074#1072#1085#1080#1077
-            TabOrder = 3
-          end
-        end
-        object GroupBox4: TGroupBox
-          Left = 1
-          Top = 1
-          Width = 176
-          Height = 79
-          Align = alLeft
-          Caption = #1053#1086#1074#1086#1077' '#1087#1086#1089#1090#1091#1087#1083#1077#1085#1080#1077
-          TabOrder = 1
-          object Button3: TButton
-            Left = 40
-            Top = 16
-            Width = 97
-            Height = 25
-            Caption = #1050#1085#1080#1075#1072
-            TabOrder = 0
-            OnClick = Button3Click
-          end
-          object Button4: TButton
-            Left = 40
-            Top = 40
-            Width = 97
-            Height = 25
-            Caption = #1048#1079#1076#1072#1085#1080#1077
-            TabOrder = 1
-          end
-        end
-        object GroupBox5: TGroupBox
-          Left = 177
-          Top = 1
-          Width = 189
-          Height = 79
-          Align = alClient
-          TabOrder = 2
-          object Button5: TButton
-            Left = 48
-            Top = 16
-            Width = 97
-            Height = 25
-            Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100
-            TabOrder = 0
-          end
-          object Button6: TButton
-            Left = 48
-            Top = 40
-            Width = 97
-            Height = 25
-            Caption = #1059#1076#1072#1083#1080#1090#1100
-            TabOrder = 1
-          end
-        end
-      end
-      object GroupBox3: TGroupBox
-        Left = 0
-        Top = 81
-        Width = 369
-        Height = 406
-        Align = alLeft
-        Caption = #1050#1085#1080#1075#1072
-        TabOrder = 1
-        object Label1: TLabel
-          Left = 32
-          Top = 168
-          Width = 50
-          Height = 13
-          Caption = #1053#1072#1079#1074#1072#1085#1080#1077
-        end
-        object Label2: TLabel
-          Left = 32
-          Top = 216
-          Width = 30
-          Height = 13
-          Caption = #1040#1074#1090#1086#1088
-        end
-        object Label3: TLabel
-          Left = 32
-          Top = 272
-          Width = 29
-          Height = 13
-          Caption = #1046#1072#1085#1088
-        end
-        object DBImage1: TDBImage
-          Left = 104
-          Top = 32
-          Width = 169
-          Height = 121
-          TabOrder = 0
-        end
-        object DBEdit1: TDBEdit
-          Left = 32
-          Top = 184
-          Width = 305
-          Height = 21
-          TabOrder = 1
-        end
-        object DBEdit2: TDBEdit
-          Left = 32
-          Top = 232
-          Width = 305
-          Height = 21
-          TabOrder = 2
-        end
-        object DBEdit3: TDBEdit
-          Left = 32
-          Top = 288
-          Width = 305
-          Height = 21
-          TabOrder = 3
-        end
-      end
-      object GroupBox1: TGroupBox
-        Left = 366
-        Top = 81
-        Width = 478
-        Height = 406
-        Align = alRight
-        Caption = #1069#1082#1079#1077#1084#1087#1083#1103#1088#1099
-        TabOrder = 2
-        object DBGridCatalog: TDBGrid
-          Left = 2
-          Top = 15
-          Width = 474
-          Height = 389
-          Align = alClient
-          DataSource = DM.DSCatalog
-          ReadOnly = True
-          TabOrder = 0
-          TitleFont.Charset = DEFAULT_CHARSET
-          TitleFont.Color = clWindowText
-          TitleFont.Height = -11
-          TitleFont.Name = 'MS Sans Serif'
-          TitleFont.Style = []
-        end
-      end
-    end
-    object TabSheet2: TTabSheet
-      Caption = #1063#1080#1090#1072#1090#1077#1083#1100
-      ImageIndex = 1
-      object Panel3: TPanel
-        Left = 0
-        Top = 0
-        Width = 844
-        Height = 73
-        Align = alTop
-        TabOrder = 0
-        object GroupBox6: TGroupBox
-          Left = 1
-          Top = 1
-          Width = 384
-          Height = 71
-          Align = alLeft
-          Caption = #1055#1086#1080#1089#1082
-          TabOrder = 0
-          object SpeedButton2: TSpeedButton
-            Left = 311
-            Top = 26
+            Left = 240
+            Top = 32
             Width = 23
             Height = 22
             Glyph.Data = {
@@ -263,12 +74,93 @@ object FormLibrary: TFormLibrary
               DDC8A8A8FBF8F8FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF4
               EAEAD9BABADAC3C3E6C9C5DAC3C3C8B3B3FBF8F8FFFFFFFFFFFF}
           end
-          object Edit2: TEdit
-            Left = 35
-            Top = 26
-            Width = 278
+          object Edit1: TEdit
+            Left = 41
+            Top = 30
+            Width = 193
             Height = 21
             TabOrder = 0
+          end
+          object RadioButton1: TRadioButton
+            Left = 304
+            Top = 9
+            Width = 113
+            Height = 17
+            Caption = #1043#1086#1076' '#1080#1079#1076#1072#1085#1080#1103
+            TabOrder = 1
+          end
+          object RadioButton2: TRadioButton
+            Left = 304
+            Top = 32
+            Width = 113
+            Height = 17
+            Caption = #1040#1074#1090#1086#1088
+            TabOrder = 2
+          end
+          object RadioButton3: TRadioButton
+            Left = 304
+            Top = 55
+            Width = 113
+            Height = 17
+            Caption = #1053#1072#1079#1074#1072#1085#1080#1077
+            TabOrder = 3
+          end
+        end
+      end
+      object GroupBox1: TGroupBox
+        Left = 0
+        Top = 81
+        Width = 844
+        Height = 399
+        Align = alClient
+        Caption = #1069#1082#1079#1077#1084#1087#1083#1103#1088#1099
+        TabOrder = 1
+        ExplicitLeft = 432
+        ExplicitWidth = 412
+        ExplicitHeight = 406
+        object DBGridCatalog: TDBGrid
+          Left = 2
+          Top = 15
+          Width = 840
+          Height = 382
+          Align = alClient
+          DataSource = DM.DSCatalog
+          ReadOnly = True
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'MS Sans Serif'
+          TitleFont.Style = []
+        end
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = #1063#1080#1090#1072#1090#1077#1083#1100
+      ImageIndex = 1
+      ExplicitHeight = 487
+      object Panel3: TPanel
+        Left = 0
+        Top = 0
+        Width = 844
+        Height = 73
+        Align = alTop
+        TabOrder = 0
+        object GroupBox6: TGroupBox
+          Left = 1
+          Top = 1
+          Width = 384
+          Height = 71
+          Align = alLeft
+          Caption = #1055#1086#1080#1089#1082
+          TabOrder = 0
+          object SearchBox1: TSearchBox
+            Left = 40
+            Top = 26
+            Width = 297
+            Height = 21
+            TabOrder = 0
+            OnInvokeSearch = SearchBox1InvokeSearch
           end
         end
         object GroupBox7: TGroupBox
@@ -286,6 +178,7 @@ object FormLibrary: TFormLibrary
             Height = 25
             Caption = #1057#1086#1079#1076#1072#1090#1100
             TabOrder = 0
+            OnClick = Button1Click
           end
           object Button2: TButton
             Left = 181
@@ -294,6 +187,7 @@ object FormLibrary: TFormLibrary
             Height = 25
             Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100
             TabOrder = 1
+            OnClick = Button2Click
           end
           object Button7: TButton
             Left = 277
@@ -302,22 +196,23 @@ object FormLibrary: TFormLibrary
             Height = 25
             Caption = #1059#1076#1072#1083#1080#1090#1100
             TabOrder = 2
+            OnClick = Button7Click
           end
         end
       end
       object GroupBox8: TGroupBox
         Left = 0
         Top = 73
-        Width = 385
-        Height = 414
-        Align = alLeft
+        Width = 844
+        Height = 224
+        Align = alTop
         Caption = #1063#1080#1090#1072#1090#1077#1083#1080
         TabOrder = 1
         object DBGridReader: TDBGrid
           Left = 2
           Top = 15
-          Width = 381
-          Height = 397
+          Width = 840
+          Height = 207
           Align = alClient
           DataSource = DM.DSReader
           ReadOnly = True
@@ -330,18 +225,20 @@ object FormLibrary: TFormLibrary
         end
       end
       object GroupBox9: TGroupBox
-        Left = 391
-        Top = 73
-        Width = 453
-        Height = 414
-        Align = alRight
+        Left = 0
+        Top = 297
+        Width = 844
+        Height = 183
+        Align = alClient
         Caption = #1057#1087#1080#1089#1086#1082' '#1083#1080#1089#1090#1086#1074' '#1074#1099#1076#1072#1095#1080
         TabOrder = 2
+        ExplicitTop = 303
+        ExplicitHeight = 184
         object DBGrid3: TDBGrid
           Left = 2
           Top = 15
-          Width = 449
-          Height = 397
+          Width = 840
+          Height = 166
           Align = alClient
           DataSource = DM.DSBookIssuing
           ReadOnly = True
@@ -357,11 +254,12 @@ object FormLibrary: TFormLibrary
     object TabSheet3: TTabSheet
       Caption = #1041#1088#1086#1085#1100
       ImageIndex = 2
+      ExplicitHeight = 487
       object DBGrid5: TDBGrid
         Left = 0
         Top = 0
         Width = 844
-        Height = 487
+        Height = 480
         Align = alClient
         DataSource = DM.DSReservation
         ReadOnly = True
@@ -376,6 +274,7 @@ object FormLibrary: TFormLibrary
     object TabSheet4: TTabSheet
       Caption = #1051#1080#1089#1090' '#1074#1099#1076#1072#1095#1080
       ImageIndex = 3
+      ExplicitHeight = 487
       object Panel4: TPanel
         Left = 0
         Top = 0
@@ -462,7 +361,7 @@ object FormLibrary: TFormLibrary
         Left = 0
         Top = 73
         Width = 844
-        Height = 237
+        Height = 230
         Align = alClient
         DataSource = DM.DSBookIssuing
         ReadOnly = True
@@ -475,12 +374,13 @@ object FormLibrary: TFormLibrary
       end
       object GroupBox14: TGroupBox
         Left = 0
-        Top = 310
+        Top = 303
         Width = 844
         Height = 177
         Align = alBottom
         Caption = #1054#1090#1082#1088#1099#1090#1100' '#1083#1080#1089#1090' '#1074#1099#1076#1072#1095#1080
         TabOrder = 2
+        ExplicitTop = 310
         object Label5: TLabel
           Left = 16
           Top = 69

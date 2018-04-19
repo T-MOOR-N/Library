@@ -14,8 +14,6 @@ type
     Label1: TLabel;
     Label2: TLabel;
     BitBtn1: TBitBtn;
-    ComboBox1: TComboBox;
-    Label3: TLabel;
     ADOQuery1: TADOQuery;
     procedure BitBtn1Click(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
