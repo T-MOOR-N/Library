@@ -1,8 +1,8 @@
 ﻿--
--- Скрипт сгенерирован Devart dbForge Studio for SQL Server, Версия 5.5.327.0
+-- Скрипт сгенерирован Devart dbForge Studio for SQL Server, Версия 5.5.311.0
 -- Домашняя страница продукта: http://www.devart.com/ru/dbforge/sql/studio
--- Дата скрипта: 17.04.2018 22:39:06
--- Версия сервера: 10.50.4042
+-- Дата скрипта: 19.04.2018 20:00:56
+-- Версия сервера: 10.50.4000
 --
 
 
@@ -54,22 +54,6 @@ CREATE TABLE dbo.ReservationStatus (
   id int IDENTITY,
   name varchar(50) NOT NULL,
   CONSTRAINT PK_ReservationStatus_id PRIMARY KEY CLUSTERED (id)
-)
-ON [PRIMARY]
-GO
-
---
--- Создать таблицу [dbo].[Reservation]
---
-PRINT (N'Создать таблицу [dbo].[Reservation]')
-GO
-CREATE TABLE dbo.Reservation (
-  id varchar(50) NOT NULL,
-  date datetime NULL,
-  exemplar_id int NULL,
-  reader_id int NULL,
-  status int NULL,
-  CONSTRAINT PK_Reservation_id PRIMARY KEY CLUSTERED (id)
 )
 ON [PRIMARY]
 GO
@@ -269,6 +253,22 @@ CREATE USER [user]
 GO
 
 --
+-- Создать таблицу [dbo].[Reservation]
+--
+PRINT (N'Создать таблицу [dbo].[Reservation]')
+GO
+CREATE TABLE dbo.Reservation (
+  id int IDENTITY,
+  date datetime NULL,
+  exemplar_id int NULL,
+  reader_id int NULL,
+  status int NULL,
+  CONSTRAINT PK_Reservation_id PRIMARY KEY CLUSTERED (id)
+)
+ON [PRIMARY]
+GO
+
+--
 -- Создать функцию [dbo].[fn_diagramobjects]
 --
 GO
@@ -427,7 +427,12 @@ GO
 -- 
 -- Вывод данных для таблицы Reservation
 --
--- Таблица LibraryDB.dbo.Reservation не содержит данных
+SET IDENTITY_INSERT dbo.Reservation ON
+GO
+INSERT dbo.Reservation(id, date, exemplar_id, reader_id, status) VALUES (1, '2018-04-19 18:54:47.267', 1, 1, 1)
+GO
+SET IDENTITY_INSERT dbo.Reservation OFF
+GO
 -- 
 -- Вывод данных для таблицы ReservationStatus
 --
