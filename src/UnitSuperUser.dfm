@@ -18,7 +18,7 @@ object FormSuper: TFormSuper
     Top = 0
     Width = 892
     Height = 687
-    ActivePage = TabSheet1
+    ActivePage = TabSheetCatalog
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -28,7 +28,7 @@ object FormSuper: TFormSuper
         Top = 0
         Width = 884
         Height = 653
-        ActivePage = TabSheetWorker
+        ActivePage = TabSheetReaders
         Align = alTop
         TabOrder = 0
         object TabSheetReaders: TTabSheet
@@ -970,7 +970,7 @@ object FormSuper: TFormSuper
             Top = 35
             Width = 282
             Height = 24
-            DataField = 'FirstName'
+            DataField = 'id'
             DataSource = DM.DSAuthor
             KeyField = 'id'
             ListField = 'author_lf'
