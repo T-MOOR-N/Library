@@ -20,7 +20,7 @@ object FormReader: TFormReader
     Top = 0
     Width = 1124
     Height = 609
-    ActivePage = TabSheet1
+    ActivePage = TabSheet3
     Align = alClient
     TabOrder = 0
     ExplicitWidth = 1002
@@ -173,7 +173,7 @@ object FormReader: TFormReader
         Top = 0
         Width = 1116
         Height = 578
-        ActivePage = TabSheet5
+        ActivePage = TabSheet4
         Align = alClient
         TabOrder = 0
         ExplicitWidth = 994
@@ -504,6 +504,7 @@ object FormReader: TFormReader
         Height = 25
         Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100
         TabOrder = 0
+        OnClick = Button2Click
       end
       object DBEdit1: TDBEdit
         Left = 512
@@ -512,6 +513,7 @@ object FormReader: TFormReader
         Height = 24
         DataField = 'login'
         DataSource = DM.DSUsers
+        ReadOnly = True
         TabOrder = 1
       end
       object DBEdit2: TDBEdit
@@ -521,15 +523,17 @@ object FormReader: TFormReader
         Height = 24
         DataField = 'password'
         DataSource = DM.DSUsers
+        ReadOnly = True
         TabOrder = 2
       end
       object DBEdit3: TDBEdit
         Left = 40
-        Top = 122
+        Top = 128
         Width = 356
         Height = 24
         DataField = 'FirstName'
         DataSource = DM.DSReader
+        ReadOnly = True
         TabOrder = 3
       end
       object DBEdit4: TDBEdit
@@ -539,6 +543,7 @@ object FormReader: TFormReader
         Height = 24
         DataField = 'LastName'
         DataSource = DM.DSReader
+        ReadOnly = True
         TabOrder = 4
       end
       object DBEdit5: TDBEdit
@@ -548,6 +553,7 @@ object FormReader: TFormReader
         Height = 24
         DataField = 'MiddleName'
         DataSource = DM.DSReader
+        ReadOnly = True
         TabOrder = 5
       end
       object DBEdit6: TDBEdit
@@ -557,15 +563,17 @@ object FormReader: TFormReader
         Height = 24
         DataField = 'Phone'
         DataSource = DM.DSReader
+        ReadOnly = True
         TabOrder = 6
       end
       object DBEdit7: TDBEdit
         Left = 40
-        Top = 424
+        Top = 430
         Width = 449
         Height = 24
         DataField = 'Adress'
         DataSource = DM.DSReader
+        ReadOnly = True
         TabOrder = 7
       end
       object ButtonOKUser: TButton
@@ -574,7 +582,9 @@ object FormReader: TFormReader
         Width = 129
         Height = 26
         Caption = #1043#1086#1090#1086#1074#1086
+        Enabled = False
         TabOrder = 8
+        OnClick = ButtonOKUserClick
       end
     end
   end

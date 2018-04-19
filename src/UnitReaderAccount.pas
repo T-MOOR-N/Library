@@ -62,6 +62,8 @@ type
     procedure SearchBox1InvokeSearch(Sender: TObject);
     procedure SearchBox2InvokeSearch(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure ButtonOKUserClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -81,6 +83,30 @@ procedure TFormReader.Button1Click(Sender: TObject);
 begin
   dm.TReservation.Insert;
   dm.TReservation.Post;
+end;
+
+procedure TFormReader.Button2Click(Sender: TObject);
+begin
+DBEdit1.ReadOnly:=false;
+DBEdit2.ReadOnly:=false;
+DBEdit3.ReadOnly:=false;
+DBEdit4.ReadOnly:=false;
+DBEdit5.ReadOnly:=false;
+DBEdit6.ReadOnly:=false;
+DBEdit7.ReadOnly:=false;
+ButtonOKUser.Enabled:=true;
+end;
+
+procedure TFormReader.ButtonOKUserClick(Sender: TObject);
+begin
+DBEdit1.ReadOnly:=true;
+DBEdit2.ReadOnly:=true;
+DBEdit3.ReadOnly:=true;
+DBEdit4.ReadOnly:=true;
+DBEdit5.ReadOnly:=true;
+DBEdit6.ReadOnly:=true;
+DBEdit7.ReadOnly:=true;
+ButtonOKUser.Enabled:=false;
 end;
 
 procedure TFormReader.FormClose(Sender: TObject; var Action: TCloseAction);
