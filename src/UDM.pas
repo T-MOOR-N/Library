@@ -63,6 +63,11 @@ type
     TPublishingid: TAutoIncField;
     TPublishingname: TStringField;
     TPublishingcity: TStringField;
+    TBookCategoryName2: TStringField;
+    TExemplarid: TAutoIncField;
+    TExemplarplacement: TStringField;
+    TExemplarISBN: TStringField;
+    TAuthorBookAuthorName: TStringField;
     procedure TAuthorCalcFields(DataSet: TDataSet);
   private
     { Private declarations }

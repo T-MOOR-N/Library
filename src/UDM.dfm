@@ -157,12 +157,15 @@ object DM: TDM
     object TAuthorBookid: TAutoIncField
       FieldName = 'id'
       ReadOnly = True
+      Visible = False
     end
     object TAuthorBookauthor_id: TIntegerField
       FieldName = 'author_id'
+      Visible = False
     end
     object TAuthorBookISBN: TStringField
       FieldName = 'ISBN'
+      Visible = False
       Size = 13
     end
     object TAuthorBookauthor_lf: TStringField
@@ -172,7 +175,19 @@ object DM: TDM
       LookupKeyFields = 'id'
       LookupResultField = 'abr'
       KeyFields = 'author_id'
+      Visible = False
       Size = 50
+      Lookup = True
+    end
+    object TAuthorBookAuthorName: TStringField
+      DisplayLabel = #1040#1074#1090#1086#1088#1099
+      FieldKind = fkLookup
+      FieldName = 'AuthorName'
+      LookupDataSet = TAuthor
+      LookupKeyFields = 'id'
+      LookupResultField = 'abr'
+      KeyFields = 'author_id'
+      Size = 100
       Lookup = True
     end
   end
@@ -190,23 +205,32 @@ object DM: TDM
     Top = 296
     object TBookISBN: TStringField
       FieldName = 'ISBN'
+      Visible = False
       Size = 13
     end
     object TBookTitle: TStringField
+      DisplayLabel = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
+      DisplayWidth = 40
       FieldName = 'Title'
       Size = 40
     end
     object TBookpublishing_id: TIntegerField
       FieldName = 'publishing_id'
+      Visible = False
     end
     object TBookyear: TWideStringField
+      DisplayLabel = #1043#1086#1076
+      DisplayWidth = 10
       FieldName = 'year'
       Size = 10
     end
     object TBookcategory2: TIntegerField
       FieldName = 'category'
+      Visible = False
     end
     object TBookpublication_lf: TStringField
+      DisplayLabel = #1048#1079#1076#1072#1090#1077#1083#1100#1089#1090#1074#1086
+      DisplayWidth = 18
       FieldKind = fkLookup
       FieldName = 'publication_lf'
       LookupDataSet = TPublishing
@@ -214,6 +238,18 @@ object DM: TDM
       LookupResultField = 'name'
       KeyFields = 'publishing_id'
       Size = 30
+      Lookup = True
+    end
+    object TBookCategoryName2: TStringField
+      DisplayLabel = #1046#1072#1085#1088
+      DisplayWidth = 100
+      FieldKind = fkLookup
+      FieldName = 'CategoryName'
+      LookupDataSet = TBookCategory
+      LookupKeyFields = 'id'
+      LookupResultField = 'name'
+      KeyFields = 'category'
+      Size = 100
       Lookup = True
     end
   end
@@ -266,6 +302,22 @@ object DM: TDM
     TableName = 'Exemplar'
     Left = 376
     Top = 296
+    object TExemplarid: TAutoIncField
+      FieldName = 'id'
+      ReadOnly = True
+      Visible = False
+    end
+    object TExemplarplacement: TStringField
+      DisplayLabel = #1052#1077#1089#1090#1086
+      DisplayWidth = 33
+      FieldName = 'placement'
+      Size = 10
+    end
+    object TExemplarISBN: TStringField
+      DisplayWidth = 57
+      FieldName = 'ISBN'
+      Size = 13
+    end
   end
   object DSExemplar: TDataSource
     DataSet = TExemplar

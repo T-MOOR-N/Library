@@ -30,7 +30,7 @@ object FormSuper: TFormSuper
         Top = 0
         Width = 884
         Height = 253
-        ActivePage = TabSheetReaders
+        ActivePage = TabSheetWorker
         Align = alTop
         TabOrder = 0
         object TabSheetReaders: TTabSheet
@@ -1312,7 +1312,7 @@ object FormSuper: TFormSuper
   end
   object PopupMenu1: TPopupMenu
     Left = 764
-    Top = 323
+    Top = 339
     object N1: TMenuItem
       Caption = #1059#1076#1072#1083#1080#1090#1100
     end
