@@ -309,9 +309,41 @@ object DM: TDM
     Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
+    IndexFieldNames = 'Reader_id'
+    MasterFields = 'id'
+    MasterSource = DSReader
     TableName = 'BookIssuing'
     Left = 280
     Top = 136
+    object TBookIssuingid: TAutoIncField
+      FieldName = 'id'
+      ReadOnly = True
+    end
+    object TBookIssuingExemplar_id: TIntegerField
+      FieldName = 'Exemplar_id'
+    end
+    object TBookIssuingReader_id: TIntegerField
+      FieldName = 'Reader_id'
+    end
+    object TBookIssuingDateIssue: TWideStringField
+      DisplayLabel = #1044#1072#1090#1072' '#1074#1099#1076#1072#1095#1080
+      FieldName = 'DateIssue'
+      Size = 10
+    end
+    object TBookIssuingDateReturnExpected: TWideStringField
+      DisplayLabel = #1054#1078#1080#1076#1072#1077#1084#1072#1103' '#1076#1072#1090#1072' '#1074#1086#1079#1074#1088#1072#1090#1072
+      FieldName = 'DateReturnExpected'
+      Size = 10
+    end
+    object TBookIssuingDateReturnReal: TWideStringField
+      DisplayLabel = #1060#1072#1082#1090'. '#1076#1072#1090#1072' '#1074#1086#1079#1074#1088#1072#1090#1072
+      FieldName = 'DateReturnReal'
+      Size = 10
+    end
+    object TBookIssuingWorker_id: TIntegerField
+      DisplayLabel = #1042#1099#1076#1072#1083#1072
+      FieldName = 'Worker_id'
+    end
   end
   object DSBookIssuing: TDataSource
     DataSet = TBookIssuing

@@ -75,6 +75,13 @@ type
     TUserspassword: TStringField;
     TUserspassMD5: TBytesField;
     ADOQueryUpdatePassMD5: TADOQuery;
+    TBookIssuingid: TAutoIncField;
+    TBookIssuingExemplar_id: TIntegerField;
+    TBookIssuingReader_id: TIntegerField;
+    TBookIssuingDateIssue: TWideStringField;
+    TBookIssuingDateReturnExpected: TWideStringField;
+    TBookIssuingDateReturnReal: TWideStringField;
+    TBookIssuingWorker_id: TIntegerField;
     procedure TAuthorCalcFields(DataSet: TDataSet);
   private
     { Private declarations }
