@@ -308,6 +308,9 @@ object DM: TDM
     Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
+    IndexFieldNames = 'Reader_id'
+    MasterFields = 'id'
+    MasterSource = DSReader
     TableName = 'BookIssuing'
     Left = 280
     Top = 136
@@ -328,12 +331,11 @@ object DM: TDM
     end
     object TBookIssuingDateIssue: TWideStringField
       DisplayLabel = #1044#1072#1090#1072' '#1074#1099#1076#1072#1095#1080
-      DisplayWidth = 11
       FieldName = 'DateIssue'
       Size = 10
     end
     object TBookIssuingDateReturnExpected: TWideStringField
-      DisplayLabel = #1044#1072#1090#1072' '#1074#1086#1079#1074#1088#1072#1090#1072
+      DisplayLabel = #1054#1078#1080#1076#1072#1077#1084#1072#1103' '#1076#1072#1090#1072' '#1074#1086#1079#1074#1088#1072#1090#1072
       DisplayWidth = 12
       FieldName = 'DateReturnExpected'
       Size = 10
@@ -372,7 +374,7 @@ object DM: TDM
       Lookup = True
     end
     object TBookIssuingBookName: TStringField
-      DisplayLabel = #1050#1085#1080#1075#1072
+      DisplayLabel = #1042#1099#1076#1072#1083#1072
       FieldKind = fkLookup
       FieldName = 'BookName'
       LookupDataSet = TExemplar
@@ -457,6 +459,7 @@ object DM: TDM
     Top = 352
   end
   object TReservation: TADOTable
+    Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
     TableName = 'Reservation'
@@ -595,5 +598,15 @@ object DM: TDM
     DataSet = note
     Left = 40
     Top = 480
+  end
+  object ADOQueryUpdatePassMD5: TADOQuery
+    Connection = ADOConnection1
+    Parameters = <>
+    SQL.Strings = (
+      'UPDATE dbo.Users '
+      'SET'
+      ' passMD5 =  CAST(HASHBYTES('#39'MD5'#39', password) AS BINARY(16))')
+    Left = 344
+    Top = 24
   end
 end

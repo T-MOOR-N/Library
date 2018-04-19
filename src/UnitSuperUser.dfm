@@ -18,7 +18,7 @@ object FormSuper: TFormSuper
     Top = 0
     Width = 892
     Height = 687
-    ActivePage = TabSheet2
+    ActivePage = TabSheetCatalog
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -33,7 +33,6 @@ object FormSuper: TFormSuper
         TabOrder = 0
         object TabSheetReaders: TTabSheet
           Caption = #1063#1080#1090#1072#1090#1077#1083#1080
-          ExplicitLeft = 0
           object DBGridReader: TDBGrid
             Left = 0
             Top = 0
@@ -56,8 +55,6 @@ object FormSuper: TFormSuper
             Height = 80
             Align = alTop
             TabOrder = 1
-            ExplicitTop = 253
-            ExplicitWidth = 884
             object SpeedButton1: TSpeedButton
               Left = 341
               Top = 26
@@ -136,9 +133,6 @@ object FormSuper: TFormSuper
             Align = alClient
             Caption = #1044#1072#1085#1085#1099#1077' '#1083#1080#1095#1085#1086#1075#1086' '#1082#1072#1073#1080#1085#1077#1090#1072
             TabOrder = 2
-            ExplicitTop = 333
-            ExplicitWidth = 884
-            ExplicitHeight = 323
             object Label1: TLabel
               Left = 48
               Top = 29
@@ -284,7 +278,6 @@ object FormSuper: TFormSuper
         object TabSheetWorker: TTabSheet
           Caption = #1041#1080#1073#1083#1080#1086#1090#1077#1082#1072#1088#1080
           ImageIndex = 1
-          ExplicitHeight = 222
           object DBGridLibrary: TDBGrid
             Left = 0
             Top = 0
@@ -307,8 +300,6 @@ object FormSuper: TFormSuper
             Height = 80
             Align = alTop
             TabOrder = 1
-            ExplicitTop = 253
-            ExplicitWidth = 884
             object SpeedButton2: TSpeedButton
               Left = 308
               Top = 26
@@ -418,7 +409,6 @@ object FormSuper: TFormSuper
             Align = alClient
             Caption = #1044#1072#1085#1085#1099#1077' '#1083#1080#1095#1085#1086#1075#1086' '#1082#1072#1073#1080#1085#1077#1090#1072
             TabOrder = 2
-            ExplicitTop = 335
             object Label21: TLabel
               Left = 48
               Top = 29
@@ -532,7 +522,6 @@ object FormSuper: TFormSuper
         Align = alBottom
         Caption = #1069#1082#1079#1077#1084#1087#1083#1103#1088#1099
         TabOrder = 0
-        ExplicitTop = 439
         object Panel7: TPanel
           Left = 2
           Top = 18

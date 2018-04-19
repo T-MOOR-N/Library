@@ -57,8 +57,6 @@ type
     SearchBox2: TSearchBox;
     DBGrid2: TDBGrid;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure ButtonSearchBookClick(Sender: TObject);
-    procedure SearchBox1Click(Sender: TObject);
     procedure SearchBox1InvokeSearch(Sender: TObject);
     procedure SearchBox2InvokeSearch(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -117,11 +115,11 @@ end;
 procedure TFormReader.SearchBox1InvokeSearch(Sender: TObject);
 begin
   if RadioButtonCategory.Checked then
-    DM.catalog.Locate('category', SearchBox1.Text, [loPartialKey]);
+    DM.note.Locate('category', SearchBox1.Text, [loPartialKey]);
   if RadioButtonAuthor.Checked then
-    DM.catalog.Locate('Author', SearchBox1.Text, [loPartialKey]);
+    DM.note.Locate('Author', SearchBox1.Text, [loPartialKey]);
   if RadioButtonTitle.Checked then
-    DM.catalog.Locate('Title', SearchBox1.Text, [loPartialKey]);
+    DM.note.Locate('Title', SearchBox1.Text, [loPartialKey]);
 
 end;
 

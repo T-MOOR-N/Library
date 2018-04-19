@@ -20,13 +20,11 @@ object FormReader: TFormReader
     Top = 0
     Width = 1124
     Height = 609
-    ActivePage = TabSheet3
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 1002
     object TabSheet1: TTabSheet
       Caption = #1050#1072#1090#1072#1083#1086#1075
-      ExplicitWidth = 994
       object Panel1: TPanel
         Left = 0
         Top = 0
@@ -34,7 +32,6 @@ object FormReader: TFormReader
         Height = 93
         Align = alTop
         TabOrder = 0
-        ExplicitWidth = 994
         object GroupBox2: TGroupBox
           Left = 1
           Top = 1
@@ -43,7 +40,6 @@ object FormReader: TFormReader
           Align = alClient
           Caption = #1060#1080#1083#1100#1090#1088'/'#1055#1086#1080#1089#1082
           TabOrder = 0
-          ExplicitWidth = 816
           object RadioButtonCategory: TRadioButton
             Left = 512
             Top = 16
@@ -105,7 +101,6 @@ object FormReader: TFormReader
         Align = alClient
         Caption = #1050#1085#1080#1075#1080
         TabOrder = 1
-        ExplicitWidth = 994
         object DBGridCatalog: TDBGrid
           Left = 2
           Top = 18
@@ -167,7 +162,6 @@ object FormReader: TFormReader
     object TabSheet2: TTabSheet
       Caption = #1051#1080#1089#1090#1099' '#1074#1099#1076#1072#1095#1080
       ImageIndex = 2
-      ExplicitWidth = 994
       object PageControl2: TPageControl
         Left = 0
         Top = 0
@@ -176,10 +170,8 @@ object FormReader: TFormReader
         ActivePage = TabSheet4
         Align = alClient
         TabOrder = 0
-        ExplicitWidth = 994
         object TabSheet4: TTabSheet
           Caption = #1041#1088#1086#1085#1080' '#1080' '#1079#1072#1076#1086#1083#1078#1085#1086#1089#1090#1080
-          ExplicitWidth = 986
           object GroupBox6: TGroupBox
             Left = 0
             Top = 0
@@ -188,7 +180,6 @@ object FormReader: TFormReader
             Align = alTop
             Caption = #1041#1088#1086#1085#1080
             TabOrder = 0
-            ExplicitWidth = 986
             object DBGrid3: TDBGrid
               Left = 2
               Top = 18
@@ -228,7 +219,6 @@ object FormReader: TFormReader
                 item
                   Expanded = False
                   FieldName = 'status'
-                  Width = -1
                   Visible = False
                 end
                 item
@@ -262,7 +252,6 @@ object FormReader: TFormReader
             Align = alClient
             Caption = #1048#1084#1077#1102#1097#1080#1103#1089#1103' '#1079#1072#1076#1086#1083#1078#1085#1086#1089#1090#1080
             TabOrder = 1
-            ExplicitWidth = 986
             object DBGrid2: TDBGrid
               Left = 2
               Top = 18
@@ -336,7 +325,6 @@ object FormReader: TFormReader
         object TabSheet5: TTabSheet
           Caption = #1048#1089#1090#1086#1088#1080#1103
           ImageIndex = 1
-          ExplicitWidth = 986
           object GroupBox3: TGroupBox
             Left = 0
             Top = 0
@@ -345,7 +333,6 @@ object FormReader: TFormReader
             Align = alTop
             Caption = #1048#1089#1090#1086#1088#1080#1103
             TabOrder = 0
-            ExplicitWidth = 986
             object GroupBox4: TGroupBox
               Left = 2
               Top = 18
@@ -354,7 +341,6 @@ object FormReader: TFormReader
               Align = alTop
               Caption = #1060#1080#1083#1100#1090#1088'/'#1055#1086#1080#1089#1082
               TabOrder = 0
-              ExplicitWidth = 982
               object SearchBox2: TSearchBox
                 Left = 496
                 Top = 32
@@ -440,7 +426,6 @@ object FormReader: TFormReader
     object TabSheet3: TTabSheet
       Caption = #1051#1080#1095#1085#1099#1081' '#1082#1072#1073#1080#1085#1077#1090
       ImageIndex = 2
-      ExplicitWidth = 994
       object Label1: TLabel
         Left = 512
         Top = 100

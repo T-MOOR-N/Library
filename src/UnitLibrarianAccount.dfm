@@ -215,6 +215,7 @@ object FormLibrary: TFormLibrary
           Height = 207
           Align = alClient
           DataSource = DM.DSReader
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
           ReadOnly = True
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
@@ -241,6 +242,7 @@ object FormLibrary: TFormLibrary
           Height = 166
           Align = alClient
           DataSource = DM.DSBookIssuing
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
           ReadOnly = True
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET

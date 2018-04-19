@@ -102,6 +102,7 @@ type
     TReservationBookName: TStringField;
     TReservationReaderName: TStringField;
     TReservationStatusNAme: TStringField;
+    ADOQueryUpdatePassMD5: TADOQuery;
     procedure TAuthorCalcFields(DataSet: TDataSet);
   private
     { Private declarations }
