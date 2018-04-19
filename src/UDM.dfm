@@ -82,7 +82,6 @@ object DM: TDM
     Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
-    IndexFieldNames = 'id'
     TableName = 'Reader'
     Left = 152
     Top = 104
@@ -312,6 +311,77 @@ object DM: TDM
     TableName = 'BookIssuing'
     Left = 280
     Top = 136
+    object TBookIssuingid: TAutoIncField
+      DisplayWidth = 10
+      FieldName = 'id'
+      ReadOnly = True
+    end
+    object TBookIssuingExemplar_id: TIntegerField
+      DisplayWidth = 10
+      FieldName = 'Exemplar_id'
+      Visible = False
+    end
+    object TBookIssuingReader_id: TIntegerField
+      DisplayWidth = 10
+      FieldName = 'Reader_id'
+      Visible = False
+    end
+    object TBookIssuingDateIssue: TWideStringField
+      DisplayLabel = #1044#1072#1090#1072' '#1074#1099#1076#1072#1095#1080
+      DisplayWidth = 11
+      FieldName = 'DateIssue'
+      Size = 10
+    end
+    object TBookIssuingDateReturnExpected: TWideStringField
+      DisplayLabel = #1044#1072#1090#1072' '#1074#1086#1079#1074#1088#1072#1090#1072
+      DisplayWidth = 12
+      FieldName = 'DateReturnExpected'
+      Size = 10
+    end
+    object TBookIssuingDateReturnReal: TWideStringField
+      DisplayLabel = #1056#1077#1072#1083#1100#1085#1072#1103' '#1076#1072#1090#1072' '#1074#1086#1079#1074#1088#1072#1090#1072
+      DisplayWidth = 27
+      FieldName = 'DateReturnReal'
+      Size = 10
+    end
+    object TBookIssuingWorker_id: TIntegerField
+      DisplayWidth = 24
+      FieldName = 'Worker_id'
+      Visible = False
+    end
+    object TBookIssuingWorkerName: TStringField
+      DisplayLabel = #1041#1080#1073#1083#1080#1086#1090#1077#1082#1072#1088#1100
+      FieldKind = fkLookup
+      FieldName = 'WorkerName'
+      LookupDataSet = TWorker
+      LookupKeyFields = 'id'
+      LookupResultField = 'FirstName'
+      KeyFields = 'Worker_id'
+      Size = 100
+      Lookup = True
+    end
+    object TBookIssuingReaderName: TStringField
+      DisplayLabel = #1060#1072#1084#1080#1083#1080#1103' '#1095#1080#1090#1072#1090#1077#1083#1103
+      FieldKind = fkLookup
+      FieldName = 'ReaderName'
+      LookupDataSet = TReader
+      LookupKeyFields = 'id'
+      LookupResultField = 'FirstName'
+      KeyFields = 'Reader_id'
+      Size = 150
+      Lookup = True
+    end
+    object TBookIssuingBookName: TStringField
+      DisplayLabel = #1050#1085#1080#1075#1072
+      FieldKind = fkLookup
+      FieldName = 'BookName'
+      LookupDataSet = TExemplar
+      LookupKeyFields = 'id'
+      LookupResultField = 'book_LF'
+      KeyFields = 'Exemplar_id'
+      Size = 200
+      Lookup = True
+    end
   end
   object DSBookIssuing: TDataSource
     DataSet = TBookIssuing
@@ -340,6 +410,16 @@ object DM: TDM
       DisplayWidth = 57
       FieldName = 'ISBN'
       Size = 13
+    end
+    object TExemplarbook_LF: TStringField
+      FieldKind = fkLookup
+      FieldName = 'book_LF'
+      LookupDataSet = TBook
+      LookupKeyFields = 'ISBN'
+      LookupResultField = 'Title'
+      KeyFields = 'ISBN'
+      Size = 100
+      Lookup = True
     end
   end
   object DSExemplar: TDataSource
@@ -377,12 +457,77 @@ object DM: TDM
     Top = 352
   end
   object TReservation: TADOTable
-    Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
     TableName = 'Reservation'
     Left = 360
     Top = 136
+    object TReservationid: TAutoIncField
+      FieldName = 'id'
+      ReadOnly = True
+      Visible = False
+    end
+    object TReservationdate: TDateTimeField
+      DisplayLabel = #1044#1072#1090#1072
+      FieldName = 'date'
+    end
+    object TReservationexemplar_id: TIntegerField
+      FieldName = 'exemplar_id'
+      Visible = False
+    end
+    object TReservationreader_id: TIntegerField
+      FieldName = 'reader_id'
+      Visible = False
+    end
+    object TReservationstatus2: TIntegerField
+      DisplayLabel = #1057#1090#1072#1090#1091#1089
+      FieldName = 'status'
+      Visible = False
+    end
+    object TReservationbook_LF: TStringField
+      DisplayLabel = #1050#1085#1080#1075#1072
+      FieldKind = fkLookup
+      FieldName = 'book_LF'
+      LookupDataSet = TExemplar
+      LookupKeyFields = 'id'
+      LookupResultField = 'book_LF'
+      KeyFields = 'exemplar_id'
+      Size = 50
+      Lookup = True
+    end
+    object TReservationBookName: TStringField
+      DisplayLabel = #1050#1085#1080#1075#1072
+      FieldKind = fkLookup
+      FieldName = 'BookName'
+      LookupDataSet = TExemplar
+      LookupKeyFields = 'id'
+      LookupResultField = 'book_LF'
+      KeyFields = 'exemplar_id'
+      Size = 50
+      Lookup = True
+    end
+    object TReservationReaderName: TStringField
+      DisplayLabel = #1063#1080#1090#1072#1090#1077#1083#1100
+      FieldKind = fkLookup
+      FieldName = 'ReaderName'
+      LookupDataSet = TReader
+      LookupKeyFields = 'id'
+      LookupResultField = 'FirstName'
+      KeyFields = 'reader_id'
+      Size = 50
+      Lookup = True
+    end
+    object TReservationStatusNAme: TStringField
+      DisplayLabel = #1057#1090#1072#1090#1091#1089
+      FieldKind = fkLookup
+      FieldName = 'StatusNAme'
+      LookupDataSet = TReservationStatus
+      LookupKeyFields = 'id'
+      LookupResultField = 'name'
+      KeyFields = 'status'
+      Size = 19
+      Lookup = True
+    end
   end
   object DSReservation: TDataSource
     DataSet = TReservation
@@ -410,20 +555,45 @@ object DM: TDM
     TableName = 'catalog'
     Left = 40
     Top = 432
+    object noteISBN: TStringField
+      FieldName = 'ISBN'
+      Size = 13
+    end
+    object notecategory: TStringField
+      FieldName = 'category'
+      Size = 70
+    end
+    object noteTitle: TStringField
+      DisplayLabel = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
+      FieldName = 'Title'
+      Size = 40
+    end
+    object noteAuthor: TStringField
+      DisplayLabel = #1040#1074#1090#1086#1088#1099
+      FieldName = 'Author'
+      Size = 25
+    end
+    object notename: TStringField
+      FieldName = 'name'
+    end
+    object notecity: TStringField
+      DisplayLabel = #1043#1086#1088#1086#1076
+      FieldName = 'city'
+      Size = 10
+    end
+    object noteyear: TWideStringField
+      DisplayLabel = #1043#1086#1076
+      FieldName = 'year'
+      Size = 10
+    end
+    object noteCount: TIntegerField
+      DisplayLabel = #1057#1090#1088#1072#1085#1072
+      FieldName = 'Count'
+    end
   end
   object DSCatalog: TDataSource
     DataSet = note
     Left = 40
     Top = 480
-  end
-  object ADOQueryUpdatePassMD5: TADOQuery
-    Connection = ADOConnection1
-    Parameters = <>
-    SQL.Strings = (
-      'UPDATE dbo.Users '
-      'SET'
-      ' passMD5 =  CAST(HASHBYTES('#39'MD5'#39', password) AS BINARY(16))')
-    Left = 344
-    Top = 24
   end
 end

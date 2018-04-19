@@ -17,7 +17,7 @@ type
     TabSheet1: TTabSheet;
     Panel1: TPanel;
     GroupBox2: TGroupBox;
-    RadioButtonYear: TRadioButton;
+    RadioButtonCategory: TRadioButton;
     RadioButtonAuthor: TRadioButton;
     RadioButtonTitle: TRadioButton;
     GroupBox7: TGroupBox;
@@ -52,15 +52,16 @@ type
     TabSheet5: TTabSheet;
     GroupBox3: TGroupBox;
     GroupBox4: TGroupBox;
-    RadioButton1: TRadioButton;
-    RadioButton2: TRadioButton;
-    RadioButton3: TRadioButton;
     DBGrid1: TDBGrid;
     SearchBox1: TSearchBox;
     SearchBox2: TSearchBox;
     DBGrid2: TDBGrid;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure ButtonSearchBookClick(Sender: TObject);
+    procedure SearchBox1Click(Sender: TObject);
+    procedure SearchBox1InvokeSearch(Sender: TObject);
+    procedure SearchBox2InvokeSearch(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -76,18 +77,32 @@ implementation
 
 uses UDM;
 
-procedure TFormReader.ButtonSearchBookClick(Sender: TObject);
+procedure TFormReader.Button1Click(Sender: TObject);
 begin
-  if RadioButtonYear.Enabled then
-  begin
-
-  end;
-
+  dm.TReservation.Insert;
+  dm.TReservation.Post;
 end;
 
 procedure TFormReader.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   Application.Terminate;
+end;
+
+procedure TFormReader.SearchBox1InvokeSearch(Sender: TObject);
+begin
+  if RadioButtonCategory.Checked then
+    DM.catalog.Locate('category', SearchBox1.Text, [loPartialKey]);
+  if RadioButtonAuthor.Checked then
+    DM.catalog.Locate('Author', SearchBox1.Text, [loPartialKey]);
+  if RadioButtonTitle.Checked then
+    DM.catalog.Locate('Title', SearchBox1.Text, [loPartialKey]);
+
+end;
+
+procedure TFormReader.SearchBox2InvokeSearch(Sender: TObject);
+begin
+
+  DM.TReader.Locate('book_LF', SearchBox1.Text, [loPartialKey]);
 end;
 
 end.

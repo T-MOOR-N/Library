@@ -18,7 +18,7 @@ object FormSuper: TFormSuper
     Top = 0
     Width = 892
     Height = 687
-    ActivePage = TabSheetCatalog
+    ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -28,7 +28,7 @@ object FormSuper: TFormSuper
         Top = 0
         Width = 884
         Height = 653
-        ActivePage = TabSheetReaders
+        ActivePage = TabSheetWorker
         Align = alTop
         TabOrder = 0
         object TabSheetReaders: TTabSheet
@@ -59,8 +59,8 @@ object FormSuper: TFormSuper
             ExplicitTop = 253
             ExplicitWidth = 884
             object SpeedButton1: TSpeedButton
-              Left = 337
-              Top = 32
+              Left = 341
+              Top = 26
               Width = 23
               Height = 22
               Glyph.Data = {
@@ -98,6 +98,7 @@ object FormSuper: TFormSuper
               Height = 27
               Caption = #1059#1076#1072#1083#1080#1090#1100
               TabOrder = 0
+              OnClick = ButtonDeleteUserClick
             end
             object ButtonCreateUser: TButton
               Left = 392
@@ -118,12 +119,13 @@ object FormSuper: TFormSuper
               OnClick = ButtonEditUserClick
             end
             object SearchBox1: TSearchBox
-              Left = 72
-              Top = 32
-              Width = 259
+              Left = 48
+              Top = 26
+              Width = 287
               Height = 24
               TabOrder = 3
               Text = 'SearchBox1'
+              OnInvokeSearch = SearchBox1InvokeSearch
             end
           end
           object GroupBox1: TGroupBox
@@ -187,7 +189,7 @@ object FormSuper: TFormSuper
               Caption = #1053#1086#1084#1077#1088' '#1090#1077#1083#1077#1092#1086#1085#1072
             end
             object SpeedButtonCansel: TSpeedButton
-              Left = 858
+              Left = 850
               Top = 14
               Width = 23
               Height = 22
@@ -269,9 +271,9 @@ object FormSuper: TFormSuper
               TabOrder = 6
             end
             object ButtonOKUser: TButton
-              Left = 734
+              Left = 680
               Top = 255
-              Width = 75
+              Width = 129
               Height = 25
               Caption = #1043#1086#1090#1086#1074#1086
               TabOrder = 7
@@ -570,6 +572,7 @@ object FormSuper: TFormSuper
               F6D5AC07A00B07A00B11971BFFF2E6FFF2E6FFF2E6FFF8F1F3CD9DEEC392FFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF3CD9DF6D5ACFDD9B4F6D5ACF6D5ACF6
               D5ACF6D5ACEEC392F3CD9DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+            OnClick = SpeedButtonAddExemplarClick
           end
           object SpeedButtonEditExemplar: TSpeedButton
             Left = 787
@@ -603,6 +606,7 @@ object FormSuper: TFormSuper
               F9D5ABFFFFFFFFF2E6FFF2E6FFF2E6FFF2E6FFF2E6FFF6EDF1CDA1EEC597D0BD
               CB0000A51C30D20000A5FFFFFFFFFFFFF1CDA1F9D5ABF9D5ABF9D5ABF9D5ABF9
               D5ABF9D5ABEEC597F1CDA1FFFFFFEFF7FA5155C51C30D25155C5}
+            OnClick = SpeedButtonEditExemplarClick
           end
           object SpeedButtonDeleteExemplar: TSpeedButton
             Left = 816
@@ -636,6 +640,7 @@ object FormSuper: TFormSuper
               FBD5ABFFFFFFFFF2E6FFF2E6FFF2E6FFF2E6FFF2E6FFFFFFF3CD9DEFC393FFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF3CD9DFBD5ABFEDBB7FBD5ABFBD5ABFB
               D5ABFBD5ABEFC393F3CD9DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+            OnClick = SpeedButtonDeleteExemplarClick
           end
         end
         object DBGrid3: TDBGrid
@@ -645,6 +650,7 @@ object FormSuper: TFormSuper
           Height = 114
           Align = alTop
           DataSource = DM.DSExemplar
+          ReadOnly = True
           TabOrder = 1
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -715,6 +721,7 @@ object FormSuper: TFormSuper
               Height = 24
               DataField = 'placement'
               DataSource = DM.DSExemplar
+              ReadOnly = True
               TabOrder = 0
             end
             object DBEditISBM: TDBEdit
@@ -724,6 +731,7 @@ object FormSuper: TFormSuper
               Height = 24
               DataField = 'ISBN'
               DataSource = DM.DSExemplar
+              ReadOnly = True
               TabOrder = 1
             end
             object ButtonOKExemplar: TButton
@@ -732,7 +740,9 @@ object FormSuper: TFormSuper
               Width = 75
               Height = 25
               Caption = #1043#1086#1090#1086#1074#1086
+              Enabled = False
               TabOrder = 2
+              OnClick = ButtonOKExemplarClick
             end
           end
         end
@@ -784,6 +794,7 @@ object FormSuper: TFormSuper
               F6D5AC07A00B07A00B11971BFFF2E6FFF2E6FFF2E6FFF8F1F3CD9DEEC392FFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF3CD9DF6D5ACFDD9B4F6D5ACF6D5ACF6
               D5ACF6D5ACEEC392F3CD9DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+            OnClick = SpeedButtonAddBookClick
           end
           object SpeedButtonEditBook: TSpeedButton
             Left = 787
@@ -817,6 +828,7 @@ object FormSuper: TFormSuper
               F9D5ABFFFFFFFFF2E6FFF2E6FFF2E6FFF2E6FFF2E6FFF6EDF1CDA1EEC597D0BD
               CB0000A51C30D20000A5FFFFFFFFFFFFF1CDA1F9D5ABF9D5ABF9D5ABF9D5ABF9
               D5ABF9D5ABEEC597F1CDA1FFFFFFEFF7FA5155C51C30D25155C5}
+            OnClick = SpeedButtonEditBookClick
           end
           object SpeedButtonDeleteBook: TSpeedButton
             Left = 816
@@ -850,6 +862,7 @@ object FormSuper: TFormSuper
               FBD5ABFFFFFFFFF2E6FFF2E6FFF2E6FFF2E6FFF2E6FFFFFFF3CD9DEFC393FFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF3CD9DFBD5ABFEDBB7FBD5ABFBD5ABFB
               D5ABFBD5ABEFC393F3CD9DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+            OnClick = SpeedButtonDeleteBookClick
           end
         end
         object DBGrid1: TDBGrid
@@ -859,6 +872,7 @@ object FormSuper: TFormSuper
           Height = 120
           Align = alTop
           DataSource = DM.DSBook
+          ReadOnly = True
           TabOrder = 1
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -915,7 +929,9 @@ object FormSuper: TFormSuper
             Width = 75
             Height = 25
             Caption = #1054#1090#1084#1077#1085#1072
+            Enabled = False
             TabOrder = 0
+            OnClick = ButtonCanselAuthorClick
           end
           object ButtonOKBookAuthor: TButton
             Left = 787
@@ -923,7 +939,9 @@ object FormSuper: TFormSuper
             Width = 75
             Height = 25
             Caption = #1043#1086#1090#1086#1074#1086
+            Enabled = False
             TabOrder = 1
+            OnClick = ButtonOKBookAuthorClick
           end
           object DBEditBookName: TDBEdit
             Left = 14
@@ -932,6 +950,7 @@ object FormSuper: TFormSuper
             Height = 24
             DataField = 'Title'
             DataSource = DM.DSBook
+            ReadOnly = True
             TabOrder = 2
           end
           object DBLookupComboBoxBookCategory: TDBLookupComboBox
@@ -944,6 +963,7 @@ object FormSuper: TFormSuper
             KeyField = 'id'
             ListField = 'name'
             ListSource = DM.DSBookCategory
+            ReadOnly = True
             TabOrder = 3
           end
           object DBLookupComboBoxBookPublishing: TDBLookupComboBox
@@ -954,6 +974,7 @@ object FormSuper: TFormSuper
             DataField = 'publication_lf'
             DataSource = DM.DSBook
             ListField = 'name'
+            ReadOnly = True
             TabOrder = 4
           end
           object DBEditBookYear: TDBEdit
@@ -963,6 +984,7 @@ object FormSuper: TFormSuper
             Height = 24
             DataField = 'year'
             DataSource = DM.DSBook
+            ReadOnly = True
             TabOrder = 5
           end
           object DBLookupComboBoxAuthor: TDBLookupComboBox
@@ -975,6 +997,7 @@ object FormSuper: TFormSuper
             KeyField = 'id'
             ListField = 'author_lf'
             ListSource = DM.DSAuthorBook
+            ReadOnly = True
             TabOrder = 6
           end
           object ButtonBookAddAuthor: TButton
@@ -983,7 +1006,9 @@ object FormSuper: TFormSuper
             Width = 97
             Height = 25
             Caption = #1044#1086#1073#1072#1074#1080#1090#1100
+            Enabled = False
             TabOrder = 7
+            OnClick = ButtonBookAddAuthorClick
           end
           object DBGrid2: TDBGrid
             Left = 439
@@ -992,6 +1017,7 @@ object FormSuper: TFormSuper
             Height = 120
             DataSource = DM.DSAuthorBook
             PopupMenu = PopupMenu1
+            ReadOnly = True
             TabOrder = 8
             TitleFont.Charset = DEFAULT_CHARSET
             TitleFont.Color = clWindowText
@@ -1020,6 +1046,7 @@ object FormSuper: TFormSuper
           Height = 114
           Align = alTop
           DataSource = DM.DSBookCategory
+          ReadOnly = True
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -1066,6 +1093,7 @@ object FormSuper: TFormSuper
               F6D5AC07A00B07A00B11971BFFF2E6FFF2E6FFF2E6FFF8F1F3CD9DEEC392FFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF3CD9DF6D5ACFDD9B4F6D5ACF6D5ACF6
               D5ACF6D5ACEEC392F3CD9DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+            OnClick = SpeedButtonAddCategoryClick
           end
         end
         object Panel12: TPanel
@@ -1088,7 +1116,9 @@ object FormSuper: TFormSuper
             Width = 75
             Height = 25
             Caption = #1043#1086#1090#1086#1074#1086
+            Enabled = False
             TabOrder = 0
+            OnClick = ButtonEditBookCategoryClick
           end
           object DBEditBookCategoryName: TDBEdit
             Left = 132
@@ -1097,6 +1127,7 @@ object FormSuper: TFormSuper
             Height = 24
             DataField = 'name'
             DataSource = DM.DSBookCategory
+            ReadOnly = True
             TabOrder = 1
           end
         end
@@ -1116,6 +1147,7 @@ object FormSuper: TFormSuper
           Height = 132
           Align = alTop
           DataSource = DM.DSAuthor
+          ReadOnly = True
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -1162,6 +1194,7 @@ object FormSuper: TFormSuper
               F6D5AC07A00B07A00B11971BFFF2E6FFF2E6FFF2E6FFF8F1F3CD9DEEC392FFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF3CD9DF6D5ACFDD9B4F6D5ACF6D5ACF6
               D5ACF6D5ACEEC392F3CD9DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+            OnClick = SpeedButtonAddAuthorClick
           end
           object SpeedButtonEditAuthor: TSpeedButton
             Left = 787
@@ -1195,6 +1228,7 @@ object FormSuper: TFormSuper
               F9D5ABFFFFFFFFF2E6FFF2E6FFF2E6FFF2E6FFF2E6FFF6EDF1CDA1EEC597D0BD
               CB0000A51C30D20000A5FFFFFFFFFFFFF1CDA1F9D5ABF9D5ABF9D5ABF9D5ABF9
               D5ABF9D5ABEEC597F1CDA1FFFFFFEFF7FA5155C51C30D25155C5}
+            OnClick = SpeedButtonEditAuthorClick
           end
         end
         object Panel10: TPanel
@@ -1232,6 +1266,7 @@ object FormSuper: TFormSuper
             Height = 24
             DataField = 'FirstName'
             DataSource = DM.DSAuthor
+            ReadOnly = True
             TabOrder = 0
           end
           object DBEditAuthorMiddleName: TDBEdit
@@ -1241,6 +1276,7 @@ object FormSuper: TFormSuper
             Height = 24
             DataField = 'MiddleName'
             DataSource = DM.DSAuthor
+            ReadOnly = True
             TabOrder = 1
           end
           object ButtonEditAuthor: TButton
@@ -1249,7 +1285,9 @@ object FormSuper: TFormSuper
             Width = 75
             Height = 25
             Caption = #1043#1086#1090#1086#1074#1086
+            Enabled = False
             TabOrder = 2
+            OnClick = ButtonEditAuthorClick
           end
           object DBEditAuthorLastName: TDBEdit
             Left = 87
@@ -1258,6 +1296,7 @@ object FormSuper: TFormSuper
             Height = 24
             DataField = 'LastName'
             DataSource = DM.DSAuthor
+            ReadOnly = True
             TabOrder = 3
           end
         end
@@ -1277,6 +1316,7 @@ object FormSuper: TFormSuper
           Height = 98
           Align = alTop
           DataSource = DM.DSPublishing
+          ReadOnly = True
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -1323,6 +1363,7 @@ object FormSuper: TFormSuper
               F6D5AC07A00B07A00B11971BFFF2E6FFF2E6FFF2E6FFF8F1F3CD9DEEC392FFFF
               FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF3CD9DF6D5ACFDD9B4F6D5ACF6D5ACF6
               D5ACF6D5ACEEC392F3CD9DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+            OnClick = SpeedButtonAddPublishigClick
           end
           object SpeedButtonEditPublishig: TSpeedButton
             Left = 787
@@ -1356,6 +1397,7 @@ object FormSuper: TFormSuper
               F9D5ABFFFFFFFFF2E6FFF2E6FFF2E6FFF2E6FFF2E6FFF6EDF1CDA1EEC597D0BD
               CB0000A51C30D20000A5FFFFFFFFFFFFF1CDA1F9D5ABF9D5ABF9D5ABF9D5ABF9
               D5ABF9D5ABEEC597F1CDA1FFFFFFEFF7FA5155C51C30D25155C5}
+            OnClick = SpeedButtonEditPublishigClick
           end
         end
         object Panel11: TPanel
@@ -1386,6 +1428,7 @@ object FormSuper: TFormSuper
             Height = 24
             DataField = 'name'
             DataSource = DM.DSPublishing
+            ReadOnly = True
             TabOrder = 0
           end
           object DBEditPublishingCity: TDBEdit
@@ -1395,15 +1438,18 @@ object FormSuper: TFormSuper
             Height = 24
             DataField = 'city'
             DataSource = DM.DSPublishing
+            ReadOnly = True
             TabOrder = 1
           end
           object ButtonEditPublishing: TButton
             Left = 747
-            Top = 8
+            Top = 6
             Width = 75
             Height = 25
             Caption = #1043#1086#1090#1086#1074#1086
+            Enabled = False
             TabOrder = 2
+            OnClick = ButtonEditPublishingClick
           end
         end
       end
@@ -1414,6 +1460,7 @@ object FormSuper: TFormSuper
     Top = 339
     object N1: TMenuItem
       Caption = #1059#1076#1072#1083#1080#1090#1100
+      OnClick = N1Click
     end
   end
 end

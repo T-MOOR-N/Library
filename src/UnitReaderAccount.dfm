@@ -3,7 +3,7 @@ object FormReader: TFormReader
   Top = 0
   Caption = #1063#1080#1090#1072#1090#1077#1083#1100
   ClientHeight = 609
-  ClientWidth = 1002
+  ClientWidth = 1124
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,29 +18,33 @@ object FormReader: TFormReader
   object PageControl1: TPageControl
     Left = 0
     Top = 0
-    Width = 1002
+    Width = 1124
     Height = 609
-    ActivePage = TabSheet3
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
+    ExplicitWidth = 1002
     object TabSheet1: TTabSheet
       Caption = #1050#1072#1090#1072#1083#1086#1075
+      ExplicitWidth = 994
       object Panel1: TPanel
         Left = 0
         Top = 0
-        Width = 994
+        Width = 1116
         Height = 93
         Align = alTop
         TabOrder = 0
+        ExplicitWidth = 994
         object GroupBox2: TGroupBox
           Left = 1
           Top = 1
-          Width = 816
+          Width = 831
           Height = 91
           Align = alClient
           Caption = #1060#1080#1083#1100#1090#1088'/'#1055#1086#1080#1089#1082
           TabOrder = 0
-          object RadioButtonYear: TRadioButton
+          ExplicitWidth = 816
+          object RadioButtonCategory: TRadioButton
             Left = 512
             Top = 16
             Width = 113
@@ -71,38 +75,41 @@ object FormReader: TFormReader
             Height = 24
             TabOrder = 3
             Text = 'SearchBox1'
+            OnInvokeSearch = SearchBox1InvokeSearch
           end
         end
         object GroupBox7: TGroupBox
-          Left = 817
+          Left = 832
           Top = 1
-          Width = 176
+          Width = 283
           Height = 91
           Align = alRight
           Caption = #1041#1088#1086#1085#1100
           TabOrder = 1
           object Button1: TButton
-            Left = 45
+            Left = 93
             Top = 34
             Width = 97
             Height = 25
             Caption = #1057#1086#1079#1076#1072#1090#1100
             TabOrder = 0
+            OnClick = Button1Click
           end
         end
       end
       object GroupBox1: TGroupBox
         Left = 0
         Top = 93
-        Width = 994
+        Width = 1116
         Height = 485
         Align = alClient
         Caption = #1050#1085#1080#1075#1080
         TabOrder = 1
+        ExplicitWidth = 994
         object DBGridCatalog: TDBGrid
           Left = 2
           Top = 18
-          Width = 990
+          Width = 1112
           Height = 465
           Align = alClient
           DataSource = DM.DSCatalog
@@ -160,32 +167,37 @@ object FormReader: TFormReader
     object TabSheet2: TTabSheet
       Caption = #1051#1080#1089#1090#1099' '#1074#1099#1076#1072#1095#1080
       ImageIndex = 2
+      ExplicitWidth = 994
       object PageControl2: TPageControl
         Left = 0
         Top = 0
-        Width = 994
+        Width = 1116
         Height = 578
-        ActivePage = TabSheet4
+        ActivePage = TabSheet5
         Align = alClient
         TabOrder = 0
+        ExplicitWidth = 994
         object TabSheet4: TTabSheet
           Caption = #1041#1088#1086#1085#1080' '#1080' '#1079#1072#1076#1086#1083#1078#1085#1086#1089#1090#1080
+          ExplicitWidth = 986
           object GroupBox6: TGroupBox
             Left = 0
             Top = 0
-            Width = 986
+            Width = 1108
             Height = 257
             Align = alTop
             Caption = #1041#1088#1086#1085#1080
             TabOrder = 0
+            ExplicitWidth = 986
             object DBGrid3: TDBGrid
               Left = 2
               Top = 18
-              Width = 982
+              Width = 1104
               Height = 237
               Align = alClient
               DataSource = DM.DSReservation
               PopupMenu = PopupMenu2
+              ReadOnly = True
               TabOrder = 0
               TitleFont.Charset = DEFAULT_CHARSET
               TitleFont.Color = clWindowText
@@ -216,12 +228,28 @@ object FormReader: TFormReader
                 item
                   Expanded = False
                   FieldName = 'status'
+                  Width = -1
                   Visible = False
                 end
                 item
                   Expanded = False
                   FieldName = 'book_LF'
-                  Width = 438
+                  Visible = False
+                end
+                item
+                  Expanded = False
+                  FieldName = 'BookName'
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'ReaderName'
+                  Visible = False
+                end
+                item
+                  Expanded = False
+                  FieldName = 'StatusNAme'
+                  Width = 192
                   Visible = True
                 end>
             end
@@ -229,18 +257,20 @@ object FormReader: TFormReader
           object GroupBox5: TGroupBox
             Left = 0
             Top = 257
-            Width = 986
+            Width = 1108
             Height = 290
             Align = alClient
             Caption = #1048#1084#1077#1102#1097#1080#1103#1089#1103' '#1079#1072#1076#1086#1083#1078#1085#1086#1089#1090#1080
             TabOrder = 1
+            ExplicitWidth = 986
             object DBGrid2: TDBGrid
               Left = 2
               Top = 18
-              Width = 982
+              Width = 1104
               Height = 270
               Align = alClient
               DataSource = DM.DSBookIssuing
+              ReadOnly = True
               TabOrder = 0
               TitleFont.Charset = DEFAULT_CHARSET
               TitleFont.Color = clWindowText
@@ -306,62 +336,43 @@ object FormReader: TFormReader
         object TabSheet5: TTabSheet
           Caption = #1048#1089#1090#1086#1088#1080#1103
           ImageIndex = 1
+          ExplicitWidth = 986
           object GroupBox3: TGroupBox
             Left = 0
             Top = 0
-            Width = 986
+            Width = 1108
             Height = 544
             Align = alTop
             Caption = #1048#1089#1090#1086#1088#1080#1103
             TabOrder = 0
+            ExplicitWidth = 986
             object GroupBox4: TGroupBox
               Left = 2
               Top = 18
-              Width = 982
+              Width = 1104
               Height = 99
               Align = alTop
               Caption = #1060#1080#1083#1100#1090#1088'/'#1055#1086#1080#1089#1082
               TabOrder = 0
-              object RadioButton1: TRadioButton
-                Left = 656
-                Top = 24
-                Width = 113
-                Height = 17
-                Caption = #1043#1086#1076' '#1080#1079#1076#1072#1085#1080#1103
-                TabOrder = 0
-              end
-              object RadioButton2: TRadioButton
-                Left = 656
-                Top = 47
-                Width = 113
-                Height = 17
-                Caption = #1040#1074#1090#1086#1088
-                TabOrder = 1
-              end
-              object RadioButton3: TRadioButton
-                Left = 656
-                Top = 70
-                Width = 113
-                Height = 17
-                Caption = #1053#1072#1079#1074#1072#1085#1080#1077
-                TabOrder = 2
-              end
+              ExplicitWidth = 982
               object SearchBox2: TSearchBox
-                Left = 72
+                Left = 496
                 Top = 32
-                Width = 417
+                Width = 441
                 Height = 24
-                TabOrder = 3
+                TabOrder = 0
                 Text = 'SearchBox1'
+                OnInvokeSearch = SearchBox2InvokeSearch
               end
             end
             object DBGrid1: TDBGrid
               Left = 2
               Top = 117
-              Width = 982
+              Width = 1104
               Height = 425
               Align = alClient
               DataSource = DM.DSBookIssuing
+              ReadOnly = True
               TabOrder = 1
               TitleFont.Charset = DEFAULT_CHARSET
               TitleFont.Color = clWindowText
@@ -429,6 +440,7 @@ object FormReader: TFormReader
     object TabSheet3: TTabSheet
       Caption = #1051#1080#1095#1085#1099#1081' '#1082#1072#1073#1080#1085#1077#1090
       ImageIndex = 2
+      ExplicitWidth = 994
       object Label1: TLabel
         Left = 512
         Top = 100

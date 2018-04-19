@@ -137,6 +137,27 @@ type
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure ButtonBookAddAuthorClick(Sender: TObject);
+    procedure N1Click(Sender: TObject);
+    procedure SpeedButtonEditBookClick(Sender: TObject);
+    procedure SpeedButtonAddBookClick(Sender: TObject);
+    procedure SpeedButtonDeleteBookClick(Sender: TObject);
+    procedure ButtonOKBookAuthorClick(Sender: TObject);
+    procedure ButtonCanselAuthorClick(Sender: TObject);
+    procedure SpeedButtonAddExemplarClick(Sender: TObject);
+    procedure ButtonOKExemplarClick(Sender: TObject);
+    procedure SpeedButtonEditExemplarClick(Sender: TObject);
+    procedure SpeedButtonDeleteExemplarClick(Sender: TObject);
+    procedure ButtonDeleteUserClick(Sender: TObject);
+    procedure ButtonEditAuthorClick(Sender: TObject);
+    procedure SpeedButtonAddAuthorClick(Sender: TObject);
+    procedure SpeedButtonEditAuthorClick(Sender: TObject);
+    procedure ButtonEditPublishingClick(Sender: TObject);
+    procedure SpeedButtonAddPublishigClick(Sender: TObject);
+    procedure SpeedButtonEditPublishigClick(Sender: TObject);
+    procedure ButtonEditBookCategoryClick(Sender: TObject);
+    procedure SpeedButtonAddCategoryClick(Sender: TObject);
+    procedure SearchBox1InvokeSearch(Sender: TObject);
   private
     { Private declarations }
   public
@@ -174,11 +195,54 @@ begin
   dm.TUsers.Post;
 end;
 
+procedure TFormSuper.ButtonBookAddAuthorClick(Sender: TObject);
+begin
+  dm.TAuthorBook.Insert;
+  dm.TAuthorBook.Post;
+end;
+
+procedure TFormSuper.ButtonCanselAuthorClick(Sender: TObject);
+begin
+  dm.TAuthorBook.Cancel;
+  dm.TBook.Cancel;
+end;
+
 procedure TFormSuper.ButtonCreateUserClick(Sender: TObject);
 begin
   dm.TReader.Insert;
   dm.TUsers.Insert;
 
+end;
+
+procedure TFormSuper.ButtonDeleteUserClick(Sender: TObject);
+begin
+  dm.TReader.Delete;
+  dm.TUsers.Delete;
+end;
+
+procedure TFormSuper.ButtonEditAuthorClick(Sender: TObject);
+begin
+  dm.TAuthor.Post;
+
+  DBEditAuthorFirstName.ReadOnly := True;
+  DBEditAuthorLastName.ReadOnly := True;
+  DBEditAuthorMiddleName.ReadOnly := True;
+  ButtonEditAuthor.Enabled := false;
+end;
+
+procedure TFormSuper.ButtonEditBookCategoryClick(Sender: TObject);
+begin
+  dm.TBookCategory.Post;
+  ButtonEditBookCategory.Enabled := false;
+  DBEditBookCategoryName.ReadOnly := True;
+end;
+
+procedure TFormSuper.ButtonEditPublishingClick(Sender: TObject);
+begin
+  dm.TPublishing.Post;
+  DBEditPublishingName.ReadOnly := True;
+  DBEditPublishingCity.ReadOnly := True;
+  ButtonEditPublishing.Enabled := false;
 end;
 
 procedure TFormSuper.ButtonEditUserClick(Sender: TObject);
@@ -187,10 +251,153 @@ begin
   dm.TUsers.Edit;
 end;
 
+procedure TFormSuper.ButtonOKBookAuthorClick(Sender: TObject);
+begin
+  dm.TAuthorBook.Post;
+  dm.TBook.Post;
+
+end;
+
+procedure TFormSuper.ButtonOKExemplarClick(Sender: TObject);
+begin
+  dm.TExemplar.Post;
+  DBGrid3.ReadOnly := True;
+  DBEditPlace.ReadOnly := True;
+  DBEditISBM.ReadOnly := True;
+  ButtonOKExemplar.Enabled := false;
+end;
+
 procedure TFormSuper.ButtonOKUserClick(Sender: TObject);
 begin
   dm.TReader.Post;
   dm.TUsers.Post;
+
+  DBEditBookName.ReadOnly := True;
+  DBLookupComboBoxBookCategory.ReadOnly := True;
+  DBLookupComboBoxBookPublishing.ReadOnly := True;
+  DBEditBookYear.ReadOnly := True;
+  DBLookupComboBoxAuthor.ReadOnly := True;
+  DBGrid2.ReadOnly := True;
+  ButtonBookAddAuthor.Enabled := false;
+  ButtonCanselAuthor.Enabled := false;
+  ButtonOKBookAuthor.Enabled := True;
+end;
+
+procedure TFormSuper.N1Click(Sender: TObject);
+begin
+  dm.TAuthorBook.Delete;
+end;
+
+procedure TFormSuper.SearchBox1InvokeSearch(Sender: TObject);
+begin
+  if not DM.TReader.Locate('LastName', SearchBox1.Text, [loPartialKey]) then
+    if not DM.TReader.Locate('FirstName', SearchBox1.Text, [loPartialKey]) then
+      if not DM.TReader.Locate('MiddleName', SearchBox1.Text, [loPartialKey])then
+       if not DM.TReader.Locate ('Addres', SearchBox1.Text, [loPartialKey])  then
+
+        DM.TReader.Locate('Phone', SearchBox1.Text, [loPartialKey]);
+end;
+
+procedure TFormSuper.SpeedButtonAddAuthorClick(Sender: TObject);
+begin
+  dm.TAuthor.Insert;
+
+  DBEditAuthorFirstName.ReadOnly := false;
+  DBEditAuthorLastName.ReadOnly := false;
+  DBEditAuthorMiddleName.ReadOnly := false;
+  ButtonEditAuthor.Enabled := True;
+end;
+
+procedure TFormSuper.SpeedButtonAddBookClick(Sender: TObject);
+begin
+  dm.TBook.Insert;
+  dm.TAuthorBook.Insert;
+  dm.TAuthorBook.Edit;
+  dm.TBook.Edit;
+  DBEditBookName.ReadOnly := false;
+  DBLookupComboBoxBookCategory.ReadOnly := false;
+  DBLookupComboBoxBookPublishing.ReadOnly := false;
+  DBEditBookYear.ReadOnly := false;
+  DBLookupComboBoxAuthor.ReadOnly := false;
+  DBGrid2.ReadOnly := false;
+  ButtonBookAddAuthor.Enabled := True;
+  ButtonCanselAuthor.Enabled := True;
+  ButtonOKBookAuthor.Enabled := True;
+end;
+
+procedure TFormSuper.SpeedButtonAddCategoryClick(Sender: TObject);
+begin
+  dm.TBookCategory.insert;
+  ButtonEditBookCategory.Enabled := true;
+  DBEditBookCategoryName.ReadOnly := false;
+end;
+
+procedure TFormSuper.SpeedButtonAddExemplarClick(Sender: TObject);
+begin
+  dm.TExemplar.Insert;
+  DBEditPlace.ReadOnly := false;
+  DBEditISBM.ReadOnly := false;
+  ButtonOKExemplar.Enabled := True;
+end;
+
+procedure TFormSuper.SpeedButtonAddPublishigClick(Sender: TObject);
+begin
+  dm.TPublishing.Insert;
+  DBEditPublishingName.ReadOnly := false;
+  DBEditPublishingCity.ReadOnly := false;
+  ButtonEditPublishing.Enabled := True;
+end;
+
+procedure TFormSuper.SpeedButtonDeleteBookClick(Sender: TObject);
+begin
+  dm.TBook.Delete;
+end;
+
+procedure TFormSuper.SpeedButtonDeleteExemplarClick(Sender: TObject);
+begin
+  dm.TExemplar.Delete;
+end;
+
+procedure TFormSuper.SpeedButtonEditAuthorClick(Sender: TObject);
+begin
+  dm.TAuthor.Edit;
+
+  DBEditAuthorFirstName.ReadOnly := false;
+  DBEditAuthorLastName.ReadOnly := false;
+  DBEditAuthorMiddleName.ReadOnly := false;
+  ButtonEditAuthor.Enabled := True;
+end;
+
+procedure TFormSuper.SpeedButtonEditBookClick(Sender: TObject);
+begin
+  dm.TAuthorBook.Edit;
+  dm.TBook.Edit;
+  DBEditBookName.ReadOnly := false;
+  DBLookupComboBoxBookCategory.ReadOnly := false;
+  DBLookupComboBoxBookPublishing.ReadOnly := false;
+  DBEditBookYear.ReadOnly := false;
+  DBLookupComboBoxAuthor.ReadOnly := false;
+  DBGrid2.ReadOnly := false;
+  ButtonBookAddAuthor.Enabled := True;
+  ButtonCanselAuthor.Enabled := True;
+  ButtonOKBookAuthor.Enabled := True;
+end;
+
+procedure TFormSuper.SpeedButtonEditExemplarClick(Sender: TObject);
+begin
+  dm.TExemplar.Edit;
+  DBGrid3.ReadOnly := false;
+  DBEditPlace.ReadOnly := false;
+  DBEditISBM.ReadOnly := false;
+  ButtonOKExemplar.Enabled := True;
+end;
+
+procedure TFormSuper.SpeedButtonEditPublishigClick(Sender: TObject);
+begin
+  dm.TPublishing.Edit;
+  DBEditPublishingName.ReadOnly := false;
+  DBEditPublishingCity.ReadOnly := false;
+  ButtonEditPublishing.Enabled := True;
 end;
 
 end.
