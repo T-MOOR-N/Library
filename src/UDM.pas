@@ -97,7 +97,6 @@ type
     TReservationid: TAutoIncField;
     TReservationbook_LF: TStringField;
     TBookIssuingWorkerName: TStringField;
-    TBookIssuingReaderName: TStringField;
     TBookIssuingBookName: TStringField;
     TReservationBookName: TStringField;
     TReservationReaderName: TStringField;
@@ -114,7 +113,10 @@ type
     ViewAvailableBookscategory_id: TIntegerField;
     ViewAvailableBookscategory: TStringField;
     ViewAvailableBooksplacement: TStringField;
+    TReaderabr: TStringField;
+    TBookIssuingReaderName: TStringField;
     procedure TAuthorCalcFields(DataSet: TDataSet);
+    procedure TReaderCalcFields(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -130,6 +132,18 @@ implementation
 {$R *.dfm}
 
 procedure TDM.TAuthorCalcFields(DataSet: TDataSet);
+begin
+  if (DataSet.FieldByName('LastName').AsString.IsEmpty or
+    DataSet.FieldByName('FirstName').AsString.IsEmpty or
+    DataSet.FieldByName('MiddleName').AsString.IsEmpty) then
+    exit;
+
+  DataSet.FieldByName('abr').value := DataSet.FieldByName('LastName').AsString +
+    ' ' + DataSet.FieldByName('FirstName').AsString[1] + '.' +
+    DataSet.FieldByName('MiddleName').AsString[1];
+end;
+
+procedure TDM.TReaderCalcFields(DataSet: TDataSet);
 begin
   if (DataSet.FieldByName('LastName').AsString.IsEmpty or
     DataSet.FieldByName('FirstName').AsString.IsEmpty or

@@ -82,6 +82,7 @@ object DM: TDM
     Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
+    OnCalcFields = TReaderCalcFields
     TableName = 'Reader'
     Left = 152
     Top = 104
@@ -116,6 +117,12 @@ object DM: TDM
       DisplayWidth = 33
       FieldName = 'Adress'
       Size = 30
+    end
+    object TReaderabr: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'abr'
+      Size = 30
+      Calculated = True
     end
   end
   object DSReader: TDataSource
@@ -351,6 +358,16 @@ object DM: TDM
       FieldName = 'Worker_id'
       Visible = False
     end
+    object TBookIssuingReaderName: TStringField
+      FieldKind = fkLookup
+      FieldName = 'ReaderName'
+      LookupDataSet = TReader
+      LookupKeyFields = 'id'
+      LookupResultField = 'abr'
+      KeyFields = 'Reader_id'
+      Size = 30
+      Lookup = True
+    end
     object TBookIssuingWorkerName: TStringField
       DisplayLabel = #1041#1080#1073#1083#1080#1086#1090#1077#1082#1072#1088#1100
       FieldKind = fkLookup
@@ -360,17 +377,6 @@ object DM: TDM
       LookupResultField = 'FirstName'
       KeyFields = 'Worker_id'
       Size = 50
-      Lookup = True
-    end
-    object TBookIssuingReaderName: TStringField
-      DisplayLabel = #1060#1072#1084#1080#1083#1080#1103' '#1095#1080#1090#1072#1090#1077#1083#1103
-      FieldKind = fkLookup
-      FieldName = 'ReaderName'
-      LookupDataSet = TReader
-      LookupKeyFields = 'id'
-      LookupResultField = 'FirstName'
-      KeyFields = 'Reader_id'
-      Size = 30
       Lookup = True
     end
     object TBookIssuingBookName: TStringField

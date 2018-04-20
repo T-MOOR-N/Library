@@ -15,13 +15,13 @@ uses
 
 begin
   Application.Initialize;
+  Application.CreateForm(TDM, DM);
   Application.CreateForm(TFormAuth, FormAuth);
   Application.CreateForm(TFormAddBook, FormAddBook);
   Application.CreateForm(TFormAddExemplar, FormAddExemplar);
   Application.CreateForm(TFormLibrary, FormLibrary);
   Application.CreateForm(TFormAddReadTicket, FormAddReadTicket);
   Application.CreateForm(TFormReader, FormReader);
-  Application.CreateForm(TDM, DM);
   Application.CreateForm(TFormSuper, FormSuper);
   Application.Run;
 end.
