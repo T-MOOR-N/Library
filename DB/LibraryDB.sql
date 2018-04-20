@@ -1,8 +1,9 @@
 ﻿--
--- Скрипт сгенерирован Devart dbForge Studio for SQL Server, Версия 5.5.311.0
--- Домашняя страница продукта: http://www.devart.com/ru/dbforge/sql/studio
--- Дата скрипта: 19.04.2018 20:00:56
+-- Скрипт сгенерирован Devart dbForge Studio for SQL Server, Версия 5.4.275.0
+-- Домашняя страница продукта: http://devart.com/ru/dbforge/sql/studio
+-- Дата скрипта: 20.04.2018 9:22:30
 -- Версия сервера: 10.50.4000
+-- Версия клиента: 
 --
 
 
@@ -205,6 +206,22 @@ GROUP BY b.ISBN
 GO
 
 --
+-- Создать таблицу [dbo].[Reservation]
+--
+PRINT (N'Создать таблицу [dbo].[Reservation]')
+GO
+CREATE TABLE dbo.Reservation (
+  id int IDENTITY,
+  date datetime NULL,
+  exemplar_id int NULL,
+  reader_id int NULL,
+  status int NULL,
+  CONSTRAINT PK_Reservation_id PRIMARY KEY CLUSTERED (id)
+)
+ON [PRIMARY]
+GO
+
+--
 -- Создать таблицу [dbo].[BookIssuing]
 --
 PRINT (N'Создать таблицу [dbo].[BookIssuing]')
@@ -244,28 +261,48 @@ LEFT JOIN Reader r
 GO
 
 --
+-- Создать представление [dbo].[AvailableBooks]
+--
+GO
+PRINT (N'Создать представление [dbo].[AvailableBooks]')
+GO
+CREATE VIEW dbo.AvailableBooks 
+AS SELECT
+  ex.id
+ ,b.ISBN
+ ,b.Title
+ ,b.publishing_id
+ ,p.name AS 'publishing'
+ ,b.year
+ ,b.category AS 'category_id'
+ ,bc.name AS 'category'
+ ,ex.placement
+FROM LibraryDB.dbo.Exemplar ex
+LEFT JOIN Book b
+  ON ex.ISBN = b.ISBN
+LEFT JOIN publishing p
+  ON b.publishing_id = p.id
+LEFT JOIN BookCategory bc
+  ON b.category = bc.id
+WHERE ex.id NOT IN (SELECT
+    bi.Exemplar_id
+  FROM BookIssuing bi
+  WHERE bi.DateReturnReal IS NULL)
+AND ex.id NOT IN (SELECT
+    r.Exemplar_id
+  FROM Reservation r
+  LEFT JOIN ReservationStatus rs
+    ON r.status = rs.id
+  WHERE rs.name IN ('Забронирован', 'Ожидание выдачи'))
+GO
+
+--
 -- Создать пользователя [user]
 --
 PRINT (N'Создать пользователя [user]')
 GO
 CREATE USER [user]
   WITHOUT LOGIN
-GO
-
---
--- Создать таблицу [dbo].[Reservation]
---
-PRINT (N'Создать таблицу [dbo].[Reservation]')
-GO
-CREATE TABLE dbo.Reservation (
-  id int IDENTITY,
-  date datetime NULL,
-  exemplar_id int NULL,
-  reader_id int NULL,
-  status int NULL,
-  CONSTRAINT PK_Reservation_id PRIMARY KEY CLUSTERED (id)
-)
-ON [PRIMARY]
 GO
 
 --
@@ -375,7 +412,8 @@ INSERT dbo.BookIssuing(id, Exemplar_id, Reader_id, DateIssue, DateReturnExpected
 INSERT dbo.BookIssuing(id, Exemplar_id, Reader_id, DateIssue, DateReturnExpected, DateReturnReal, Worker_id) VALUES (3, 3, 2, '2018-04-16', '2018-04-23', '2018-04-23', 1)
 INSERT dbo.BookIssuing(id, Exemplar_id, Reader_id, DateIssue, DateReturnExpected, DateReturnReal, Worker_id) VALUES (6, 1, 3, '2017-04-16', '2017-04-23', '2017-04-23', 1)
 INSERT dbo.BookIssuing(id, Exemplar_id, Reader_id, DateIssue, DateReturnExpected, DateReturnReal, Worker_id) VALUES (10, 1, 4, '2016-04-13', '2016-04-20', '2016-04-25', 1)
-INSERT dbo.BookIssuing(id, Exemplar_id, Reader_id, DateIssue, DateReturnExpected, DateReturnReal, Worker_id) VALUES (12, 5, 4, '2018-04-16', '2018-04-30', NULL, 1)
+INSERT dbo.BookIssuing(id, Exemplar_id, Reader_id, DateIssue, DateReturnExpected, DateReturnReal, Worker_id) VALUES (12, 5, 4, '2018-04-16', '2018-04-20', '2018-04-20', 1)
+INSERT dbo.BookIssuing(id, Exemplar_id, Reader_id, DateIssue, DateReturnExpected, DateReturnReal, Worker_id) VALUES (15, 14, 4, '2018-04-15', '2018-04-15', '2018-04-20', 1)
 GO
 SET IDENTITY_INSERT dbo.BookIssuing OFF
 GO
@@ -429,7 +467,7 @@ GO
 --
 SET IDENTITY_INSERT dbo.Reservation ON
 GO
-INSERT dbo.Reservation(id, date, exemplar_id, reader_id, status) VALUES (1, '2018-04-19 18:54:47.267', 1, 1, 1)
+INSERT dbo.Reservation(id, date, exemplar_id, reader_id, status) VALUES (2, '2018-04-20 07:09:00.383', 1, 1, 1)
 GO
 SET IDENTITY_INSERT dbo.Reservation OFF
 GO
@@ -452,6 +490,7 @@ SET IDENTITY_INSERT dbo.Users ON
 GO
 INSERT dbo.Users(id, type, user_id, login, password, passMD5) VALUES (1, N'reader', 1, N'user', N'pass', 0x1A1DC91C907325C69271DDF0C944BC72)
 INSERT dbo.Users(id, type, user_id, login, password, passMD5) VALUES (3, N'librarian', 1, N'librarian', N'pass', 0x1A1DC91C907325C69271DDF0C944BC72)
+INSERT dbo.Users(id, type, user_id, login, password, passMD5) VALUES (4, N'admin', 2, N'admin', N'admin', 0x21232F297A57A5A743894A0E4A801FC3)
 GO
 SET IDENTITY_INSERT dbo.Users OFF
 GO
@@ -461,6 +500,7 @@ GO
 SET IDENTITY_INSERT dbo.Worker ON
 GO
 INSERT dbo.Worker(id, FirstName, LastName) VALUES (1, N'Валишна', N'Наталья')
+INSERT dbo.Worker(id, FirstName, LastName) VALUES (2, N'Седова', N'Екатерина')
 GO
 SET IDENTITY_INSERT dbo.Worker OFF
 GO

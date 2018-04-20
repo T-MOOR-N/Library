@@ -28,7 +28,7 @@ type
     ButtonIssueBook: TButton;
     ButtonReturnBook: TButton;
     DBGridBookIssuing: TDBGrid;
-    GroupBox14: TGroupBox;
+    GroupBoxBookIssue: TGroupBox;
     Label5: TLabel;
     Label6: TLabel;
     Label10: TLabel;
@@ -71,6 +71,8 @@ type
     procedure SearchBoxAvailableBooksInvokeSearch(Sender: TObject);
     procedure ButtonIssueBookClick(Sender: TObject);
     procedure ButtonBookIssueSaveClick(Sender: TObject);
+    procedure DBGridBookIssuingKeyPress(Sender: TObject; var Key: Char);
+    procedure ButtonReturnBookClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -92,8 +94,11 @@ begin
   begin
     DM.TBookIssuing.FieldByName('DateIssue').Value := DateTimePicker1.DateTime;
     DM.TBookIssuing.FieldByName('DateReturnExpected').Value :=
-      DateTimePicker2.DateTime;;
+      DateTimePicker2.DateTime;
+    DM.TBookIssuing.FieldByName('Worker_id').Value := DM.TWorker.Fields
+      [0].Value;
     DM.TBookIssuing.Post;
+    GroupBoxBookIssue.Enabled := false;
   end;
 end;
 
@@ -174,6 +179,25 @@ end;
 procedure TFormLibrary.ButtonIssueBookClick(Sender: TObject);
 begin
   DM.TBookIssuing.Insert;
+  GroupBoxBookIssue.Enabled := true;
+end;
+
+procedure TFormLibrary.ButtonReturnBookClick(Sender: TObject);
+begin
+  DM.TBookIssuing.Edit;
+
+  DM.TBookIssuing.FieldByName('DateReturnReal').Value := now();
+
+  DM.TBookIssuing.Post;
+end;
+
+procedure TFormLibrary.DBGridBookIssuingKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  // if DM.TBookIssuing.State in [dsInsert] then
+  // GroupBoxBookIssue.Enabled := true
+  // else
+  // GroupBoxBookIssue.Enabled := false;
 end;
 
 procedure TFormLibrary.FormClose(Sender: TObject; var Action: TCloseAction);

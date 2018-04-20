@@ -20,7 +20,7 @@ object FormLibrary: TFormLibrary
     Top = 0
     Width = 852
     Height = 508
-    ActivePage = TabSheet2
+    ActivePage = TabSheet4
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -459,6 +459,7 @@ object FormLibrary: TFormLibrary
             Height = 25
             Caption = #1047#1072#1082#1088#1099#1090#1100
             TabOrder = 1
+            OnClick = ButtonReturnBookClick
           end
         end
       end
@@ -477,6 +478,7 @@ object FormLibrary: TFormLibrary
         TitleFont.Height = -11
         TitleFont.Name = 'MS Sans Serif'
         TitleFont.Style = []
+        OnKeyPress = DBGridBookIssuingKeyPress
         Columns = <
           item
             Expanded = False
@@ -527,13 +529,14 @@ object FormLibrary: TFormLibrary
             Visible = True
           end>
       end
-      object GroupBox14: TGroupBox
+      object GroupBoxBookIssue: TGroupBox
         Left = 0
         Top = 303
         Width = 844
         Height = 177
         Align = alBottom
         Caption = #1054#1090#1082#1088#1099#1090#1100' '#1083#1080#1089#1090' '#1074#1099#1076#1072#1095#1080
+        Enabled = False
         TabOrder = 2
         object Label5: TLabel
           Left = 16
@@ -597,6 +600,9 @@ object FormLibrary: TFormLibrary
           Height = 21
           DataField = 'Exemplar_id'
           DataSource = DM.DSBookIssuing
+          KeyField = 'id'
+          ListField = 'id'
+          ListSource = DM.DSExemplar
           TabOrder = 3
         end
         object DBLookupComboBox1: TDBLookupComboBox
@@ -606,6 +612,7 @@ object FormLibrary: TFormLibrary
           Height = 21
           DataField = 'Reader_id'
           DataSource = DM.DSBookIssuing
+          KeyField = 'id'
           ListField = 'abr'
           ListSource = DM.DSReader
           TabOrder = 4
