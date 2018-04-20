@@ -315,12 +315,9 @@ object DM: TDM
     Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
-    IndexFieldNames = 'Reader_id'
-    MasterFields = 'id'
-    MasterSource = DSReader
     TableName = 'BookIssuing'
-    Left = 280
-    Top = 136
+    Left = 344
+    Top = 128
     object TBookIssuingid: TAutoIncField
       DisplayWidth = 10
       FieldName = 'id'
@@ -393,8 +390,8 @@ object DM: TDM
   end
   object DSBookIssuing: TDataSource
     DataSet = TBookIssuing
-    Left = 280
-    Top = 192
+    Left = 344
+    Top = 184
   end
   object TExemplar: TADOTable
     Active = True
@@ -469,8 +466,8 @@ object DM: TDM
     Connection = ADOConnection1
     CursorType = ctStatic
     TableName = 'Reservation'
-    Left = 360
-    Top = 136
+    Left = 424
+    Top = 128
     object TReservationid: TAutoIncField
       FieldName = 'id'
       ReadOnly = True
@@ -543,21 +540,21 @@ object DM: TDM
   end
   object DSReservation: TDataSource
     DataSet = TReservation
-    Left = 360
-    Top = 192
+    Left = 424
+    Top = 184
   end
   object TReservationStatus: TADOTable
     Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
     TableName = 'ReservationStatus'
-    Left = 456
-    Top = 136
+    Left = 520
+    Top = 128
   end
   object DSReservationStatus: TDataSource
     DataSet = TReservationStatus
-    Left = 456
-    Top = 192
+    Left = 520
+    Top = 184
   end
   object ViewCatalog: TADOTable
     Active = True
@@ -671,5 +668,90 @@ object DM: TDM
     DataSet = ViewAvailableBooks
     Left = 128
     Top = 480
+  end
+  object TBookIssuingReader: TADOTable
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    IndexFieldNames = 'Reader_id'
+    MasterFields = 'id'
+    MasterSource = DSReader
+    TableName = 'BookIssuing'
+    Left = 224
+    Top = 104
+    object AutoIncField1: TAutoIncField
+      DisplayWidth = 10
+      FieldName = 'id'
+      ReadOnly = True
+    end
+    object IntegerField1: TIntegerField
+      DisplayWidth = 10
+      FieldName = 'Exemplar_id'
+      Visible = False
+    end
+    object IntegerField2: TIntegerField
+      DisplayWidth = 10
+      FieldName = 'Reader_id'
+      Visible = False
+    end
+    object WideStringField1: TWideStringField
+      DisplayLabel = #1044#1072#1090#1072' '#1074#1099#1076#1072#1095#1080
+      FieldName = 'DateIssue'
+      Size = 10
+    end
+    object WideStringField2: TWideStringField
+      DisplayLabel = #1054#1078#1080#1076#1072#1077#1084#1072#1103' '#1076#1072#1090#1072' '#1074#1086#1079#1074#1088#1072#1090#1072
+      DisplayWidth = 12
+      FieldName = 'DateReturnExpected'
+      Size = 10
+    end
+    object WideStringField3: TWideStringField
+      DisplayLabel = #1056#1077#1072#1083#1100#1085#1072#1103' '#1076#1072#1090#1072' '#1074#1086#1079#1074#1088#1072#1090#1072
+      DisplayWidth = 27
+      FieldName = 'DateReturnReal'
+      Size = 10
+    end
+    object IntegerField3: TIntegerField
+      DisplayWidth = 24
+      FieldName = 'Worker_id'
+      Visible = False
+    end
+    object StringField1: TStringField
+      FieldKind = fkLookup
+      FieldName = 'ReaderName'
+      LookupDataSet = TReader
+      LookupKeyFields = 'id'
+      LookupResultField = 'abr'
+      KeyFields = 'Reader_id'
+      Size = 30
+      Lookup = True
+    end
+    object StringField2: TStringField
+      DisplayLabel = #1041#1080#1073#1083#1080#1086#1090#1077#1082#1072#1088#1100
+      FieldKind = fkLookup
+      FieldName = 'WorkerName'
+      LookupDataSet = TWorker
+      LookupKeyFields = 'id'
+      LookupResultField = 'FirstName'
+      KeyFields = 'Worker_id'
+      Size = 50
+      Lookup = True
+    end
+    object StringField3: TStringField
+      DisplayLabel = #1050#1085#1080#1075#1072
+      FieldKind = fkLookup
+      FieldName = 'BookName'
+      LookupDataSet = TExemplar
+      LookupKeyFields = 'id'
+      LookupResultField = 'book_LF'
+      KeyFields = 'Exemplar_id'
+      Size = 50
+      Lookup = True
+    end
+  end
+  object DsBookIssuingReader: TDataSource
+    DataSet = TBookIssuingReader
+    Left = 224
+    Top = 160
   end
 end

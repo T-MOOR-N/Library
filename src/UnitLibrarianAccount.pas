@@ -59,8 +59,8 @@ type
     RadioButton3: TRadioButton;
     GroupBox4: TGroupBox;
     DBGridAvailableBooks: TDBGrid;
-    DBLookupComboBox1: TDBLookupComboBox;
     DBLookupComboBox2: TDBLookupComboBox;
+    DBLookupComboBox1: TDBLookupComboBox;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Button3Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);

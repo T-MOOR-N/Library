@@ -20,7 +20,7 @@ object FormLibrary: TFormLibrary
     Top = 0
     Width = 852
     Height = 508
-    ActivePage = TabSheet4
+    ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -35,8 +35,6 @@ object FormLibrary: TFormLibrary
         TabOrder = 0
         object TabSheet5: TTabSheet
           Caption = #1042#1089#1077' '#1082#1085#1080#1075#1080
-          ExplicitWidth = 281
-          ExplicitHeight = 165
           object Panel1: TPanel
             Left = 0
             Top = 0
@@ -44,7 +42,6 @@ object FormLibrary: TFormLibrary
             Height = 81
             Align = alTop
             TabOrder = 0
-            ExplicitTop = 8
             object GroupBox2: TGroupBox
               Left = -8
               Top = 1
@@ -95,8 +92,6 @@ object FormLibrary: TFormLibrary
             Align = alClient
             Caption = #1069#1082#1079#1077#1084#1087#1083#1103#1088#1099
             TabOrder = 1
-            ExplicitWidth = 844
-            ExplicitHeight = 399
             object DBGridCatalog: TDBGrid
               Left = 2
               Top = 15
@@ -117,8 +112,6 @@ object FormLibrary: TFormLibrary
         object TabSheet6: TTabSheet
           Caption = #1044#1086#1089#1090#1091#1087#1085#1099#1077' '#1101#1082#1084#1077#1087#1083#1103#1088#1099
           ImageIndex = 1
-          ExplicitWidth = 281
-          ExplicitHeight = 165
           object Panel2: TPanel
             Left = 0
             Top = 0
@@ -126,7 +119,6 @@ object FormLibrary: TFormLibrary
             Height = 81
             Align = alTop
             TabOrder = 0
-            ExplicitTop = 8
             object GroupBox3: TGroupBox
               Left = -8
               Top = 1
@@ -169,8 +161,6 @@ object FormLibrary: TFormLibrary
             Align = alClient
             Caption = #1069#1082#1079#1077#1084#1087#1083#1103#1088#1099
             TabOrder = 1
-            ExplicitWidth = 844
-            ExplicitHeight = 399
             object DBGridAvailableBooks: TDBGrid
               Left = 2
               Top = 15
@@ -339,7 +329,7 @@ object FormLibrary: TFormLibrary
           Width = 840
           Height = 166
           Align = alClient
-          DataSource = DM.DSBookIssuing
+          DataSource = DM.DsBookIssuingReader
           Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
           ReadOnly = True
           TabOrder = 0
@@ -600,6 +590,15 @@ object FormLibrary: TFormLibrary
           TabOrder = 2
           OnClick = ButtonBookIssueSaveClick
         end
+        object DBLookupComboBox2: TDBLookupComboBox
+          Left = 16
+          Top = 88
+          Width = 265
+          Height = 21
+          DataField = 'Exemplar_id'
+          DataSource = DM.DSBookIssuing
+          TabOrder = 3
+        end
         object DBLookupComboBox1: TDBLookupComboBox
           Left = 16
           Top = 42
@@ -609,15 +608,6 @@ object FormLibrary: TFormLibrary
           DataSource = DM.DSBookIssuing
           ListField = 'abr'
           ListSource = DM.DSReader
-          TabOrder = 3
-        end
-        object DBLookupComboBox2: TDBLookupComboBox
-          Left = 16
-          Top = 88
-          Width = 265
-          Height = 21
-          DataField = 'Exemplar_id'
-          DataSource = DM.DSBookIssuing
           TabOrder = 4
         end
       end

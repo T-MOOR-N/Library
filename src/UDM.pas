@@ -115,6 +115,18 @@ type
     ViewAvailableBooksplacement: TStringField;
     TReaderabr: TStringField;
     TBookIssuingReaderName: TStringField;
+    TBookIssuingReader: TADOTable;
+    AutoIncField1: TAutoIncField;
+    IntegerField1: TIntegerField;
+    IntegerField2: TIntegerField;
+    WideStringField1: TWideStringField;
+    WideStringField2: TWideStringField;
+    WideStringField3: TWideStringField;
+    IntegerField3: TIntegerField;
+    StringField1: TStringField;
+    StringField2: TStringField;
+    StringField3: TStringField;
+    DsBookIssuingReader: TDataSource;
     procedure TAuthorCalcFields(DataSet: TDataSet);
     procedure TReaderCalcFields(DataSet: TDataSet);
   private
