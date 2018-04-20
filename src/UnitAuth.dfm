@@ -23,8 +23,6 @@ object FormAuth: TFormAuth
     Align = alClient
     Caption = #1042#1093#1086#1076
     TabOrder = 0
-    ExplicitWidth = 355
-    ExplicitHeight = 217
     object Label1: TLabel
       Left = 56
       Top = 48

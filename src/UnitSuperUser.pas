@@ -290,12 +290,13 @@ end;
 
 procedure TFormSuper.SearchBox1InvokeSearch(Sender: TObject);
 begin
-  if not DM.TReader.Locate('LastName', SearchBox1.Text, [loPartialKey]) then
-    if not DM.TReader.Locate('FirstName', SearchBox1.Text, [loPartialKey]) then
-      if not DM.TReader.Locate('MiddleName', SearchBox1.Text, [loPartialKey])then
-       if not DM.TReader.Locate ('Addres', SearchBox1.Text, [loPartialKey])  then
+  if not dm.TReader.Locate('LastName', SearchBox1.Text, [loPartialKey]) then
+    if not dm.TReader.Locate('FirstName', SearchBox1.Text, [loPartialKey]) then
+      if not dm.TReader.Locate('MiddleName', SearchBox1.Text, [loPartialKey])
+      then
+        if not dm.TReader.Locate('Addres', SearchBox1.Text, [loPartialKey]) then
 
-        DM.TReader.Locate('Phone', SearchBox1.Text, [loPartialKey]);
+          dm.TReader.Locate('Phone', SearchBox1.Text, [loPartialKey]);
 end;
 
 procedure TFormSuper.SpeedButtonAddAuthorClick(Sender: TObject);
@@ -327,8 +328,8 @@ end;
 
 procedure TFormSuper.SpeedButtonAddCategoryClick(Sender: TObject);
 begin
-  dm.TBookCategory.insert;
-  ButtonEditBookCategory.Enabled := true;
+  dm.TBookCategory.Insert;
+  ButtonEditBookCategory.Enabled := True;
   DBEditBookCategoryName.ReadOnly := false;
 end;
 

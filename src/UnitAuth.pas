@@ -30,7 +30,7 @@ implementation
 
 {$R *.dfm}
 
-uses UDM, UnitLibrarianAccount, UnitReaderAccount;
+uses UDM, UnitLibrarianAccount, UnitReaderAccount, UnitSuperUser;
 
 procedure TFormAuth.BitBtn1Click(Sender: TObject);
 begin
@@ -53,6 +53,12 @@ begin
       dm.TWorker.Locate('id', ADOQuery1.Fields[0].AsInteger,
         [loCaseInsensitive, loPartialKey]);
       FormLibrary.Show;
+    end;
+    if ADOQuery1.Fields[1].AsString = 'admin' then
+    begin
+      dm.TWorker.Locate('id', ADOQuery1.Fields[0].AsInteger,
+        [loCaseInsensitive, loPartialKey]);
+      FormSuper.Show;
     end;
     hide;
   end

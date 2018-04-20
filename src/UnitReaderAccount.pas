@@ -115,11 +115,11 @@ end;
 procedure TFormReader.SearchBox1InvokeSearch(Sender: TObject);
 begin
   if RadioButtonCategory.Checked then
-    DM.note.Locate('category', SearchBox1.Text, [loPartialKey]);
+    DM.ViewCatalog.Locate('category', SearchBox1.Text, [loPartialKey]);
   if RadioButtonAuthor.Checked then
-    DM.note.Locate('Author', SearchBox1.Text, [loPartialKey]);
+    DM.ViewCatalog.Locate('Author', SearchBox1.Text, [loPartialKey]);
   if RadioButtonTitle.Checked then
-    DM.note.Locate('Title', SearchBox1.Text, [loPartialKey]);
+    DM.ViewCatalog.Locate('Title', SearchBox1.Text, [loPartialKey]);
 
 end;
 

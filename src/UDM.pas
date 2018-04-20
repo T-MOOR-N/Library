@@ -32,7 +32,7 @@ type
     DSReservation: TDataSource;
     TReservationStatus: TADOTable;
     DSReservationStatus: TDataSource;
-    note: TADOTable;
+    ViewCatalog: TADOTable;
     DSCatalog: TDataSource;
     TAuthorBookid: TAutoIncField;
     TAuthorBookauthor_id: TIntegerField;
@@ -79,14 +79,14 @@ type
     TBookIssuingDateReturnExpected: TWideStringField;
     TBookIssuingDateReturnReal: TWideStringField;
     TBookIssuingWorker_id: TIntegerField;
-    noteISBN: TStringField;
-    notecategory: TStringField;
-    noteTitle: TStringField;
-    noteAuthor: TStringField;
-    notename: TStringField;
-    notecity: TStringField;
-    noteyear: TWideStringField;
-    noteCount: TIntegerField;
+    ViewCatalogISBN: TStringField;
+    ViewCatalogcategory: TStringField;
+    ViewCatalogTitle: TStringField;
+    ViewCatalogAuthor: TStringField;
+    ViewCatalogname: TStringField;
+    ViewCatalogcity: TStringField;
+    ViewCatalogyear: TWideStringField;
+    ViewCatalogCount: TIntegerField;
     TUsersid: TAutoIncField;
     TUserstype: TStringField;
     TUsersuser_id: TIntegerField;
@@ -103,6 +103,17 @@ type
     TReservationReaderName: TStringField;
     TReservationStatusNAme: TStringField;
     ADOQueryUpdatePassMD5: TADOQuery;
+    ViewAvailableBooks: TADOTable;
+    DSAvailableBooks: TDataSource;
+    ViewAvailableBooksid: TIntegerField;
+    ViewAvailableBooksISBN: TStringField;
+    ViewAvailableBooksTitle: TStringField;
+    ViewAvailableBookspublishing_id: TIntegerField;
+    ViewAvailableBookspublishing: TStringField;
+    ViewAvailableBooksyear: TWideStringField;
+    ViewAvailableBookscategory_id: TIntegerField;
+    ViewAvailableBookscategory: TStringField;
+    ViewAvailableBooksplacement: TStringField;
     procedure TAuthorCalcFields(DataSet: TDataSet);
   private
     { Private declarations }

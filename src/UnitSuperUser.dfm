@@ -11,6 +11,7 @@ object FormSuper: TFormSuper
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poMainFormCenter
   PixelsPerInch = 120
   TextHeight = 16
   object PageControl1: TPageControl
