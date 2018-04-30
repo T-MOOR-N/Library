@@ -55,14 +55,8 @@ Coordinates=1017,658,93,36
 [ButtonReturnBook]
 Coordinates=1099,298,119,58
 
-[RadioButtonAuthor]
-Coordinates=884,658,123,36
-
 [PageControl2]
 Coordinates=781,658,93,36
-
-[RadioButtonTitle]
-Coordinates=661,658,110,36
 
 [GroupBox3]
 Coordinates=656,454,79,58
@@ -123,9 +117,6 @@ Coordinates=170,10,121,278
 
 [DM.DSAvailableBooks]
 Coordinates=375,1,144,36
-
-[RadioButton1]
-Coordinates=10,658,92,36
 
 [Label5]
 Coordinates=789,298,53,58
@@ -190,9 +181,6 @@ Coordinates=1098,10,113,168
 [Panel1]
 Coordinates=630,298,55,58
 
-[RadioButtonCategory]
-Coordinates=630,590,137,36
-
 [GroupBox12]
 Coordinates=832,522,86,58
 
@@ -201,9 +189,6 @@ Coordinates=1010,298,79,58
 
 [ButtonBookIssueSave]
 Coordinates=1051,522,141,58
-
-[RadioButton3]
-Coordinates=528,590,92,36
 
 [Button7]
 Coordinates=852,298,59,58
@@ -249,5 +234,5 @@ Coordinates=295,1308,166,36
 Coordinates=10,10,158,278
 
 []
-Coordinates=196,1308,91,36
+Coordinates=528,590,92,36
 

@@ -25,8 +25,6 @@ type
     GroupBox1: TGroupBox;
     DBGridCatalog: TDBGrid;
     TabSheet2: TTabSheet;
-    PopupMenu2: TPopupMenu;
-    N1: TMenuItem;
     TabSheet3: TTabSheet;
     Button2: TButton;
     Label1: TLabel;

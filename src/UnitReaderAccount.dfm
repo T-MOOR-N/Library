@@ -20,7 +20,7 @@ object FormReader: TFormReader
     Top = 0
     Width = 1124
     Height = 609
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -187,7 +187,6 @@ object FormReader: TFormReader
               Height = 237
               Align = alClient
               DataSource = DM.DSReservation
-              PopupMenu = PopupMenu2
               ReadOnly = True
               TabOrder = 0
               TitleFont.Charset = DEFAULT_CHARSET
@@ -577,13 +576,6 @@ object FormReader: TFormReader
     Left = 332
     Top = 288
     object ButtonDelete: TMenuItem
-      Caption = #1059#1076#1072#1083#1080#1090#1100
-    end
-  end
-  object PopupMenu2: TPopupMenu
-    Left = 621
-    Top = 84
-    object N1: TMenuItem
       Caption = #1059#1076#1072#1083#1080#1090#1100
     end
   end

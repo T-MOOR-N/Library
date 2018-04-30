@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, Menus, Grids, DBGrids, Mask, DBCtrls, Buttons,
-  ExtCtrls, ComCtrls, Data.DB, Vcl.WinXCtrls;
+  ExtCtrls, ComCtrls, Data.DB, Vcl.WinXCtrls, Data.Win.ADODB;
 
 type
   TFormLibrary = class(TForm)
@@ -47,22 +47,44 @@ type
     Panel1: TPanel;
     GroupBox2: TGroupBox;
     SearchBoxCatalog: TSearchBox;
-    RadioButtonCategory: TRadioButton;
-    RadioButtonAuthor: TRadioButton;
-    RadioButtonTitle: TRadioButton;
     GroupBox1: TGroupBox;
     DBGridCatalog: TDBGrid;
     Panel2: TPanel;
     GroupBox3: TGroupBox;
     SearchBoxAvailableBooks: TSearchBox;
-    RadioButton1: TRadioButton;
-    RadioButton3: TRadioButton;
     GroupBox4: TGroupBox;
     DBGridAvailableBooks: TDBGrid;
     DBLookupComboBox2: TDBLookupComboBox;
     DBLookupComboBox1: TDBLookupComboBox;
+    TabSheet7: TTabSheet;
+    GroupBox5: TGroupBox;
+    Label1: TLabel;
+    DBLookupComboBox3: TDBLookupComboBox;
+    DBLookupComboBox4: TDBLookupComboBox;
+    Label2: TLabel;
+    Label3: TLabel;
+    DBLookupComboBox5: TDBLookupComboBox;
+    DBGridBookHistory: TDBGrid;
+    TBHCategory: TADOTable;
+    DSTBHCategory: TDataSource;
+    TBHBook: TADOTable;
+    DSTBHBook: TDataSource;
+    DSTBHExemplar: TDataSource;
+    TBHExemplar: TADOTable;
+    TBHHistory: TADOTable;
+    DSTBHHistory: TDataSource;
+    TBHHistoryExemplar_id: TIntegerField;
+    TBHHistoryReader: TStringField;
+    TBHHistoryDateIssue: TWideStringField;
+    TBHHistoryDateReturnExpected: TWideStringField;
+    TBHHistoryDateReturnReal: TWideStringField;
+    ComboBoxBookSearch: TComboBox;
+    ButtonSearchBoxCatalogClear: TButton;
+    ComboBoxAvailableBooks: TComboBox;
+    ButtonSearchBoxAvailableBooksClear: TButton;
+    ButtonSearchBoxReaderClear: TButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure Button3Click(Sender: TObject);
+    procedure ButtonSearchBoxCatalogClearClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure SearchBoxReaderInvokeSearch(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -73,6 +95,8 @@ type
     procedure ButtonBookIssueSaveClick(Sender: TObject);
     procedure DBGridBookIssuingKeyPress(Sender: TObject; var Key: Char);
     procedure ButtonReturnBookClick(Sender: TObject);
+    procedure ButtonSearchBoxAvailableBooksClearClick(Sender: TObject);
+    procedure ButtonSearchBoxReaderClearClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -161,9 +185,19 @@ begin
   end;
 end;
 
-procedure TFormLibrary.Button3Click(Sender: TObject);
+procedure TFormLibrary.ButtonSearchBoxReaderClearClick(Sender: TObject);
 begin
-  FormAddBook.Show;
+  DM.TReader.Filtered := false
+end;
+
+procedure TFormLibrary.ButtonSearchBoxAvailableBooksClearClick(Sender: TObject);
+begin
+  DM.ViewAvailableBooks.Filtered := false;
+end;
+
+procedure TFormLibrary.ButtonSearchBoxCatalogClearClick(Sender: TObject);
+begin
+  DM.ViewCatalog.Filtered := false;
 end;
 
 procedure TFormLibrary.Button7Click(Sender: TObject);
@@ -206,36 +240,63 @@ begin
 end;
 
 procedure TFormLibrary.SearchBoxReaderInvokeSearch(Sender: TObject);
+var
+  SearchTerm: string;
 begin
   // здесь будет поиск
-  if not DM.TReader.Locate('LastName', SearchBoxReader.Text, [loPartialKey])
-  then
-    if not DM.TReader.Locate('FirstName', SearchBoxReader.Text, [loPartialKey])
-    then
-      if not DM.TReader.Locate('MiddleName', SearchBoxReader.Text,
-        [loPartialKey]) then
-        DM.TReader.Locate('Phone', SearchBoxReader.Text, [loPartialKey]);
+  // if not DM.TReader.Locate('LastName', SearchBoxReader.Text, [loPartialKey])
+  // then
+  // if not DM.TReader.Locate('FirstName', SearchBoxReader.Text, [loPartialKey])
+  // then
+  // if not DM.TReader.Locate('MiddleName', SearchBoxReader.Text,
+  // [loPartialKey]) then
+  // DM.TReader.Locate('Phone', SearchBoxReader.Text, [loPartialKey]);
+  SearchTerm := SearchBoxReader.Text;
+  if SearchTerm = '' then
+    DM.TReader.Filtered := false
+  else
+  begin
+    DM.TReader.Filter := 'LastName' + ' LIKE ' + QuotedStr(SearchTerm + '*') +
+      ' OR ' + 'FirstName' + ' LIKE ' + QuotedStr(SearchTerm + '*') + ' OR ' +
+      'MiddleName' + ' LIKE ' + QuotedStr(SearchTerm + '*');
+    DM.TReader.Filtered := true;
+  end;
 end;
 
 procedure TFormLibrary.SearchBoxAvailableBooksInvokeSearch(Sender: TObject);
+var
+  FieldName, SearchTerm: string;
 begin
-  // AvailableBooks
-  if RadioButtonCategory.Checked then
-    DM.ViewCatalog.Locate('category', SearchBoxAvailableBooks.Text,
-      [loPartialKey]);
-  if RadioButtonTitle.Checked then
-    DM.ViewCatalog.Locate('Title', SearchBoxAvailableBooks.Text,
-      [loPartialKey]);
+  case ComboBoxAvailableBooks.ItemIndex of
+    0:
+      FieldName := 'Title';
+    1:
+      FieldName := 'category';
+    2:
+      FieldName := 'publishing';
+  end;
+
+  SearchTerm := SearchBoxAvailableBooks.Text;
+  DM.DoIncrementalFilter(DM.ViewAvailableBooks, FieldName, SearchTerm);
 end;
 
 procedure TFormLibrary.SearchBoxCatalogInvokeSearch(Sender: TObject);
+var
+  FieldName, SearchTerm: string;
 begin
-  if RadioButtonCategory.Checked then
-    DM.ViewCatalog.Locate('category', SearchBoxCatalog.Text, [loPartialKey]);
-  if RadioButtonAuthor.Checked then
-    DM.ViewCatalog.Locate('Author', SearchBoxCatalog.Text, [loPartialKey]);
-  if RadioButtonTitle.Checked then
-    DM.ViewCatalog.Locate('Title', SearchBoxCatalog.Text, [loPartialKey]);
+  case ComboBoxBookSearch.ItemIndex of
+    0:
+      FieldName := 'Title';
+    1:
+      FieldName := 'category';
+    2:
+      FieldName := 'Author';
+    3:
+      FieldName := 'name';
+  end;
+
+  SearchTerm := SearchBoxCatalog.Text;
+  DM.DoIncrementalFilter(DM.ViewCatalog, FieldName, SearchTerm);
 end;
 
 end.

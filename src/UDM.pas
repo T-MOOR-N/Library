@@ -129,6 +129,8 @@ type
     DsBookIssuingReader: TDataSource;
     procedure TAuthorCalcFields(DataSet: TDataSet);
     procedure TReaderCalcFields(DataSet: TDataSet);
+    procedure DoIncrementalFilter(DataSet: TDataSet;
+      const FieldName, SearchTerm: string);
   private
     { Private declarations }
   public
@@ -150,8 +152,8 @@ begin
     DataSet.FieldByName('MiddleName').AsString.IsEmpty) then
     exit;
 
-  DataSet.FieldByName('abr').value := DataSet.FieldByName('LastName').AsString +
-    ' ' + DataSet.FieldByName('FirstName').AsString[1] + '.' +
+  DataSet.FieldByName('abr').value := DataSet.FieldByName('FirstName').AsString
+    + ' ' + DataSet.FieldByName('LastName').AsString[1] + '.' +
     DataSet.FieldByName('MiddleName').AsString[1];
 end;
 
@@ -162,9 +164,23 @@ begin
     DataSet.FieldByName('MiddleName').AsString.IsEmpty) then
     exit;
 
-  DataSet.FieldByName('abr').value := DataSet.FieldByName('LastName').AsString +
-    ' ' + DataSet.FieldByName('FirstName').AsString[1] + '.' +
+  DataSet.FieldByName('abr').value := DataSet.FieldByName('FirstName').AsString
+    + ' ' + DataSet.FieldByName('LastName').AsString[1] + '.' +
     DataSet.FieldByName('MiddleName').AsString[1];
+end;
+
+procedure TDM.DoIncrementalFilter(DataSet: TDataSet;
+  const FieldName, SearchTerm: string);
+begin
+  Assert(Assigned(DataSet), 'No dataset is assigned');
+
+  if SearchTerm = '' then
+    DataSet.Filtered := False
+  else
+  begin
+    DataSet.Filter := FieldName + ' LIKE ' + QuotedStr(SearchTerm + '*');
+    DataSet.Filtered := True;
+  end;
 end;
 
 end.

@@ -30,14 +30,14 @@ object FormAddReadTicket: TFormAddReadTicket
     end
     object Label2: TLabel
       Left = 16
-      Top = 72
+      Top = 21
       Width = 22
       Height = 13
       Caption = #1048#1084#1103
     end
     object Label1: TLabel
       Left = 16
-      Top = 21
+      Top = 69
       Width = 49
       Height = 13
       Caption = #1060#1072#1084#1080#1083#1080#1103
@@ -72,7 +72,7 @@ object FormAddReadTicket: TFormAddReadTicket
       Height = 21
       DataField = 'MiddleName'
       DataSource = DM.DSReader
-      TabOrder = 1
+      TabOrder = 2
     end
     object DBEdit2: TDBEdit
       Left = 16
@@ -81,7 +81,7 @@ object FormAddReadTicket: TFormAddReadTicket
       Height = 21
       DataField = 'FirstName'
       DataSource = DM.DSReader
-      TabOrder = 2
+      TabOrder = 1
     end
     object DBEdit4: TDBEdit
       Left = 16

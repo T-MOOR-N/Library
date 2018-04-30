@@ -20,7 +20,7 @@ object FormLibrary: TFormLibrary
     Top = 0
     Width = 852
     Height = 508
-    ActivePage = TabSheet4
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -30,7 +30,7 @@ object FormLibrary: TFormLibrary
         Top = 0
         Width = 844
         Height = 480
-        ActivePage = TabSheet6
+        ActivePage = TabSheet7
         Align = alClient
         TabOrder = 0
         object TabSheet5: TTabSheet
@@ -51,36 +51,36 @@ object FormLibrary: TFormLibrary
               Caption = #1060#1080#1083#1100#1090#1088'/'#1055#1086#1080#1089#1082
               TabOrder = 0
               object SearchBoxCatalog: TSearchBox
-                Left = 32
-                Top = 30
+                Left = 176
+                Top = 26
                 Width = 241
                 Height = 21
                 TabOrder = 0
                 OnInvokeSearch = SearchBoxCatalogInvokeSearch
               end
-              object RadioButtonCategory: TRadioButton
-                Left = 296
-                Top = 16
+              object ComboBoxBookSearch: TComboBox
+                Left = 32
+                Top = 26
                 Width = 113
-                Height = 17
-                Caption = #1050#1072#1090#1077#1075#1086#1088#1080#1080
+                Height = 22
+                Style = csOwnerDrawFixed
+                ItemIndex = 0
                 TabOrder = 1
+                Text = #1053#1072#1079#1074#1072#1085#1080#1077
+                Items.Strings = (
+                  #1053#1072#1079#1074#1072#1085#1080#1077
+                  #1050#1072#1090#1077#1075#1086#1088#1080#1103
+                  #1040#1074#1090#1086#1088
+                  #1048#1079#1076#1072#1090#1077#1083#1100#1089#1090#1074#1086)
               end
-              object RadioButtonAuthor: TRadioButton
-                Left = 296
-                Top = 39
-                Width = 113
-                Height = 17
-                Caption = #1040#1074#1090#1086#1088
+              object ButtonSearchBoxCatalogClear: TButton
+                Left = 440
+                Top = 26
+                Width = 75
+                Height = 21
+                Caption = #1054#1095#1080#1089#1090#1080#1090#1100
                 TabOrder = 2
-              end
-              object RadioButtonTitle: TRadioButton
-                Left = 296
-                Top = 62
-                Width = 113
-                Height = 17
-                Caption = #1053#1072#1079#1074#1072#1085#1080#1077
-                TabOrder = 3
+                OnClick = ButtonSearchBoxCatalogClearClick
               end
             end
           end
@@ -90,7 +90,7 @@ object FormLibrary: TFormLibrary
             Width = 836
             Height = 371
             Align = alClient
-            Caption = #1069#1082#1079#1077#1084#1087#1083#1103#1088#1099
+            Caption = #1042#1089#1077' '#1082#1085#1080#1075#1080
             TabOrder = 1
             object DBGridCatalog: TDBGrid
               Left = 2
@@ -99,6 +99,7 @@ object FormLibrary: TFormLibrary
               Height = 354
               Align = alClient
               DataSource = DM.DSCatalog
+              Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
               ReadOnly = True
               TabOrder = 0
               TitleFont.Charset = DEFAULT_CHARSET
@@ -106,6 +107,47 @@ object FormLibrary: TFormLibrary
               TitleFont.Height = -11
               TitleFont.Name = 'MS Sans Serif'
               TitleFont.Style = []
+              Columns = <
+                item
+                  Expanded = False
+                  FieldName = 'ISBN'
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'category'
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'Title'
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'Author'
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'name'
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'city'
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'year'
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'Count'
+                  Visible = True
+                end>
             end
           end
         end
@@ -127,29 +169,38 @@ object FormLibrary: TFormLibrary
               Align = alRight
               Caption = #1060#1080#1083#1100#1090#1088'/'#1055#1086#1080#1089#1082
               TabOrder = 0
+              ExplicitLeft = 128
+              ExplicitTop = 25
               object SearchBoxAvailableBooks: TSearchBox
-                Left = 32
-                Top = 30
+                Left = 176
+                Top = 26
                 Width = 241
                 Height = 21
                 TabOrder = 0
                 OnInvokeSearch = SearchBoxAvailableBooksInvokeSearch
               end
-              object RadioButton1: TRadioButton
-                Left = 296
-                Top = 16
+              object ComboBoxAvailableBooks: TComboBox
+                Left = 32
+                Top = 26
                 Width = 113
-                Height = 17
-                Caption = #1050#1072#1090#1077#1075#1086#1088#1080#1080
+                Height = 22
+                Style = csOwnerDrawFixed
+                ItemIndex = 0
                 TabOrder = 1
+                Text = #1053#1072#1079#1074#1072#1085#1080#1077
+                Items.Strings = (
+                  #1053#1072#1079#1074#1072#1085#1080#1077
+                  #1050#1072#1090#1077#1075#1086#1088#1080#1103
+                  #1048#1079#1076#1072#1090#1077#1083#1100#1089#1090#1074#1086)
               end
-              object RadioButton3: TRadioButton
-                Left = 296
-                Top = 39
-                Width = 113
-                Height = 17
-                Caption = #1053#1072#1079#1074#1072#1085#1080#1077
+              object ButtonSearchBoxAvailableBooksClear: TButton
+                Left = 440
+                Top = 26
+                Width = 75
+                Height = 21
+                Caption = #1054#1095#1080#1089#1090#1080#1090#1100
                 TabOrder = 2
+                OnClick = ButtonSearchBoxAvailableBooksClearClick
               end
             end
           end
@@ -158,17 +209,25 @@ object FormLibrary: TFormLibrary
             Top = 81
             Width = 836
             Height = 371
+            Hint = #1069#1082#1079#1077#1084#1087#1083#1103#1088#1099' '#1082#1086#1090#1086#1088#1099#1077' '#1085#1077' '#1079#1072#1073#1088#1086#1085#1080#1088#1086#1074#1072#1085#1085#1099' '#1080' '#1085#1072#1093#1086#1076#1103#1090#1089#1103' '#1074' '#1073#1080#1073#1083#1080#1086#1090#1077#1082#1077
+            HelpType = htKeyword
+            HelpKeyword = #1069#1082#1079#1077#1084#1087#1083#1103#1088#1099' '#1082#1086#1090#1086#1088#1099#1077' '#1085#1077' '#1079#1072#1073#1088#1086#1085#1080#1088#1086#1074#1072#1085#1085#1099' '#1080' '#1085#1072#1093#1086#1076#1103#1090#1089#1103' '#1074' '#1073#1080#1073#1083#1080#1086#1090#1077#1082#1077
             Align = alClient
-            Caption = #1069#1082#1079#1077#1084#1087#1083#1103#1088#1099
+            Caption = #1044#1086#1089#1090#1091#1087#1085#1099#1077' '#1101#1082#1079#1077#1084#1087#1083#1103#1088#1099
             TabOrder = 1
             object DBGridAvailableBooks: TDBGrid
               Left = 2
               Top = 15
               Width = 832
               Height = 354
+              Hint = #1069#1082#1079#1077#1084#1087#1083#1103#1088#1099' '#1082#1086#1090#1086#1088#1099#1077' '#1085#1077' '#1079#1072#1073#1088#1086#1085#1080#1088#1086#1074#1072#1085#1085#1099' '#1080' '#1085#1072#1093#1086#1076#1103#1090#1089#1103' '#1074' '#1073#1080#1073#1083#1080#1086#1090#1077#1082#1077
+              HelpType = htKeyword
+              HelpKeyword = #1069#1082#1079#1077#1084#1087#1083#1103#1088#1099' '#1082#1086#1090#1086#1088#1099#1077' '#1085#1077' '#1079#1072#1073#1088#1086#1085#1080#1088#1086#1074#1072#1085#1085#1099' '#1080' '#1085#1072#1093#1086#1076#1103#1090#1089#1103' '#1074' '#1073#1080#1073#1083#1080#1086#1090#1077#1082#1077
               Align = alClient
               DataSource = DM.DSAvailableBooks
+              ParentShowHint = False
               ReadOnly = True
+              ShowHint = True
               TabOrder = 0
               TitleFont.Charset = DEFAULT_CHARSET
               TitleFont.Color = clWindowText
@@ -224,6 +283,87 @@ object FormLibrary: TFormLibrary
             end
           end
         end
+        object TabSheet7: TTabSheet
+          Caption = #1048#1089#1090#1086#1088#1080#1103' '#1101#1082#1079#1077#1084#1087#1083#1103#1088#1072
+          ImageIndex = 2
+          object GroupBox5: TGroupBox
+            Left = 0
+            Top = 0
+            Width = 201
+            Height = 452
+            Align = alLeft
+            Caption = #1042#1099#1073#1086#1088' '#1101#1082#1079#1077#1084#1087#1083#1103#1088#1072
+            TabOrder = 0
+            ExplicitLeft = 40
+            ExplicitTop = 32
+            ExplicitHeight = 289
+            object Label1: TLabel
+              Left = 24
+              Top = 48
+              Width = 119
+              Height = 13
+              Caption = '1. '#1042#1099#1073#1077#1088#1080#1090#1077' '#1082#1072#1090#1077#1075#1086#1088#1080#1102
+            end
+            object Label2: TLabel
+              Left = 24
+              Top = 106
+              Width = 145
+              Height = 13
+              Caption = '2. '#1042#1099#1073#1077#1088#1080#1090#1077' '#1085#1072#1079#1074#1072#1085#1080#1077' '#1082#1085#1080#1075#1080
+            end
+            object Label3: TLabel
+              Left = 24
+              Top = 168
+              Width = 144
+              Height = 13
+              Caption = '3. '#1042#1099#1073#1077#1088#1080#1090#1077' '#1089#1072#1084' '#1101#1082#1079#1077#1084#1087#1083#1103#1088
+            end
+            object DBLookupComboBox3: TDBLookupComboBox
+              Left = 24
+              Top = 67
+              Width = 145
+              Height = 21
+              KeyField = 'id'
+              ListField = 'name'
+              ListSource = DSTBHCategory
+              TabOrder = 0
+            end
+            object DBLookupComboBox4: TDBLookupComboBox
+              Left = 24
+              Top = 125
+              Width = 145
+              Height = 21
+              KeyField = 'ISBN'
+              ListField = 'Title'
+              ListSource = DSTBHBook
+              TabOrder = 1
+            end
+            object DBLookupComboBox5: TDBLookupComboBox
+              Left = 24
+              Top = 187
+              Width = 145
+              Height = 21
+              KeyField = 'id'
+              ListField = 'id'
+              ListSource = DSTBHExemplar
+              TabOrder = 2
+            end
+          end
+          object DBGridBookHistory: TDBGrid
+            Left = 201
+            Top = 0
+            Width = 635
+            Height = 452
+            Align = alClient
+            DataSource = DSTBHHistory
+            TabOrder = 1
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -11
+            TitleFont.Name = 'MS Sans Serif'
+            TitleFont.Style = []
+          end
+        end
       end
     end
     object TabSheet2: TTabSheet
@@ -245,24 +385,33 @@ object FormLibrary: TFormLibrary
           Caption = #1055#1086#1080#1089#1082
           TabOrder = 0
           object SearchBoxReader: TSearchBox
-            Left = 40
+            Left = 24
             Top = 26
-            Width = 297
+            Width = 225
             Height = 21
             TabOrder = 0
             OnInvokeSearch = SearchBoxReaderInvokeSearch
           end
+          object ButtonSearchBoxReaderClear: TButton
+            Left = 277
+            Top = 26
+            Width = 75
+            Height = 21
+            Caption = #1054#1095#1080#1089#1090#1080#1090#1100
+            TabOrder = 1
+            OnClick = ButtonSearchBoxReaderClearClick
+          end
         end
         object GroupBox7: TGroupBox
-          Left = 391
+          Left = 424
           Top = 1
-          Width = 452
+          Width = 419
           Height = 71
           Align = alRight
           Caption = #1063#1080#1090#1072#1090#1077#1083#1100#1089#1082#1080#1081' '#1073#1080#1083#1077#1090
           TabOrder = 1
           object Button1: TButton
-            Left = 85
+            Left = 61
             Top = 24
             Width = 97
             Height = 25
@@ -271,7 +420,7 @@ object FormLibrary: TFormLibrary
             OnClick = Button1Click
           end
           object Button2: TButton
-            Left = 181
+            Left = 157
             Top = 24
             Width = 97
             Height = 25
@@ -280,7 +429,7 @@ object FormLibrary: TFormLibrary
             OnClick = Button2Click
           end
           object Button7: TButton
-            Left = 277
+            Left = 253
             Top = 24
             Width = 97
             Height = 25
@@ -619,5 +768,91 @@ object FormLibrary: TFormLibrary
         end
       end
     end
+  end
+  object TBHCategory: TADOTable
+    Active = True
+    Connection = DM.ADOConnection1
+    CursorType = ctStatic
+    TableName = 'BookCategory'
+    Left = 552
+    Top = 392
+  end
+  object DSTBHCategory: TDataSource
+    DataSet = TBHCategory
+    Left = 552
+    Top = 440
+  end
+  object TBHBook: TADOTable
+    Active = True
+    Connection = DM.ADOConnection1
+    CursorType = ctStatic
+    IndexFieldNames = 'category'
+    MasterFields = 'id'
+    MasterSource = DSTBHCategory
+    TableName = 'Book'
+    Left = 624
+    Top = 392
+  end
+  object DSTBHBook: TDataSource
+    DataSet = TBHBook
+    Left = 624
+    Top = 440
+  end
+  object DSTBHExemplar: TDataSource
+    DataSet = TBHExemplar
+    Left = 696
+    Top = 440
+  end
+  object TBHExemplar: TADOTable
+    Active = True
+    Connection = DM.ADOConnection1
+    CursorType = ctStatic
+    IndexFieldNames = 'ISBN'
+    MasterFields = 'ISBN'
+    MasterSource = DSTBHBook
+    TableName = 'Exemplar'
+    Left = 696
+    Top = 392
+  end
+  object TBHHistory: TADOTable
+    Active = True
+    Connection = DM.ADOConnection1
+    CursorType = ctStatic
+    IndexFieldNames = 'Exemplar_id'
+    MasterFields = 'id'
+    MasterSource = DSTBHExemplar
+    TableName = 'exemplar_history'
+    Left = 768
+    Top = 392
+    object TBHHistoryExemplar_id: TIntegerField
+      FieldName = 'Exemplar_id'
+      Visible = False
+    end
+    object TBHHistoryDateIssue: TWideStringField
+      DisplayLabel = #1044#1072#1090#1072' '#1074#1099#1076#1072#1095#1080
+      FieldName = 'DateIssue'
+      Size = 10
+    end
+    object TBHHistoryDateReturnExpected: TWideStringField
+      DisplayLabel = #1044#1072#1090#1072' '#1074#1086#1079#1074#1088#1072#1090#1072' ('#1086#1078#1080#1076#1072#1077#1084#1072#1103')'
+      FieldName = 'DateReturnExpected'
+      Size = 10
+    end
+    object TBHHistoryDateReturnReal: TWideStringField
+      DisplayLabel = #1044#1072#1090#1072' '#1074#1086#1079#1074#1088#1072#1090#1072' ('#1092#1072#1082#1090'.)'
+      FieldName = 'DateReturnReal'
+      Size = 10
+    end
+    object TBHHistoryReader: TStringField
+      DisplayLabel = #1063#1080#1090#1072#1090#1077#1083#1100
+      FieldName = 'Reader'
+      ReadOnly = True
+      Size = 25
+    end
+  end
+  object DSTBHHistory: TDataSource
+    DataSet = TBHHistory
+    Left = 768
+    Top = 440
   end
 end
