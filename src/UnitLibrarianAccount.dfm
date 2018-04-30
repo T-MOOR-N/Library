@@ -20,7 +20,7 @@ object FormLibrary: TFormLibrary
     Top = 0
     Width = 852
     Height = 508
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -687,6 +687,7 @@ object FormLibrary: TFormLibrary
         Caption = #1054#1090#1082#1088#1099#1090#1100' '#1083#1080#1089#1090' '#1074#1099#1076#1072#1095#1080
         Enabled = False
         TabOrder = 2
+        Visible = False
         object Label5: TLabel
           Left = 16
           Top = 69

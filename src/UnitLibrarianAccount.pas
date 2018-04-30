@@ -124,6 +124,9 @@ begin
     DM.TBookIssuing.Post;
     GroupBoxBookIssue.Enabled := false;
   end;
+  GroupBoxBookIssue.Visible:=false;
+  ButtonReturnBook.Enabled:=true;
+  DBGridBookIssuing.Enabled:=true;
 end;
 
 procedure TFormLibrary.Button1Click(Sender: TObject);
@@ -214,6 +217,9 @@ procedure TFormLibrary.ButtonIssueBookClick(Sender: TObject);
 begin
   DM.TBookIssuing.Insert;
   GroupBoxBookIssue.Enabled := true;
+  GroupBoxBookIssue.Visible:=True;
+  ButtonReturnBook.Enabled:=false;
+  DBGridBookIssuing.Enabled:=false;
 end;
 
 procedure TFormLibrary.ButtonReturnBookClick(Sender: TObject);

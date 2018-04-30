@@ -20,7 +20,7 @@ object FormReader: TFormReader
     Top = 0
     Width = 1124
     Height = 609
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -172,6 +172,10 @@ object FormReader: TFormReader
         TabOrder = 0
         object TabSheet4: TTabSheet
           Caption = #1041#1088#1086#1085#1080' '#1080' '#1079#1072#1076#1086#1083#1078#1085#1086#1089#1090#1080
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object GroupBox6: TGroupBox
             Left = 0
             Top = 0
@@ -425,6 +429,10 @@ object FormReader: TFormReader
     object TabSheet3: TTabSheet
       Caption = #1051#1080#1095#1085#1099#1081' '#1082#1072#1073#1080#1085#1077#1090
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label1: TLabel
         Left = 512
         Top = 100
