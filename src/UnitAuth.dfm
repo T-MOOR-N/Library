@@ -1,6 +1,7 @@
 object FormAuth: TFormAuth
   Left = 192
   Top = 124
+  BorderIcons = [biSystemMenu]
   Caption = #1040#1074#1090#1086#1088#1080#1079#1072#1094#1080#1103
   ClientHeight = 192
   ClientWidth = 315

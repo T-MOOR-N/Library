@@ -20,7 +20,7 @@ object FormLibrary: TFormLibrary
     Top = 0
     Width = 852
     Height = 508
-    ActivePage = TabSheet2
+    ActivePage = TabSheet4
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -43,13 +43,15 @@ object FormLibrary: TFormLibrary
             Align = alTop
             TabOrder = 0
             object GroupBox2: TGroupBox
-              Left = -8
+              Left = 1
               Top = 1
-              Width = 843
+              Width = 834
               Height = 79
-              Align = alRight
+              Align = alClient
               Caption = #1060#1080#1083#1100#1090#1088'/'#1055#1086#1080#1089#1082
               TabOrder = 0
+              ExplicitLeft = -8
+              ExplicitWidth = 843
               object SearchBoxCatalog: TSearchBox
                 Left = 176
                 Top = 26
@@ -162,15 +164,15 @@ object FormLibrary: TFormLibrary
             Align = alTop
             TabOrder = 0
             object GroupBox3: TGroupBox
-              Left = -8
+              Left = 1
               Top = 1
-              Width = 843
+              Width = 834
               Height = 79
-              Align = alRight
+              Align = alClient
               Caption = #1060#1080#1083#1100#1090#1088'/'#1055#1086#1080#1089#1082
               TabOrder = 0
-              ExplicitLeft = 128
-              ExplicitTop = 25
+              ExplicitLeft = -8
+              ExplicitWidth = 843
               object SearchBoxAvailableBooks: TSearchBox
                 Left = 176
                 Top = 26
@@ -289,14 +291,11 @@ object FormLibrary: TFormLibrary
           object GroupBox5: TGroupBox
             Left = 0
             Top = 0
-            Width = 201
+            Width = 281
             Height = 452
             Align = alLeft
             Caption = #1042#1099#1073#1086#1088' '#1101#1082#1079#1077#1084#1087#1083#1103#1088#1072
             TabOrder = 0
-            ExplicitLeft = 40
-            ExplicitTop = 32
-            ExplicitHeight = 289
             object Label1: TLabel
               Left = 24
               Top = 48
@@ -321,7 +320,7 @@ object FormLibrary: TFormLibrary
             object DBLookupComboBox3: TDBLookupComboBox
               Left = 24
               Top = 67
-              Width = 145
+              Width = 225
               Height = 21
               KeyField = 'id'
               ListField = 'name'
@@ -331,7 +330,7 @@ object FormLibrary: TFormLibrary
             object DBLookupComboBox4: TDBLookupComboBox
               Left = 24
               Top = 125
-              Width = 145
+              Width = 225
               Height = 21
               KeyField = 'ISBN'
               ListField = 'Title'
@@ -341,7 +340,7 @@ object FormLibrary: TFormLibrary
             object DBLookupComboBox5: TDBLookupComboBox
               Left = 24
               Top = 187
-              Width = 145
+              Width = 225
               Height = 21
               KeyField = 'id'
               ListField = 'id'
@@ -350,9 +349,9 @@ object FormLibrary: TFormLibrary
             end
           end
           object DBGridBookHistory: TDBGrid
-            Left = 201
+            Left = 281
             Top = 0
-            Width = 635
+            Width = 555
             Height = 452
             Align = alClient
             DataSource = DSTBHHistory
@@ -403,13 +402,15 @@ object FormLibrary: TFormLibrary
           end
         end
         object GroupBox7: TGroupBox
-          Left = 424
+          Left = 385
           Top = 1
-          Width = 419
+          Width = 458
           Height = 71
-          Align = alRight
+          Align = alClient
           Caption = #1063#1080#1090#1072#1090#1077#1083#1100#1089#1082#1080#1081' '#1073#1080#1083#1077#1090
           TabOrder = 1
+          ExplicitLeft = 424
+          ExplicitWidth = 419
           object Button1: TButton
             Left = 61
             Top = 24
@@ -585,13 +586,15 @@ object FormLibrary: TFormLibrary
           end
         end
         object GroupBox13: TGroupBox
-          Left = 391
+          Left = 385
           Top = 1
-          Width = 452
+          Width = 458
           Height = 71
-          Align = alRight
+          Align = alClient
           Caption = #1051#1080#1089#1090' '#1074#1099#1076#1072#1095#1080
           TabOrder = 1
+          ExplicitLeft = 391
+          ExplicitWidth = 452
           object ButtonIssueBook: TButton
             Left = 134
             Top = 24
