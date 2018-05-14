@@ -1,9 +1,8 @@
 ﻿--
--- Скрипт сгенерирован Devart dbForge Studio for SQL Server, Версия 5.4.275.0
--- Домашняя страница продукта: http://devart.com/ru/dbforge/sql/studio
--- Дата скрипта: 20.04.2018 9:22:30
--- Версия сервера: 10.50.4000
--- Версия клиента: 
+-- Скрипт сгенерирован Devart dbForge Studio for SQL Server, Версия 5.5.327.0
+-- Домашняя страница продукта: http://www.devart.com/ru/dbforge/sql/studio
+-- Дата скрипта: 14.05.2018 23:08:27
+-- Версия сервера: 10.50.4042
 --
 
 
@@ -23,6 +22,8 @@ CREATE TABLE dbo.Worker (
   id int IDENTITY,
   FirstName varchar(50) NOT NULL,
   LastName varchar(50) NOT NULL,
+  IsDelete bit NULL DEFAULT (0),
+  DateCreate datetime NULL DEFAULT (getdate()),
   CONSTRAINT PK_Worker_id PRIMARY KEY CLUSTERED (id)
 )
 ON [PRIMARY]
@@ -91,6 +92,22 @@ ON [PRIMARY]
 GO
 
 --
+-- Создать таблицу [dbo].[Orders]
+--
+PRINT (N'Создать таблицу [dbo].[Orders]')
+GO
+CREATE TABLE dbo.Orders (
+  id int IDENTITY,
+  publishing_id int NOT NULL,
+  book_id varchar(13) NOT NULL,
+  count int NULL,
+  processed bit NULL DEFAULT (0),
+  CONSTRAINT PK_Order_id PRIMARY KEY CLUSTERED (id)
+)
+ON [PRIMARY]
+GO
+
+--
 -- Создать таблицу [dbo].[Exemplar]
 --
 PRINT (N'Создать таблицу [dbo].[Exemplar]')
@@ -99,6 +116,8 @@ CREATE TABLE dbo.Exemplar (
   id int IDENTITY,
   placement varchar(10) NOT NULL,
   ISBN varchar(13) NULL,
+  DateCreate datetime NULL DEFAULT (getdate()),
+  IsDelete bit NULL DEFAULT (0),
   CONSTRAINT PK_Exemplar PRIMARY KEY CLUSTERED (id)
 )
 ON [PRIMARY]
@@ -206,22 +225,6 @@ GROUP BY b.ISBN
 GO
 
 --
--- Создать таблицу [dbo].[Reservation]
---
-PRINT (N'Создать таблицу [dbo].[Reservation]')
-GO
-CREATE TABLE dbo.Reservation (
-  id int IDENTITY,
-  date datetime NULL,
-  exemplar_id int NULL,
-  reader_id int NULL,
-  status int NULL,
-  CONSTRAINT PK_Reservation_id PRIMARY KEY CLUSTERED (id)
-)
-ON [PRIMARY]
-GO
-
---
 -- Создать таблицу [dbo].[BookIssuing]
 --
 PRINT (N'Создать таблицу [dbo].[BookIssuing]')
@@ -234,6 +237,7 @@ CREATE TABLE dbo.BookIssuing (
   DateReturnExpected date NULL,
   DateReturnReal date NULL,
   Worker_id int NOT NULL,
+  DateCreate datetime NULL DEFAULT (getdate()),
   CONSTRAINT PK_BookIssuing PRIMARY KEY CLUSTERED (id)
 )
 ON [PRIMARY]
@@ -258,6 +262,22 @@ LEFT JOIN Reader r
   ON bi.Reader_id = r.id
 --  WHERE bi.Exemplar_id = @id
 --ORDER BY bi.DateIssue
+GO
+
+--
+-- Создать таблицу [dbo].[Reservation]
+--
+PRINT (N'Создать таблицу [dbo].[Reservation]')
+GO
+CREATE TABLE dbo.Reservation (
+  id int IDENTITY,
+  date datetime NULL,
+  exemplar_id int NULL,
+  reader_id int NULL,
+  status int NULL,
+  CONSTRAINT PK_Reservation_id PRIMARY KEY CLUSTERED (id)
+)
+ON [PRIMARY]
 GO
 
 --
@@ -408,12 +428,12 @@ GO
 --
 SET IDENTITY_INSERT dbo.BookIssuing ON
 GO
-INSERT dbo.BookIssuing(id, Exemplar_id, Reader_id, DateIssue, DateReturnExpected, DateReturnReal, Worker_id) VALUES (2, 1, 1, '2018-04-16', '2018-04-23', '2018-04-23', 1)
-INSERT dbo.BookIssuing(id, Exemplar_id, Reader_id, DateIssue, DateReturnExpected, DateReturnReal, Worker_id) VALUES (3, 3, 2, '2018-04-16', '2018-04-23', '2018-04-23', 1)
-INSERT dbo.BookIssuing(id, Exemplar_id, Reader_id, DateIssue, DateReturnExpected, DateReturnReal, Worker_id) VALUES (6, 1, 3, '2017-04-16', '2017-04-23', '2017-04-23', 1)
-INSERT dbo.BookIssuing(id, Exemplar_id, Reader_id, DateIssue, DateReturnExpected, DateReturnReal, Worker_id) VALUES (10, 1, 4, '2016-04-13', '2016-04-20', '2016-04-25', 1)
-INSERT dbo.BookIssuing(id, Exemplar_id, Reader_id, DateIssue, DateReturnExpected, DateReturnReal, Worker_id) VALUES (12, 5, 4, '2018-04-16', '2018-04-20', '2018-04-20', 1)
-INSERT dbo.BookIssuing(id, Exemplar_id, Reader_id, DateIssue, DateReturnExpected, DateReturnReal, Worker_id) VALUES (15, 14, 4, '2018-04-15', '2018-04-15', '2018-04-20', 1)
+INSERT dbo.BookIssuing(id, Exemplar_id, Reader_id, DateIssue, DateReturnExpected, DateReturnReal, Worker_id, DateCreate) VALUES (2, 1, 1, '2018-04-16', '2018-04-23', '2018-04-23', 1, NULL)
+INSERT dbo.BookIssuing(id, Exemplar_id, Reader_id, DateIssue, DateReturnExpected, DateReturnReal, Worker_id, DateCreate) VALUES (3, 3, 2, '2018-04-16', '2018-04-23', '2018-04-23', 1, NULL)
+INSERT dbo.BookIssuing(id, Exemplar_id, Reader_id, DateIssue, DateReturnExpected, DateReturnReal, Worker_id, DateCreate) VALUES (6, 1, 3, '2017-04-16', '2017-04-23', '2017-04-23', 1, NULL)
+INSERT dbo.BookIssuing(id, Exemplar_id, Reader_id, DateIssue, DateReturnExpected, DateReturnReal, Worker_id, DateCreate) VALUES (10, 1, 4, '2016-04-13', '2016-04-20', '2016-04-25', 1, NULL)
+INSERT dbo.BookIssuing(id, Exemplar_id, Reader_id, DateIssue, DateReturnExpected, DateReturnReal, Worker_id, DateCreate) VALUES (12, 5, 4, '2018-04-16', '2018-04-20', '2018-04-20', 1, NULL)
+INSERT dbo.BookIssuing(id, Exemplar_id, Reader_id, DateIssue, DateReturnExpected, DateReturnReal, Worker_id, DateCreate) VALUES (15, 14, 4, '2018-04-15', '2018-04-15', '2018-04-20', 1, NULL)
 GO
 SET IDENTITY_INSERT dbo.BookIssuing OFF
 GO
@@ -422,22 +442,34 @@ GO
 --
 SET IDENTITY_INSERT dbo.Exemplar ON
 GO
-INSERT dbo.Exemplar(id, placement, ISBN) VALUES (1, N'1 полка   ', N'9785699648986')
-INSERT dbo.Exemplar(id, placement, ISBN) VALUES (2, N'1 полка   ', N'9785699648986')
-INSERT dbo.Exemplar(id, placement, ISBN) VALUES (3, N'2 полка   ', N'9785995505792')
-INSERT dbo.Exemplar(id, placement, ISBN) VALUES (4, N'1 полка   ', N'9785699648986')
-INSERT dbo.Exemplar(id, placement, ISBN) VALUES (5, N'1 полка   ', N'9785995505792')
-INSERT dbo.Exemplar(id, placement, ISBN) VALUES (6, N'полка 3   ', N'9785941576307')
-INSERT dbo.Exemplar(id, placement, ISBN) VALUES (7, N'полка 3   ', N'9785977501743')
-INSERT dbo.Exemplar(id, placement, ISBN) VALUES (8, N'полка 3   ', N'9785977503617')
-INSERT dbo.Exemplar(id, placement, ISBN) VALUES (9, N'полка 3   ', N'9785941576307')
-INSERT dbo.Exemplar(id, placement, ISBN) VALUES (10, N'полка 3   ', N'9785977501743')
-INSERT dbo.Exemplar(id, placement, ISBN) VALUES (11, N'полка 3   ', N'9785977503617')
-INSERT dbo.Exemplar(id, placement, ISBN) VALUES (12, N'полка 3   ', N'9785941576307')
-INSERT dbo.Exemplar(id, placement, ISBN) VALUES (13, N'полка 3   ', N'9785977501743')
-INSERT dbo.Exemplar(id, placement, ISBN) VALUES (14, N'полка 3   ', N'9785977503617')
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (1, N'1 полка   ', N'9785699648986', NULL, NULL)
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (2, N'1 полка   ', N'9785699648986', NULL, NULL)
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (3, N'2 полка   ', N'9785995505792', NULL, NULL)
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (4, N'1 полка   ', N'9785699648986', NULL, NULL)
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (5, N'1 полка   ', N'9785995505792', NULL, NULL)
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (6, N'полка 3   ', N'9785941576307', NULL, NULL)
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (7, N'полка 3   ', N'9785977501743', NULL, NULL)
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (8, N'полка 3   ', N'9785977503617', NULL, NULL)
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (9, N'полка 3   ', N'9785941576307', NULL, NULL)
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (10, N'полка 3   ', N'9785977501743', NULL, NULL)
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (11, N'полка 3   ', N'9785977503617', NULL, NULL)
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (12, N'полка 3   ', N'9785941576307', NULL, NULL)
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (13, N'полка 3   ', N'9785977501743', NULL, NULL)
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (14, N'полка 3   ', N'9785977503617', NULL, NULL)
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (16, N'полка 1', N'9785941576307', NULL, NULL)
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (17, N'полка 1', N'9785941576307', NULL, NULL)
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (18, N'полка 1', N'9785941576307', NULL, NULL)
 GO
 SET IDENTITY_INSERT dbo.Exemplar OFF
+GO
+-- 
+-- Вывод данных для таблицы Orders
+--
+SET IDENTITY_INSERT dbo.Orders ON
+GO
+INSERT dbo.Orders(id, publishing_id, book_id, count, processed) VALUES (1, 2, N'9785941576307', 3, CONVERT(bit, 'True'))
+GO
+SET IDENTITY_INSERT dbo.Orders OFF
 GO
 -- 
 -- Вывод данных для таблицы Publishing
@@ -465,12 +497,7 @@ GO
 -- 
 -- Вывод данных для таблицы Reservation
 --
-SET IDENTITY_INSERT dbo.Reservation ON
-GO
-INSERT dbo.Reservation(id, date, exemplar_id, reader_id, status) VALUES (2, '2018-04-20 07:09:00.383', 1, 1, 1)
-GO
-SET IDENTITY_INSERT dbo.Reservation OFF
-GO
+-- Таблица LibraryDB.dbo.Reservation не содержит данных
 -- 
 -- Вывод данных для таблицы ReservationStatus
 --
@@ -488,7 +515,6 @@ GO
 --
 SET IDENTITY_INSERT dbo.Users ON
 GO
-INSERT dbo.Users(id, type, user_id, login, password, passMD5) VALUES (1, N'reader', 1, N'user', N'pass', 0x1A1DC91C907325C69271DDF0C944BC72)
 INSERT dbo.Users(id, type, user_id, login, password, passMD5) VALUES (3, N'librarian', 1, N'librarian', N'pass', 0x1A1DC91C907325C69271DDF0C944BC72)
 INSERT dbo.Users(id, type, user_id, login, password, passMD5) VALUES (4, N'admin', 2, N'admin', N'admin', 0x21232F297A57A5A743894A0E4A801FC3)
 GO
@@ -499,8 +525,8 @@ GO
 --
 SET IDENTITY_INSERT dbo.Worker ON
 GO
-INSERT dbo.Worker(id, FirstName, LastName) VALUES (1, N'Валишна', N'Наталья')
-INSERT dbo.Worker(id, FirstName, LastName) VALUES (2, N'Седова', N'Екатерина')
+INSERT dbo.Worker(id, FirstName, LastName, IsDelete, DateCreate) VALUES (1, N'Валишна', N'Наталья', NULL, NULL)
+INSERT dbo.Worker(id, FirstName, LastName, IsDelete, DateCreate) VALUES (2, N'Седова', N'Екатерина', NULL, NULL)
 GO
 SET IDENTITY_INSERT dbo.Worker OFF
 GO
@@ -509,6 +535,15 @@ USE LibraryDB
 GO
 
 IF DB_NAME() <> N'LibraryDB' SET NOEXEC ON
+GO
+
+--
+-- Создать внешний ключ [FK_Users_Worker_id] для объекта типа таблица [dbo].[Users]
+--
+PRINT (N'Создать внешний ключ [FK_Users_Worker_id] для объекта типа таблица [dbo].[Users]')
+GO
+ALTER TABLE dbo.Users
+  ADD CONSTRAINT FK_Users_Worker_id FOREIGN KEY (user_id) REFERENCES dbo.Worker (id)
 GO
 
 --
@@ -527,6 +562,24 @@ PRINT (N'Создать внешний ключ [FK_Book_Publishing] для об
 GO
 ALTER TABLE dbo.Book
   ADD CONSTRAINT FK_Book_Publishing FOREIGN KEY (publishing_id) REFERENCES dbo.Publishing (id)
+GO
+
+--
+-- Создать внешний ключ [FK_Order_book_id] для объекта типа таблица [dbo].[Orders]
+--
+PRINT (N'Создать внешний ключ [FK_Order_book_id] для объекта типа таблица [dbo].[Orders]')
+GO
+ALTER TABLE dbo.Orders
+  ADD CONSTRAINT FK_Order_book_id FOREIGN KEY (book_id) REFERENCES dbo.Book (ISBN)
+GO
+
+--
+-- Создать внешний ключ [FK_Order_publishing_id] для объекта типа таблица [dbo].[Orders]
+--
+PRINT (N'Создать внешний ключ [FK_Order_publishing_id] для объекта типа таблица [dbo].[Orders]')
+GO
+ALTER TABLE dbo.Orders
+  ADD CONSTRAINT FK_Order_publishing_id FOREIGN KEY (publishing_id) REFERENCES dbo.Publishing (id)
 GO
 
 --
