@@ -1,7 +1,7 @@
 object DM: TDM
   OldCreateOrder = False
   Height = 541
-  Width = 619
+  Width = 758
   object ADOConnection1: TADOConnection
     Connected = True
     ConnectionString = 
@@ -753,5 +753,65 @@ object DM: TDM
     DataSet = TBookIssuingReader
     Left = 224
     Top = 160
+  end
+  object TOrders: TADOTable
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    TableName = 'Orders'
+    Left = 560
+    Top = 296
+    object TOrdersid: TAutoIncField
+      DisplayLabel = #8470' '#1079#1072#1082#1072#1079#1072
+      FieldName = 'id'
+      ReadOnly = True
+    end
+    object TOrderspublishing_id: TIntegerField
+      DisplayLabel = #1050#1086#1076' '#1080#1079#1076#1072#1090#1077#1083#1100#1089#1090#1074#1072
+      FieldName = 'publishing_id'
+      Visible = False
+    end
+    object TOrderspublishilg_LF: TStringField
+      DisplayLabel = #1048#1079#1076#1072#1090#1077#1083#1100#1089#1090#1074#1086
+      FieldKind = fkLookup
+      FieldName = 'publishilg_LF'
+      LookupDataSet = TPublishing
+      LookupKeyFields = 'id'
+      LookupResultField = 'name'
+      KeyFields = 'publishing_id'
+      Size = 30
+      Lookup = True
+    end
+    object TOrdersbook_id: TStringField
+      DisplayLabel = 'ISBN'
+      FieldName = 'book_id'
+      Visible = False
+      Size = 13
+    end
+    object TOrdersbook_LF: TStringField
+      DisplayLabel = #1050#1085#1080#1075#1072
+      FieldKind = fkLookup
+      FieldName = 'book_LF'
+      LookupDataSet = TBook
+      LookupKeyFields = 'ISBN'
+      LookupResultField = 'Title'
+      KeyFields = 'book_id'
+      Size = 50
+      Lookup = True
+    end
+    object TOrderscount: TIntegerField
+      DisplayLabel = #1050#1086#1083#1080#1095#1077#1089#1090#1074#1086
+      FieldName = 'count'
+    end
+    object TOrdersprocessed: TBooleanField
+      DisplayLabel = #1057#1090#1072#1090#1091#1089
+      FieldName = 'processed'
+      DisplayValues = #1086#1073#1088#1072#1073#1086#1090#1072#1085';'#1085#1077' '#1086#1073#1088#1072#1073#1086#1090#1072#1085
+    end
+  end
+  object DSOrder: TDataSource
+    DataSet = TOrders
+    Left = 560
+    Top = 352
   end
 end

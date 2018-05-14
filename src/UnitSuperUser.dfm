@@ -12,6 +12,7 @@ object FormSuper: TFormSuper
   Font.Style = []
   OldCreateOrder = False
   Position = poMainFormCenter
+  OnClose = FormClose
   PixelsPerInch = 120
   TextHeight = 16
   object PageControl1: TPageControl
@@ -19,11 +20,11 @@ object FormSuper: TFormSuper
     Top = 0
     Width = 892
     Height = 687
-    ActivePage = TabSheetCatalog
+    ActivePage = TabSheet3
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
-      Caption = #1055#1086#1083#1100#1079#1086#1074#1072#1090#1077#1083#1080
+      Caption = #1050#1072#1076#1088#1099
       object PageControl2: TPageControl
         Left = 0
         Top = 0
@@ -34,6 +35,7 @@ object FormSuper: TFormSuper
         TabOrder = 0
         object TabSheetReaders: TTabSheet
           Caption = #1063#1080#1090#1072#1090#1077#1083#1080
+          TabVisible = False
           object DBGridReader: TDBGrid
             Left = 0
             Top = 0
@@ -56,6 +58,7 @@ object FormSuper: TFormSuper
             Height = 80
             Align = alTop
             TabOrder = 1
+            ExplicitTop = 219
             object SpeedButton1: TSpeedButton
               Left = 341
               Top = 26
@@ -515,6 +518,7 @@ object FormSuper: TFormSuper
     object TabSheetCatalog: TTabSheet
       Caption = #1050#1072#1090#1072#1083#1086#1075
       ImageIndex = 1
+      TabVisible = False
       object GroupBox6: TGroupBox
         Left = 0
         Top = 437
@@ -1006,7 +1010,6 @@ object FormSuper: TFormSuper
             Width = 423
             Height = 120
             DataSource = DM.DSAuthorBook
-            PopupMenu = PopupMenu1
             ReadOnly = True
             TabOrder = 8
             TitleFont.Charset = DEFAULT_CHARSET
@@ -1021,6 +1024,7 @@ object FormSuper: TFormSuper
     object TabSheet2: TTabSheet
       Caption = #1057#1087#1088#1072#1074#1086#1095#1085#1080#1082#1080
       ImageIndex = 2
+      TabVisible = False
       object GroupBox2: TGroupBox
         Left = 0
         Top = 449
@@ -1443,6 +1447,585 @@ object FormSuper: TFormSuper
           end
         end
       end
+    end
+    object TabSheet3: TTabSheet
+      Caption = #1041#1080#1073#1083#1080#1086#1090#1077#1095#1085#1099#1081' '#1092#1086#1085#1076
+      ImageIndex = 3
+      ExplicitLeft = 0
+      ExplicitTop = 31
+      object PageControl3: TPageControl
+        Left = 0
+        Top = 0
+        Width = 884
+        Height = 656
+        ActivePage = TabSheet4
+        Align = alClient
+        TabOrder = 0
+        object TabSheet4: TTabSheet
+          Caption = #1047#1072#1082#1072#1079
+          ExplicitLeft = -84
+          ExplicitTop = -37
+          ExplicitWidth = 281
+          ExplicitHeight = 162
+          object DBGrid4: TDBGrid
+            Left = 0
+            Top = 0
+            Width = 876
+            Height = 223
+            Align = alClient
+            DataSource = DM.DSOrder
+            TabOrder = 0
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -13
+            TitleFont.Name = 'Tahoma'
+            TitleFont.Style = []
+            OnCellClick = DBGrid4CellClick
+          end
+          object Panel15: TPanel
+            Left = 0
+            Top = 223
+            Width = 876
+            Height = 113
+            Align = alBottom
+            ShowCaption = False
+            TabOrder = 1
+            ExplicitTop = 309
+            object ButtonCreateorder: TButton
+              Left = 24
+              Top = 40
+              Width = 123
+              Height = 25
+              Caption = 'ButtonCreateorder'
+              TabOrder = 0
+              OnClick = ButtonCreateorderClick
+            end
+            object ButtonBooksIncoming: TButton
+              Left = 208
+              Top = 40
+              Width = 113
+              Height = 25
+              Caption = 'Button5'
+              TabOrder = 1
+              OnClick = ButtonBooksIncomingClick
+            end
+          end
+          object GroupBox14: TGroupBox
+            Left = 0
+            Top = 336
+            Width = 876
+            Height = 289
+            Align = alBottom
+            Caption = 'GroupBox14'
+            TabOrder = 2
+            object Label28: TLabel
+              Left = 64
+              Top = 50
+              Width = 87
+              Height = 16
+              Caption = #1048#1079#1076#1090#1072#1090#1077#1083#1100#1089#1090#1074#1086
+            end
+            object Label29: TLabel
+              Left = 64
+              Top = 102
+              Width = 33
+              Height = 16
+              Caption = #1050#1085#1080#1075#1072
+            end
+            object Label30: TLabel
+              Left = 64
+              Top = 154
+              Width = 68
+              Height = 16
+              Caption = #1050#1086#1083#1080#1095#1077#1089#1090#1074#1086
+            end
+            object DBLookupComboBox1: TDBLookupComboBox
+              Left = 64
+              Top = 72
+              Width = 145
+              Height = 24
+              DataField = 'publishing_id'
+              DataSource = DM.DSOrder
+              KeyField = 'id'
+              ListField = 'name'
+              ListSource = DM.DSPublishing
+              TabOrder = 0
+            end
+            object DBLookupComboBox2: TDBLookupComboBox
+              Left = 64
+              Top = 124
+              Width = 145
+              Height = 24
+              DataField = 'book_id'
+              DataSource = DM.DSOrder
+              KeyField = 'ISBN'
+              ListField = 'Title'
+              ListSource = DM.DSBook
+              TabOrder = 1
+            end
+            object DBEdit4: TDBEdit
+              Left = 64
+              Top = 176
+              Width = 121
+              Height = 24
+              DataField = 'count'
+              DataSource = DM.DSOrder
+              TabOrder = 2
+            end
+            object ButtonSaveOrder: TButton
+              Left = 424
+              Top = 168
+              Width = 75
+              Height = 25
+              Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
+              TabOrder = 3
+              OnClick = ButtonSaveOrderClick
+            end
+          end
+        end
+        object TabSheet5: TTabSheet
+          Caption = #1050#1072#1090#1072#1083#1086#1075
+          ImageIndex = 1
+          ExplicitWidth = 281
+          ExplicitHeight = 162
+          object PageControl4: TPageControl
+            Left = 0
+            Top = 0
+            Width = 876
+            Height = 625
+            ActivePage = TabSheet8
+            Align = alClient
+            TabOrder = 0
+            ExplicitWidth = 844
+            ExplicitHeight = 480
+            object TabSheet6: TTabSheet
+              Caption = #1042#1089#1077' '#1082#1085#1080#1075#1080
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
+              object Panel13: TPanel
+                Left = 0
+                Top = 0
+                Width = 868
+                Height = 81
+                Align = alTop
+                TabOrder = 0
+                ExplicitWidth = 836
+                object GroupBox9: TGroupBox
+                  Left = 1
+                  Top = 1
+                  Width = 866
+                  Height = 79
+                  Align = alClient
+                  Caption = #1060#1080#1083#1100#1090#1088'/'#1055#1086#1080#1089#1082
+                  TabOrder = 0
+                  ExplicitWidth = 834
+                  object SearchBoxCatalog: TSearchBox
+                    Left = 176
+                    Top = 26
+                    Width = 241
+                    Height = 24
+                    TabOrder = 0
+                  end
+                  object ComboBoxBookSearch: TComboBox
+                    Left = 32
+                    Top = 26
+                    Width = 113
+                    Height = 22
+                    Style = csOwnerDrawFixed
+                    ItemIndex = 0
+                    TabOrder = 1
+                    Text = #1053#1072#1079#1074#1072#1085#1080#1077
+                    Items.Strings = (
+                      #1053#1072#1079#1074#1072#1085#1080#1077
+                      #1050#1072#1090#1077#1075#1086#1088#1080#1103
+                      #1040#1074#1090#1086#1088
+                      #1048#1079#1076#1072#1090#1077#1083#1100#1089#1090#1074#1086)
+                  end
+                  object ButtonSearchBoxCatalogClear: TButton
+                    Left = 440
+                    Top = 26
+                    Width = 75
+                    Height = 21
+                    Caption = #1054#1095#1080#1089#1090#1080#1090#1100
+                    TabOrder = 2
+                  end
+                end
+              end
+              object GroupBox10: TGroupBox
+                Left = 0
+                Top = 81
+                Width = 868
+                Height = 513
+                Align = alClient
+                Caption = #1042#1089#1077' '#1082#1085#1080#1075#1080
+                TabOrder = 1
+                object DBGridCatalog: TDBGrid
+                  Left = 2
+                  Top = 18
+                  Width = 864
+                  Height = 493
+                  Align = alClient
+                  DataSource = DM.DSCatalog
+                  Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+                  ReadOnly = True
+                  TabOrder = 0
+                  TitleFont.Charset = DEFAULT_CHARSET
+                  TitleFont.Color = clWindowText
+                  TitleFont.Height = -13
+                  TitleFont.Name = 'Tahoma'
+                  TitleFont.Style = []
+                  Columns = <
+                    item
+                      Expanded = False
+                      FieldName = 'ISBN'
+                      Visible = True
+                    end
+                    item
+                      Expanded = False
+                      FieldName = 'category'
+                      Visible = True
+                    end
+                    item
+                      Expanded = False
+                      FieldName = 'Title'
+                      Visible = True
+                    end
+                    item
+                      Expanded = False
+                      FieldName = 'Author'
+                      Visible = True
+                    end
+                    item
+                      Expanded = False
+                      FieldName = 'name'
+                      Visible = True
+                    end
+                    item
+                      Expanded = False
+                      FieldName = 'city'
+                      Visible = True
+                    end
+                    item
+                      Expanded = False
+                      FieldName = 'year'
+                      Visible = True
+                    end
+                    item
+                      Expanded = False
+                      FieldName = 'Count'
+                      Visible = True
+                    end>
+                end
+              end
+            end
+            object TabSheet7: TTabSheet
+              Caption = #1044#1086#1089#1090#1091#1087#1085#1099#1077' '#1101#1082#1084#1077#1087#1083#1103#1088#1099
+              ImageIndex = 1
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
+              object Panel14: TPanel
+                Left = 0
+                Top = 0
+                Width = 868
+                Height = 81
+                Align = alTop
+                TabOrder = 0
+                ExplicitWidth = 836
+                object GroupBox11: TGroupBox
+                  Left = 1
+                  Top = 1
+                  Width = 866
+                  Height = 79
+                  Align = alClient
+                  Caption = #1060#1080#1083#1100#1090#1088'/'#1055#1086#1080#1089#1082
+                  TabOrder = 0
+                  ExplicitWidth = 834
+                  object SearchBoxAvailableBooks: TSearchBox
+                    Left = 176
+                    Top = 26
+                    Width = 241
+                    Height = 24
+                    TabOrder = 0
+                  end
+                  object ComboBoxAvailableBooks: TComboBox
+                    Left = 32
+                    Top = 26
+                    Width = 113
+                    Height = 22
+                    Style = csOwnerDrawFixed
+                    ItemIndex = 0
+                    TabOrder = 1
+                    Text = #1053#1072#1079#1074#1072#1085#1080#1077
+                    Items.Strings = (
+                      #1053#1072#1079#1074#1072#1085#1080#1077
+                      #1050#1072#1090#1077#1075#1086#1088#1080#1103
+                      #1048#1079#1076#1072#1090#1077#1083#1100#1089#1090#1074#1086)
+                  end
+                  object ButtonSearchBoxAvailableBooksClear: TButton
+                    Left = 440
+                    Top = 26
+                    Width = 75
+                    Height = 21
+                    Caption = #1054#1095#1080#1089#1090#1080#1090#1100
+                    TabOrder = 2
+                  end
+                end
+              end
+              object GroupBox12: TGroupBox
+                Left = 0
+                Top = 81
+                Width = 868
+                Height = 513
+                Hint = #1069#1082#1079#1077#1084#1087#1083#1103#1088#1099' '#1082#1086#1090#1086#1088#1099#1077' '#1085#1077' '#1079#1072#1073#1088#1086#1085#1080#1088#1086#1074#1072#1085#1085#1099' '#1080' '#1085#1072#1093#1086#1076#1103#1090#1089#1103' '#1074' '#1073#1080#1073#1083#1080#1086#1090#1077#1082#1077
+                HelpType = htKeyword
+                HelpKeyword = #1069#1082#1079#1077#1084#1087#1083#1103#1088#1099' '#1082#1086#1090#1086#1088#1099#1077' '#1085#1077' '#1079#1072#1073#1088#1086#1085#1080#1088#1086#1074#1072#1085#1085#1099' '#1080' '#1085#1072#1093#1086#1076#1103#1090#1089#1103' '#1074' '#1073#1080#1073#1083#1080#1086#1090#1077#1082#1077
+                Align = alClient
+                Caption = #1044#1086#1089#1090#1091#1087#1085#1099#1077' '#1101#1082#1079#1077#1084#1087#1083#1103#1088#1099
+                TabOrder = 1
+                object DBGridAvailableBooks: TDBGrid
+                  Left = 2
+                  Top = 18
+                  Width = 864
+                  Height = 493
+                  Hint = #1069#1082#1079#1077#1084#1087#1083#1103#1088#1099' '#1082#1086#1090#1086#1088#1099#1077' '#1085#1077' '#1079#1072#1073#1088#1086#1085#1080#1088#1086#1074#1072#1085#1085#1099' '#1080' '#1085#1072#1093#1086#1076#1103#1090#1089#1103' '#1074' '#1073#1080#1073#1083#1080#1086#1090#1077#1082#1077
+                  HelpType = htKeyword
+                  HelpKeyword = #1069#1082#1079#1077#1084#1087#1083#1103#1088#1099' '#1082#1086#1090#1086#1088#1099#1077' '#1085#1077' '#1079#1072#1073#1088#1086#1085#1080#1088#1086#1074#1072#1085#1085#1099' '#1080' '#1085#1072#1093#1086#1076#1103#1090#1089#1103' '#1074' '#1073#1080#1073#1083#1080#1086#1090#1077#1082#1077
+                  Align = alClient
+                  DataSource = DM.DSAvailableBooks
+                  ParentShowHint = False
+                  ReadOnly = True
+                  ShowHint = True
+                  TabOrder = 0
+                  TitleFont.Charset = DEFAULT_CHARSET
+                  TitleFont.Color = clWindowText
+                  TitleFont.Height = -13
+                  TitleFont.Name = 'Tahoma'
+                  TitleFont.Style = []
+                  Columns = <
+                    item
+                      Expanded = False
+                      FieldName = 'id'
+                      Visible = True
+                    end
+                    item
+                      Expanded = False
+                      FieldName = 'ISBN'
+                      Visible = True
+                    end
+                    item
+                      Expanded = False
+                      FieldName = 'Title'
+                      Visible = True
+                    end
+                    item
+                      Expanded = False
+                      FieldName = 'publishing_id'
+                      Visible = False
+                    end
+                    item
+                      Expanded = False
+                      FieldName = 'publishing'
+                      Visible = True
+                    end
+                    item
+                      Expanded = False
+                      FieldName = 'year'
+                      Visible = True
+                    end
+                    item
+                      Expanded = False
+                      FieldName = 'category_id'
+                      Visible = False
+                    end
+                    item
+                      Expanded = False
+                      FieldName = 'category'
+                      Visible = True
+                    end
+                    item
+                      Expanded = False
+                      FieldName = 'placement'
+                      Visible = True
+                    end>
+                end
+              end
+            end
+            object TabSheet8: TTabSheet
+              Caption = #1048#1089#1090#1086#1088#1080#1103' '#1101#1082#1079#1077#1084#1087#1083#1103#1088#1072
+              ImageIndex = 2
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 0
+              ExplicitHeight = 0
+              object GroupBox13: TGroupBox
+                Left = 0
+                Top = 0
+                Width = 281
+                Height = 594
+                Align = alLeft
+                Caption = #1042#1099#1073#1086#1088' '#1101#1082#1079#1077#1084#1087#1083#1103#1088#1072
+                TabOrder = 0
+                ExplicitHeight = 452
+                object Label23: TLabel
+                  Left = 24
+                  Top = 48
+                  Width = 138
+                  Height = 16
+                  Caption = '1. '#1042#1099#1073#1077#1088#1080#1090#1077' '#1082#1072#1090#1077#1075#1086#1088#1080#1102
+                end
+                object Label26: TLabel
+                  Left = 24
+                  Top = 106
+                  Width = 167
+                  Height = 16
+                  Caption = '2. '#1042#1099#1073#1077#1088#1080#1090#1077' '#1085#1072#1079#1074#1072#1085#1080#1077' '#1082#1085#1080#1075#1080
+                end
+                object Label27: TLabel
+                  Left = 24
+                  Top = 168
+                  Width = 162
+                  Height = 16
+                  Caption = '3. '#1042#1099#1073#1077#1088#1080#1090#1077' '#1089#1072#1084' '#1101#1082#1079#1077#1084#1087#1083#1103#1088
+                end
+                object DBLookupComboBox3: TDBLookupComboBox
+                  Left = 24
+                  Top = 67
+                  Width = 225
+                  Height = 24
+                  KeyField = 'id'
+                  ListField = 'name'
+                  ListSource = DSTBHCategory
+                  TabOrder = 0
+                end
+                object DBLookupComboBox4: TDBLookupComboBox
+                  Left = 24
+                  Top = 125
+                  Width = 225
+                  Height = 24
+                  KeyField = 'ISBN'
+                  ListField = 'Title'
+                  ListSource = DSTBHBook
+                  TabOrder = 1
+                end
+                object DBLookupComboBox5: TDBLookupComboBox
+                  Left = 24
+                  Top = 187
+                  Width = 225
+                  Height = 24
+                  KeyField = 'id'
+                  ListField = 'id'
+                  ListSource = DSTBHExemplar
+                  TabOrder = 2
+                end
+              end
+              object DBGridBookHistory: TDBGrid
+                Left = 281
+                Top = 0
+                Width = 587
+                Height = 594
+                Align = alClient
+                DataSource = DSTBHHistory
+                TabOrder = 1
+                TitleFont.Charset = DEFAULT_CHARSET
+                TitleFont.Color = clWindowText
+                TitleFont.Height = -13
+                TitleFont.Name = 'Tahoma'
+                TitleFont.Style = []
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+  object TBHCategory: TADOTable
+    Active = True
+    Connection = DM.ADOConnection1
+    CursorType = ctStatic
+    TableName = 'BookCategory'
+    Left = 576
+    Top = 512
+  end
+  object DSTBHCategory: TDataSource
+    DataSet = TBHCategory
+    Left = 576
+    Top = 560
+  end
+  object DSTBHBook: TDataSource
+    DataSet = TBHBook
+    Left = 648
+    Top = 560
+  end
+  object TBHBook: TADOTable
+    Active = True
+    Connection = DM.ADOConnection1
+    CursorType = ctStatic
+    IndexFieldNames = 'category'
+    MasterFields = 'id'
+    MasterSource = DSTBHCategory
+    TableName = 'Book'
+    Left = 648
+    Top = 512
+  end
+  object TBHExemplar: TADOTable
+    Active = True
+    Connection = DM.ADOConnection1
+    CursorType = ctStatic
+    IndexFieldNames = 'ISBN'
+    MasterFields = 'ISBN'
+    MasterSource = DSTBHBook
+    TableName = 'Exemplar'
+    Left = 720
+    Top = 512
+  end
+  object DSTBHExemplar: TDataSource
+    DataSet = TBHExemplar
+    Left = 720
+    Top = 560
+  end
+  object DSTBHHistory: TDataSource
+    DataSet = TBHHistory
+    Left = 792
+    Top = 560
+  end
+  object TBHHistory: TADOTable
+    Active = True
+    Connection = DM.ADOConnection1
+    CursorType = ctStatic
+    IndexFieldNames = 'Exemplar_id'
+    MasterFields = 'id'
+    MasterSource = DSTBHExemplar
+    TableName = 'exemplar_history'
+    Left = 792
+    Top = 512
+    object TBHHistoryExemplar_id: TIntegerField
+      FieldName = 'Exemplar_id'
+      Visible = False
+    end
+    object TBHHistoryDateIssue: TWideStringField
+      DisplayLabel = #1044#1072#1090#1072' '#1074#1099#1076#1072#1095#1080
+      FieldName = 'DateIssue'
+      Size = 10
+    end
+    object TBHHistoryDateReturnExpected: TWideStringField
+      DisplayLabel = #1044#1072#1090#1072' '#1074#1086#1079#1074#1088#1072#1090#1072' ('#1086#1078#1080#1076#1072#1077#1084#1072#1103')'
+      FieldName = 'DateReturnExpected'
+      Size = 10
+    end
+    object TBHHistoryDateReturnReal: TWideStringField
+      DisplayLabel = #1044#1072#1090#1072' '#1074#1086#1079#1074#1088#1072#1090#1072' ('#1092#1072#1082#1090'.)'
+      FieldName = 'DateReturnReal'
+      Size = 10
+    end
+    object TBHHistoryReader: TStringField
+      DisplayLabel = #1063#1080#1090#1072#1090#1077#1083#1100
+      FieldName = 'Reader'
+      ReadOnly = True
+      Size = 25
     end
   end
   object PopupMenu1: TPopupMenu

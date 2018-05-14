@@ -127,6 +127,15 @@ type
     StringField2: TStringField;
     StringField3: TStringField;
     DsBookIssuingReader: TDataSource;
+    TOrders: TADOTable;
+    DSOrder: TDataSource;
+    TOrdersid: TAutoIncField;
+    TOrderspublishing_id: TIntegerField;
+    TOrdersbook_id: TStringField;
+    TOrderscount: TIntegerField;
+    TOrdersprocessed: TBooleanField;
+    TOrderspublishilg_LF: TStringField;
+    TOrdersbook_LF: TStringField;
     procedure TAuthorCalcFields(DataSet: TDataSet);
     procedure TReaderCalcFields(DataSet: TDataSet);
     procedure DoIncrementalFilter(DataSet: TDataSet;

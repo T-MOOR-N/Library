@@ -20,7 +20,7 @@ object FormLibrary: TFormLibrary
     Top = 0
     Width = 852
     Height = 508
-    ActivePage = TabSheet4
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -30,7 +30,7 @@ object FormLibrary: TFormLibrary
         Top = 0
         Width = 844
         Height = 480
-        ActivePage = TabSheet7
+        ActivePage = TabSheet5
         Align = alClient
         TabOrder = 0
         object TabSheet5: TTabSheet
@@ -50,8 +50,6 @@ object FormLibrary: TFormLibrary
               Align = alClient
               Caption = #1060#1080#1083#1100#1090#1088'/'#1055#1086#1080#1089#1082
               TabOrder = 0
-              ExplicitLeft = -8
-              ExplicitWidth = 843
               object SearchBoxCatalog: TSearchBox
                 Left = 176
                 Top = 26
@@ -171,8 +169,6 @@ object FormLibrary: TFormLibrary
               Align = alClient
               Caption = #1060#1080#1083#1100#1090#1088'/'#1055#1086#1080#1089#1082
               TabOrder = 0
-              ExplicitLeft = -8
-              ExplicitWidth = 843
               object SearchBoxAvailableBooks: TSearchBox
                 Left = 176
                 Top = 26
@@ -409,8 +405,6 @@ object FormLibrary: TFormLibrary
           Align = alClient
           Caption = #1063#1080#1090#1072#1090#1077#1083#1100#1089#1082#1080#1081' '#1073#1080#1083#1077#1090
           TabOrder = 1
-          ExplicitLeft = 424
-          ExplicitWidth = 419
           object Button1: TButton
             Left = 61
             Top = 24
@@ -593,8 +587,6 @@ object FormLibrary: TFormLibrary
           Align = alClient
           Caption = #1051#1080#1089#1090' '#1074#1099#1076#1072#1095#1080
           TabOrder = 1
-          ExplicitLeft = 391
-          ExplicitWidth = 452
           object ButtonIssueBook: TButton
             Left = 134
             Top = 24

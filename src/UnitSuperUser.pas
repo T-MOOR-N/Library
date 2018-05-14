@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
   Vcl.Mask, Vcl.DBCtrls, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, Vcl.ComCtrls,
-  UDM, Vcl.Menus, Vcl.WinXCtrls;
+  UDM, Vcl.Menus, Vcl.WinXCtrls, Data.Win.ADODB;
 
 type
   TFormSuper = class(TForm)
@@ -56,8 +56,6 @@ type
     DBEditPlace: TDBEdit;
     DBEditISBM: TDBEdit;
     ButtonOKExemplar: TButton;
-    PopupMenu1: TPopupMenu;
-    N1: TMenuItem;
     Panel10: TPanel;
     Label14: TLabel;
     DBEditAuthorFirstName: TDBEdit;
@@ -130,6 +128,63 @@ type
     ButtonOKUser: TButton;
     Button4: TButton;
     SearchBox1: TSearchBox;
+    TabSheet3: TTabSheet;
+    TBHCategory: TADOTable;
+    DSTBHCategory: TDataSource;
+    DSTBHBook: TDataSource;
+    TBHBook: TADOTable;
+    TBHExemplar: TADOTable;
+    DSTBHExemplar: TDataSource;
+    DSTBHHistory: TDataSource;
+    TBHHistory: TADOTable;
+    TBHHistoryExemplar_id: TIntegerField;
+    TBHHistoryDateIssue: TWideStringField;
+    TBHHistoryDateReturnExpected: TWideStringField;
+    TBHHistoryDateReturnReal: TWideStringField;
+    TBHHistoryReader: TStringField;
+    PopupMenu1: TPopupMenu;
+    N1: TMenuItem;
+    PageControl3: TPageControl;
+    TabSheet4: TTabSheet;
+    TabSheet5: TTabSheet;
+    PageControl4: TPageControl;
+    TabSheet6: TTabSheet;
+    Panel13: TPanel;
+    GroupBox9: TGroupBox;
+    SearchBoxCatalog: TSearchBox;
+    ComboBoxBookSearch: TComboBox;
+    ButtonSearchBoxCatalogClear: TButton;
+    GroupBox10: TGroupBox;
+    DBGridCatalog: TDBGrid;
+    TabSheet7: TTabSheet;
+    Panel14: TPanel;
+    GroupBox11: TGroupBox;
+    SearchBoxAvailableBooks: TSearchBox;
+    ComboBoxAvailableBooks: TComboBox;
+    ButtonSearchBoxAvailableBooksClear: TButton;
+    GroupBox12: TGroupBox;
+    DBGridAvailableBooks: TDBGrid;
+    TabSheet8: TTabSheet;
+    GroupBox13: TGroupBox;
+    Label23: TLabel;
+    Label26: TLabel;
+    Label27: TLabel;
+    DBLookupComboBox3: TDBLookupComboBox;
+    DBLookupComboBox4: TDBLookupComboBox;
+    DBLookupComboBox5: TDBLookupComboBox;
+    DBGridBookHistory: TDBGrid;
+    DBGrid4: TDBGrid;
+    Panel15: TPanel;
+    GroupBox14: TGroupBox;
+    ButtonCreateorder: TButton;
+    ButtonBooksIncoming: TButton;
+    DBLookupComboBox1: TDBLookupComboBox;
+    DBLookupComboBox2: TDBLookupComboBox;
+    DBEdit4: TDBEdit;
+    ButtonSaveOrder: TButton;
+    Label28: TLabel;
+    Label29: TLabel;
+    Label30: TLabel;
     procedure ButtonCreateUserClick(Sender: TObject);
     procedure ButtonOKUserClick(Sender: TObject);
     procedure ButtonEditUserClick(Sender: TObject);
@@ -158,6 +213,11 @@ type
     procedure ButtonEditBookCategoryClick(Sender: TObject);
     procedure SpeedButtonAddCategoryClick(Sender: TObject);
     procedure SearchBox1InvokeSearch(Sender: TObject);
+    procedure DBGrid4CellClick(Column: TColumn);
+    procedure ButtonCreateorderClick(Sender: TObject);
+    procedure ButtonSaveOrderClick(Sender: TObject);
+    procedure ButtonBooksIncomingClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -195,16 +255,47 @@ begin
   dm.TUsers.Post;
 end;
 
+procedure TFormSuper.ButtonSaveOrderClick(Sender: TObject);
+begin
+  dm.TOrders.Post;
+end;
+
 procedure TFormSuper.ButtonBookAddAuthorClick(Sender: TObject);
 begin
   dm.TAuthorBook.Insert;
   dm.TAuthorBook.Post;
 end;
 
+procedure TFormSuper.ButtonBooksIncomingClick(Sender: TObject);
+
+var
+  count: integer;
+  I: integer;
+begin
+  count := dm.TOrders.FieldByName('count').Value;
+
+  for I := 1 to count do
+  begin
+    dm.TExemplar.Insert;
+    dm.TExemplar.FieldByName('ISBN').Value :=
+      dm.TOrders.FieldByName('book_id').Value;
+    dm.TExemplar.FieldByName('placement').Value := 'полка 1';
+    dm.TExemplar.Post;
+  end;
+
+  dm.TOrders.FieldByName('proceded').Value := true;
+
+end;
+
 procedure TFormSuper.ButtonCanselAuthorClick(Sender: TObject);
 begin
   dm.TAuthorBook.Cancel;
   dm.TBook.Cancel;
+end;
+
+procedure TFormSuper.ButtonCreateorderClick(Sender: TObject);
+begin
+  dm.TOrders.Insert;
 end;
 
 procedure TFormSuper.ButtonCreateUserClick(Sender: TObject);
@@ -224,9 +315,9 @@ procedure TFormSuper.ButtonEditAuthorClick(Sender: TObject);
 begin
   dm.TAuthor.Post;
 
-  DBEditAuthorFirstName.ReadOnly := True;
-  DBEditAuthorLastName.ReadOnly := True;
-  DBEditAuthorMiddleName.ReadOnly := True;
+  DBEditAuthorFirstName.ReadOnly := true;
+  DBEditAuthorLastName.ReadOnly := true;
+  DBEditAuthorMiddleName.ReadOnly := true;
   ButtonEditAuthor.Enabled := false;
 end;
 
@@ -234,14 +325,14 @@ procedure TFormSuper.ButtonEditBookCategoryClick(Sender: TObject);
 begin
   dm.TBookCategory.Post;
   ButtonEditBookCategory.Enabled := false;
-  DBEditBookCategoryName.ReadOnly := True;
+  DBEditBookCategoryName.ReadOnly := true;
 end;
 
 procedure TFormSuper.ButtonEditPublishingClick(Sender: TObject);
 begin
   dm.TPublishing.Post;
-  DBEditPublishingName.ReadOnly := True;
-  DBEditPublishingCity.ReadOnly := True;
+  DBEditPublishingName.ReadOnly := true;
+  DBEditPublishingCity.ReadOnly := true;
   ButtonEditPublishing.Enabled := false;
 end;
 
@@ -261,9 +352,9 @@ end;
 procedure TFormSuper.ButtonOKExemplarClick(Sender: TObject);
 begin
   dm.TExemplar.Post;
-  DBGrid3.ReadOnly := True;
-  DBEditPlace.ReadOnly := True;
-  DBEditISBM.ReadOnly := True;
+  DBGrid3.ReadOnly := true;
+  DBEditPlace.ReadOnly := true;
+  DBEditISBM.ReadOnly := true;
   ButtonOKExemplar.Enabled := false;
 end;
 
@@ -272,15 +363,28 @@ begin
   dm.TReader.Post;
   dm.TUsers.Post;
 
-  DBEditBookName.ReadOnly := True;
-  DBLookupComboBoxBookCategory.ReadOnly := True;
-  DBLookupComboBoxBookPublishing.ReadOnly := True;
-  DBEditBookYear.ReadOnly := True;
-  DBLookupComboBoxAuthor.ReadOnly := True;
-  DBGrid2.ReadOnly := True;
+  DBEditBookName.ReadOnly := true;
+  DBLookupComboBoxBookCategory.ReadOnly := true;
+  DBLookupComboBoxBookPublishing.ReadOnly := true;
+  DBEditBookYear.ReadOnly := true;
+  DBLookupComboBoxAuthor.ReadOnly := true;
+  DBGrid2.ReadOnly := true;
   ButtonBookAddAuthor.Enabled := false;
   ButtonCanselAuthor.Enabled := false;
-  ButtonOKBookAuthor.Enabled := True;
+  ButtonOKBookAuthor.Enabled := true;
+end;
+
+procedure TFormSuper.DBGrid4CellClick(Column: TColumn);
+begin
+  if dm.TOrders.FieldByName('processed').Value = true then
+    ButtonBooksIncoming.Enabled := false
+  else
+    ButtonBooksIncoming.Enabled := true;
+end;
+
+procedure TFormSuper.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  Application.Terminate;
 end;
 
 procedure TFormSuper.N1Click(Sender: TObject);
@@ -306,7 +410,7 @@ begin
   DBEditAuthorFirstName.ReadOnly := false;
   DBEditAuthorLastName.ReadOnly := false;
   DBEditAuthorMiddleName.ReadOnly := false;
-  ButtonEditAuthor.Enabled := True;
+  ButtonEditAuthor.Enabled := true;
 end;
 
 procedure TFormSuper.SpeedButtonAddBookClick(Sender: TObject);
@@ -321,15 +425,15 @@ begin
   DBEditBookYear.ReadOnly := false;
   DBLookupComboBoxAuthor.ReadOnly := false;
   DBGrid2.ReadOnly := false;
-  ButtonBookAddAuthor.Enabled := True;
-  ButtonCanselAuthor.Enabled := True;
-  ButtonOKBookAuthor.Enabled := True;
+  ButtonBookAddAuthor.Enabled := true;
+  ButtonCanselAuthor.Enabled := true;
+  ButtonOKBookAuthor.Enabled := true;
 end;
 
 procedure TFormSuper.SpeedButtonAddCategoryClick(Sender: TObject);
 begin
   dm.TBookCategory.Insert;
-  ButtonEditBookCategory.Enabled := True;
+  ButtonEditBookCategory.Enabled := true;
   DBEditBookCategoryName.ReadOnly := false;
 end;
 
@@ -338,7 +442,7 @@ begin
   dm.TExemplar.Insert;
   DBEditPlace.ReadOnly := false;
   DBEditISBM.ReadOnly := false;
-  ButtonOKExemplar.Enabled := True;
+  ButtonOKExemplar.Enabled := true;
 end;
 
 procedure TFormSuper.SpeedButtonAddPublishigClick(Sender: TObject);
@@ -346,7 +450,7 @@ begin
   dm.TPublishing.Insert;
   DBEditPublishingName.ReadOnly := false;
   DBEditPublishingCity.ReadOnly := false;
-  ButtonEditPublishing.Enabled := True;
+  ButtonEditPublishing.Enabled := true;
 end;
 
 procedure TFormSuper.SpeedButtonDeleteBookClick(Sender: TObject);
@@ -366,7 +470,7 @@ begin
   DBEditAuthorFirstName.ReadOnly := false;
   DBEditAuthorLastName.ReadOnly := false;
   DBEditAuthorMiddleName.ReadOnly := false;
-  ButtonEditAuthor.Enabled := True;
+  ButtonEditAuthor.Enabled := true;
 end;
 
 procedure TFormSuper.SpeedButtonEditBookClick(Sender: TObject);
@@ -379,9 +483,9 @@ begin
   DBEditBookYear.ReadOnly := false;
   DBLookupComboBoxAuthor.ReadOnly := false;
   DBGrid2.ReadOnly := false;
-  ButtonBookAddAuthor.Enabled := True;
-  ButtonCanselAuthor.Enabled := True;
-  ButtonOKBookAuthor.Enabled := True;
+  ButtonBookAddAuthor.Enabled := true;
+  ButtonCanselAuthor.Enabled := true;
+  ButtonOKBookAuthor.Enabled := true;
 end;
 
 procedure TFormSuper.SpeedButtonEditExemplarClick(Sender: TObject);
@@ -390,7 +494,7 @@ begin
   DBGrid3.ReadOnly := false;
   DBEditPlace.ReadOnly := false;
   DBEditISBM.ReadOnly := false;
-  ButtonOKExemplar.Enabled := True;
+  ButtonOKExemplar.Enabled := true;
 end;
 
 procedure TFormSuper.SpeedButtonEditPublishigClick(Sender: TObject);
@@ -398,7 +502,7 @@ begin
   dm.TPublishing.Edit;
   DBEditPublishingName.ReadOnly := false;
   DBEditPublishingCity.ReadOnly := false;
-  ButtonEditPublishing.Enabled := True;
+  ButtonEditPublishing.Enabled := true;
 end;
 
 end.
