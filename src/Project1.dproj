@@ -113,10 +113,6 @@
             <Form>FormAddReadTicket</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="UnitReaderAccount.pas">
-            <Form>FormReader</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="UDM.pas">
             <Form>DM</Form>
             <FormType>dfm</FormType>

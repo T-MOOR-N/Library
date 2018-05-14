@@ -7,7 +7,6 @@ uses
   UnitExemplar in 'UnitExemplar.pas' {FormAddExemplar},
   UnitLibrarianAccount in 'UnitLibrarianAccount.pas' {FormLibrary},
   UnitReader in 'UnitReader.pas' {FormAddReadTicket},
-  UnitReaderAccount in 'UnitReaderAccount.pas' {FormReader},
   UDM in 'UDM.pas' {DM: TDataModule},
   UnitSuperUser in 'UnitSuperUser.pas' {FormSuper};
 
@@ -21,7 +20,6 @@ begin
   Application.CreateForm(TFormAddExemplar, FormAddExemplar);
   Application.CreateForm(TFormLibrary, FormLibrary);
   Application.CreateForm(TFormAddReadTicket, FormAddReadTicket);
-  Application.CreateForm(TFormReader, FormReader);
   Application.CreateForm(TFormSuper, FormSuper);
   Application.Run;
 end.
