@@ -16,16 +16,11 @@ type
     DBEdit2: TDBEdit;
     Label2: TLabel;
     Label1: TLabel;
-    GroupBox4: TGroupBox;
-    Label8: TLabel;
-    Label9: TLabel;
     Label10: TLabel;
     Button1: TButton;
     DBEdit4: TDBEdit;
     Label4: TLabel;
     DBEdit5: TDBEdit;
-    EditLogin: TEdit;
-    EditPass: TEdit;
   private
     { Private declarations }
   public

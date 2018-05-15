@@ -19,6 +19,9 @@ object DM: TDM
     Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
+    IndexFieldNames = 'user_id'
+    MasterFields = 'id'
+    MasterSource = DSWorker
     TableName = 'Users'
     Left = 40
     Top = 104
@@ -54,6 +57,7 @@ object DM: TDM
     Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
+    Filter = 'type<>'#39'admin'#39
     TableName = 'Worker'
     Left = 96
     Top = 104
@@ -64,13 +68,25 @@ object DM: TDM
     end
     object TWorkerFirstName: TStringField
       DisplayLabel = #1060#1072#1084#1080#1083#1080#1103
+      DisplayWidth = 40
       FieldName = 'FirstName'
       Size = 50
     end
     object TWorkerLastName: TStringField
       DisplayLabel = #1048#1084#1103
+      DisplayWidth = 40
       FieldName = 'LastName'
       Size = 50
+    end
+    object TWorkerIsDelete: TBooleanField
+      DisplayLabel = #1057#1090#1072#1090#1091#1089
+      FieldName = 'IsDelete'
+      DisplayValues = #1059#1074#1086#1083#1077#1085';'#1056#1072#1073#1086#1090#1072#1077#1090
+    end
+    object TWorkerDateCreate: TDateTimeField
+      DisplayLabel = #1044#1072#1090#1072' '#1087#1088#1080#1077#1084#1072' '#1085#1072' '#1088#1072#1073#1086#1090#1091
+      FieldName = 'DateCreate'
+      DisplayFormat = 'dd.mm.yyyy'
     end
   end
   object DSWorker: TDataSource
@@ -397,6 +413,8 @@ object DM: TDM
     Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
+    Filter = 'IsDelete <> 1'
+    Filtered = True
     TableName = 'Exemplar'
     Left = 376
     Top = 296
@@ -425,6 +443,15 @@ object DM: TDM
       KeyFields = 'ISBN'
       Size = 100
       Lookup = True
+    end
+    object TExemplarDateCreate: TDateTimeField
+      FieldName = 'DateCreate'
+      Visible = False
+    end
+    object TExemplarIsDelete: TBooleanField
+      DisplayLabel = #1057#1087#1080#1089#1072#1085
+      FieldName = 'IsDelete'
+      Visible = False
     end
   end
   object DSExemplar: TDataSource

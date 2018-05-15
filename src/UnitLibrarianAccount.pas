@@ -124,9 +124,9 @@ begin
     DM.TBookIssuing.Post;
     GroupBoxBookIssue.Enabled := false;
   end;
-  GroupBoxBookIssue.Visible:=false;
-  ButtonReturnBook.Enabled:=true;
-  DBGridBookIssuing.Enabled:=true;
+  GroupBoxBookIssue.Visible := false;
+  ButtonReturnBook.Enabled := true;
+  DBGridBookIssuing.Enabled := true;
 end;
 
 procedure TFormLibrary.Button1Click(Sender: TObject);
@@ -139,21 +139,21 @@ begin
         DM.TReader.Post;
         // DM.TUsers.Locate('user_id;type', VarArrayOf([DM.TReader.Fields[0].Value, 'reader']), [loPartialKey]);
 
-        DM.TUsers.Insert;
-        DM.TUsers.FieldByName('type').Value := 'reader';
-        DM.TUsers.FieldByName('user_id').Value := DM.TReader.Fields[0].Value;
-        DM.TUsers.FieldByName('login').Value :=
-          FormAddReadTicket.EditLogin.Text;
-        DM.TUsers.FieldByName('password').Value :=
-          FormAddReadTicket.EditPass.Text;
-        DM.TUsers.Post;
-        // обновим пароль MD5
-        DM.ADOQueryUpdatePassMD5.ExecSQL;
+        // DM.TUsers.Insert;
+        // DM.TUsers.FieldByName('type').Value := 'reader';
+        // DM.TUsers.FieldByName('user_id').Value := DM.TReader.Fields[0].Value;
+        // DM.TUsers.FieldByName('login').Value :=
+        // FormAddReadTicket.EditLogin.Text;
+        // DM.TUsers.FieldByName('password').Value :=
+        // FormAddReadTicket.EditPass.Text;
+        // DM.TUsers.Post;
+        // // обновим пароль MD5
+        // DM.ADOQueryUpdatePassMD5.ExecSQL;
       end;
     mrCancel:
       begin
         DM.TReader.Cancel;
-        DM.TUsers.Cancel;
+        // DM.TUsers.Cancel;
       end;
   end;
 end;
@@ -161,24 +161,24 @@ end;
 procedure TFormLibrary.Button2Click(Sender: TObject);
 begin
   DM.TReader.Edit;
-  DM.TUsers.Locate('user_id;type', VarArrayOf([DM.TReader.Fields[0].Value,
-    'reader']), [loPartialKey]);
-
-  DM.TUsers.Edit;
-  FormAddReadTicket.EditLogin.Text := DM.TUsers.FieldByName('login').Value;
-  FormAddReadTicket.EditPass.Text := DM.TUsers.FieldByName('password').Value;
+  // DM.TUsers.Locate('user_id;type', VarArrayOf([DM.TReader.Fields[0].Value,
+  // 'reader']), [loPartialKey]);
+  //
+  // DM.TUsers.Edit;
+  // FormAddReadTicket.EditLogin.Text := DM.TUsers.FieldByName('login').Value;
+  // FormAddReadTicket.EditPass.Text := DM.TUsers.FieldByName('password').Value;
 
   case FormAddReadTicket.ShowModal of
     mrOk:
       begin
         DM.TReader.Post;
-        DM.TUsers.FieldByName('type').Value := 'reader';
-        DM.TUsers.FieldByName('user_id').Value := DM.TReader.Fields[0].Value;
-        DM.TUsers.FieldByName('login').Value :=
-          FormAddReadTicket.EditLogin.Text;
-        DM.TUsers.FieldByName('password').Value :=
-          FormAddReadTicket.EditPass.Text;
-        DM.TUsers.Post;
+        // DM.TUsers.FieldByName('type').Value := 'reader';
+        // DM.TUsers.FieldByName('user_id').Value := DM.TReader.Fields[0].Value;
+        // DM.TUsers.FieldByName('login').Value :=
+        // FormAddReadTicket.EditLogin.Text;
+        // DM.TUsers.FieldByName('password').Value :=
+        // FormAddReadTicket.EditPass.Text;
+        // DM.TUsers.Post;
       end;
     mrCancel:
       begin
@@ -205,21 +205,21 @@ end;
 
 procedure TFormLibrary.Button7Click(Sender: TObject);
 begin
-  if DM.TUsers.Locate('user_id', DM.TReader.Fields[0].AsInteger,
-    [loCaseInsensitive, loPartialKey]) then
-  begin
-    DM.TUsers.Delete;
-    DM.TReader.Delete;
-  end;
+  // if DM.TUsers.Locate('user_id', DM.TReader.Fields[0].AsInteger,
+  // [loCaseInsensitive, loPartialKey]) then
+  // begin
+  // DM.TUsers.Delete;
+  DM.TReader.Delete;
+  // end;
 end;
 
 procedure TFormLibrary.ButtonIssueBookClick(Sender: TObject);
 begin
   DM.TBookIssuing.Insert;
   GroupBoxBookIssue.Enabled := true;
-  GroupBoxBookIssue.Visible:=True;
-  ButtonReturnBook.Enabled:=false;
-  DBGridBookIssuing.Enabled:=false;
+  GroupBoxBookIssue.Visible := true;
+  ButtonReturnBook.Enabled := false;
+  DBGridBookIssuing.Enabled := false;
 end;
 
 procedure TFormLibrary.ButtonReturnBookClick(Sender: TObject);

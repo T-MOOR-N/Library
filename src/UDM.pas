@@ -136,6 +136,10 @@ type
     TOrdersprocessed: TBooleanField;
     TOrderspublishilg_LF: TStringField;
     TOrdersbook_LF: TStringField;
+    TWorkerIsDelete: TBooleanField;
+    TWorkerDateCreate: TDateTimeField;
+    TExemplarDateCreate: TDateTimeField;
+    TExemplarIsDelete: TBooleanField;
     procedure TAuthorCalcFields(DataSet: TDataSet);
     procedure TReaderCalcFields(DataSet: TDataSet);
     procedure DoIncrementalFilter(DataSet: TDataSet;

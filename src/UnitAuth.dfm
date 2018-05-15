@@ -90,11 +90,14 @@ object FormAuth: TFormAuth
       end>
     SQL.Strings = (
       'SELECT'
-      '  user_id'
-      '  ,type'
-      'FROM LibraryDB.dbo.Users'
-      '  WHERE login =:l '
-      'AND passMD5 = CAST(HASHBYTES('#39'MD5'#39', :p) AS BINARY(16))')
+      '  u.user_id'
+      ' ,u.type'
+      'FROM LibraryDB.dbo.Users u'
+      'LEFT JOIN Worker w'
+      '  ON u.user_id = w.id'
+      'WHERE login = :l'
+      'AND passMD5 = CAST(HASHBYTES('#39'MD5'#39', :p) AS BINARY(16))'
+      'AND w.IsDelete = 0')
     Left = 40
     Top = 152
   end

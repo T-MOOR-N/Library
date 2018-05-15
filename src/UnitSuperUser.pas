@@ -17,7 +17,7 @@ type
     TabSheetReaders: TTabSheet;
     TabSheetWorker: TTabSheet;
     DBGridReader: TDBGrid;
-    DBGridLibrary: TDBGrid;
+    DBGridWorkers: TDBGrid;
     TabSheetCatalog: TTabSheet;
     TabSheet2: TTabSheet;
     GroupBox2: TGroupBox;
@@ -111,20 +111,11 @@ type
     Panel6: TPanel;
     SpeedButton2: TSpeedButton;
     SpeedButton3: TSpeedButton;
-    Button1: TButton;
-    Button2: TButton;
+    ButtonRetire: TButton;
+    ButtonNewLibrarian: TButton;
     Button3: TButton;
     Edit1: TEdit;
     GroupBox8: TGroupBox;
-    Label21: TLabel;
-    Label22: TLabel;
-    Label24: TLabel;
-    Label25: TLabel;
-    SpeedButton4: TSpeedButton;
-    DBEdit1: TDBEdit;
-    DBEdit2: TDBEdit;
-    DBEdit5: TDBEdit;
-    DBEdit6: TDBEdit;
     ButtonOKUser: TButton;
     Button4: TButton;
     SearchBox1: TSearchBox;
@@ -173,9 +164,9 @@ type
     DBLookupComboBox4: TDBLookupComboBox;
     DBLookupComboBox5: TDBLookupComboBox;
     DBGridBookHistory: TDBGrid;
-    DBGrid4: TDBGrid;
+    DBGridOrders: TDBGrid;
     Panel15: TPanel;
-    GroupBox14: TGroupBox;
+    GroupBoxCreateOrder: TGroupBox;
     ButtonCreateorder: TButton;
     ButtonBooksIncoming: TButton;
     DBLookupComboBox1: TDBLookupComboBox;
@@ -185,13 +176,37 @@ type
     Label28: TLabel;
     Label29: TLabel;
     Label30: TLabel;
+    GroupBox15: TGroupBox;
+    Label31: TLabel;
+    Label32: TLabel;
+    EditLogin: TEdit;
+    EditPass: TEdit;
+    GroupBox16: TGroupBox;
+    Label22: TLabel;
+    Label24: TLabel;
+    DBEdit1: TDBEdit;
+    DBEdit5: TDBEdit;
+    publishing: TADOTable;
+    DSPub: TDataSource;
+    book: TADOTable;
+    DSBook: TDataSource;
+    orders: TADOTable;
+    DSOrders: TDataSource;
+    TOrdersid: TAutoIncField;
+    TOrderspublishing_id: TIntegerField;
+    TOrderspublishilg_LF: TStringField;
+    TOrdersbook_id: TStringField;
+    TOrdersbook_LF: TStringField;
+    TOrderscount: TIntegerField;
+    TOrdersprocessed: TBooleanField;
+    ButtonWriteOffExemplar: TButton;
     procedure ButtonCreateUserClick(Sender: TObject);
     procedure ButtonOKUserClick(Sender: TObject);
     procedure ButtonEditUserClick(Sender: TObject);
     procedure Button4Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    procedure ButtonNewLibrarianClick(Sender: TObject);
     procedure Button3Click(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure ButtonRetireClick(Sender: TObject);
     procedure ButtonBookAddAuthorClick(Sender: TObject);
     procedure N1Click(Sender: TObject);
     procedure SpeedButtonEditBookClick(Sender: TObject);
@@ -213,11 +228,13 @@ type
     procedure ButtonEditBookCategoryClick(Sender: TObject);
     procedure SpeedButtonAddCategoryClick(Sender: TObject);
     procedure SearchBox1InvokeSearch(Sender: TObject);
-    procedure DBGrid4CellClick(Column: TColumn);
+    procedure DBGridOrdersCellClick(Column: TColumn);
     procedure ButtonCreateorderClick(Sender: TObject);
     procedure ButtonSaveOrderClick(Sender: TObject);
     procedure ButtonBooksIncomingClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure DBGridWorkersCellClick(Column: TColumn);
+    procedure ButtonWriteOffExemplarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -231,33 +248,82 @@ implementation
 
 {$R *.dfm}
 
-procedure TFormSuper.Button1Click(Sender: TObject);
+procedure TFormSuper.ButtonRetireClick(Sender: TObject);
 begin
-  dm.TReader.Delete;
-  dm.TUsers.Delete;
+  dm.TWorker.Edit;
+  dm.TWorker.FieldByName('IsDelete').Value := True;
+  dm.TWorker.Post;
 end;
 
-procedure TFormSuper.Button2Click(Sender: TObject);
+procedure TFormSuper.ButtonNewLibrarianClick(Sender: TObject);
 begin
   dm.TWorker.Insert;
-  dm.TUsers.Insert;
+  DBGridWorkers.Enabled := false;
+end;
+
+procedure TFormSuper.ButtonWriteOffExemplarClick(Sender: TObject);
+var
+  id: integer; // код экземпл€ра на пометку - удаление
+begin
+  id := dm.DSAvailableBooks.DataSet.Fields[0].Value;
+
+  if dm.TExemplar.Locate('id', id, [loCaseInsensitive, loPartialKey]) then
+  begin
+    dm.TExemplar.Edit;
+    dm.TExemplar.FieldByName('IsDelete').Value := True;
+    dm.TExemplar.Post;
+  end;
 end;
 
 procedure TFormSuper.Button3Click(Sender: TObject);
+var
+  sNewPass: string;
 begin
-  dm.TWorker.Edit;
+  // выводим окно до тех пор пока не будет введн пароль
+  while sNewPass.IsEmpty do
+    sNewPass := InputBox('—мена парол€', '¬велите новый пароль: ', '');
+
   dm.TUsers.Edit;
+  dm.TUsers.FieldByName('password').Value := sNewPass;
+  dm.TUsers.Post;
+  ShowMessage('ѕароль успешно сменен');
+  // обновим пароль MD5
+  dm.ADOQueryUpdatePassMD5.ExecSQL;
 end;
 
 procedure TFormSuper.Button4Click(Sender: TObject);
 begin
-  dm.TWorker.Post;
+  if dm.TWorker.State = dsEdit then
+    dm.TUsers.Edit
+  else if dm.TWorker.State = dsInsert then
+  begin
+    dm.TWorker.Post;
+    dm.TUsers.Insert;
+  end
+  else
+    exit;
+
+  dm.TUsers.FieldByName('login').Value := EditLogin.Text;
+  dm.TUsers.FieldByName('password').Value := EditPass.Text;
+
+  dm.TUsers.FieldByName('user_id').Value := dm.TWorker.Fields[0].Value;
+
   dm.TUsers.Post;
+  if dm.TWorker.State = dsEdit then
+    dm.TWorker.Post;
+
+  DBGridWorkers.Enabled := True;
+
+  // обновим пароль MD5
+  dm.ADOQueryUpdatePassMD5.ExecSQL;
 end;
 
 procedure TFormSuper.ButtonSaveOrderClick(Sender: TObject);
 begin
-  dm.TOrders.Post;
+  orders.FieldByName('processed').Value := false;
+  orders.Post;
+  DBGridOrders.Enabled := True;
+  GroupBoxCreateOrder.Enabled := false;
 end;
 
 procedure TFormSuper.ButtonBookAddAuthorClick(Sender: TObject);
@@ -272,7 +338,7 @@ var
   count: integer;
   I: integer;
 begin
-  count := dm.TOrders.FieldByName('count').Value;
+  count := orders.FieldByName('count').Value;
 
   for I := 1 to count do
   begin
@@ -283,7 +349,17 @@ begin
     dm.TExemplar.Post;
   end;
 
-  dm.TOrders.FieldByName('proceded').Value := true;
+  orders.Edit;
+  orders.FieldByName('processed').Value := True;
+  orders.Post;
+  ShowMessage('”спешно создан(ы) ' + count.ToString + ' экземпл€ров книг ');
+
+  if MessageDlg('ѕерейти в каталог?', mtConfirmation, [mbYes, mbNO], 0) = mrYes
+  then
+  begin
+    PageControl3.ActivePageIndex := 1;
+    PageControl4.ActivePageIndex := 1;
+  end;
 
 end;
 
@@ -295,7 +371,9 @@ end;
 
 procedure TFormSuper.ButtonCreateorderClick(Sender: TObject);
 begin
-  dm.TOrders.Insert;
+  orders.Insert;
+  DBGridOrders.Enabled := false;
+  GroupBoxCreateOrder.Enabled := True;
 end;
 
 procedure TFormSuper.ButtonCreateUserClick(Sender: TObject);
@@ -315,9 +393,9 @@ procedure TFormSuper.ButtonEditAuthorClick(Sender: TObject);
 begin
   dm.TAuthor.Post;
 
-  DBEditAuthorFirstName.ReadOnly := true;
-  DBEditAuthorLastName.ReadOnly := true;
-  DBEditAuthorMiddleName.ReadOnly := true;
+  DBEditAuthorFirstName.ReadOnly := True;
+  DBEditAuthorLastName.ReadOnly := True;
+  DBEditAuthorMiddleName.ReadOnly := True;
   ButtonEditAuthor.Enabled := false;
 end;
 
@@ -325,14 +403,14 @@ procedure TFormSuper.ButtonEditBookCategoryClick(Sender: TObject);
 begin
   dm.TBookCategory.Post;
   ButtonEditBookCategory.Enabled := false;
-  DBEditBookCategoryName.ReadOnly := true;
+  DBEditBookCategoryName.ReadOnly := True;
 end;
 
 procedure TFormSuper.ButtonEditPublishingClick(Sender: TObject);
 begin
   dm.TPublishing.Post;
-  DBEditPublishingName.ReadOnly := true;
-  DBEditPublishingCity.ReadOnly := true;
+  DBEditPublishingName.ReadOnly := True;
+  DBEditPublishingCity.ReadOnly := True;
   ButtonEditPublishing.Enabled := false;
 end;
 
@@ -352,9 +430,9 @@ end;
 procedure TFormSuper.ButtonOKExemplarClick(Sender: TObject);
 begin
   dm.TExemplar.Post;
-  DBGrid3.ReadOnly := true;
-  DBEditPlace.ReadOnly := true;
-  DBEditISBM.ReadOnly := true;
+  DBGrid3.ReadOnly := True;
+  DBEditPlace.ReadOnly := True;
+  DBEditISBM.ReadOnly := True;
   ButtonOKExemplar.Enabled := false;
 end;
 
@@ -363,23 +441,29 @@ begin
   dm.TReader.Post;
   dm.TUsers.Post;
 
-  DBEditBookName.ReadOnly := true;
-  DBLookupComboBoxBookCategory.ReadOnly := true;
-  DBLookupComboBoxBookPublishing.ReadOnly := true;
-  DBEditBookYear.ReadOnly := true;
-  DBLookupComboBoxAuthor.ReadOnly := true;
-  DBGrid2.ReadOnly := true;
+  DBEditBookName.ReadOnly := True;
+  DBLookupComboBoxBookCategory.ReadOnly := True;
+  DBLookupComboBoxBookPublishing.ReadOnly := True;
+  DBEditBookYear.ReadOnly := True;
+  DBLookupComboBoxAuthor.ReadOnly := True;
+  DBGrid2.ReadOnly := True;
   ButtonBookAddAuthor.Enabled := false;
   ButtonCanselAuthor.Enabled := false;
-  ButtonOKBookAuthor.Enabled := true;
+  ButtonOKBookAuthor.Enabled := True;
 end;
 
-procedure TFormSuper.DBGrid4CellClick(Column: TColumn);
+procedure TFormSuper.DBGridOrdersCellClick(Column: TColumn);
 begin
-  if dm.TOrders.FieldByName('processed').Value = true then
+  if orders.FieldByName('processed').Value = True then
     ButtonBooksIncoming.Enabled := false
   else
-    ButtonBooksIncoming.Enabled := true;
+    ButtonBooksIncoming.Enabled := True;
+end;
+
+procedure TFormSuper.DBGridWorkersCellClick(Column: TColumn);
+begin
+  EditLogin.Text := dm.TUsers.FieldByName('login').Value;
+  EditPass.Text := dm.TUsers.FieldByName('password').Value;
 end;
 
 procedure TFormSuper.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -410,7 +494,7 @@ begin
   DBEditAuthorFirstName.ReadOnly := false;
   DBEditAuthorLastName.ReadOnly := false;
   DBEditAuthorMiddleName.ReadOnly := false;
-  ButtonEditAuthor.Enabled := true;
+  ButtonEditAuthor.Enabled := True;
 end;
 
 procedure TFormSuper.SpeedButtonAddBookClick(Sender: TObject);
@@ -425,15 +509,15 @@ begin
   DBEditBookYear.ReadOnly := false;
   DBLookupComboBoxAuthor.ReadOnly := false;
   DBGrid2.ReadOnly := false;
-  ButtonBookAddAuthor.Enabled := true;
-  ButtonCanselAuthor.Enabled := true;
-  ButtonOKBookAuthor.Enabled := true;
+  ButtonBookAddAuthor.Enabled := True;
+  ButtonCanselAuthor.Enabled := True;
+  ButtonOKBookAuthor.Enabled := True;
 end;
 
 procedure TFormSuper.SpeedButtonAddCategoryClick(Sender: TObject);
 begin
   dm.TBookCategory.Insert;
-  ButtonEditBookCategory.Enabled := true;
+  ButtonEditBookCategory.Enabled := True;
   DBEditBookCategoryName.ReadOnly := false;
 end;
 
@@ -442,7 +526,7 @@ begin
   dm.TExemplar.Insert;
   DBEditPlace.ReadOnly := false;
   DBEditISBM.ReadOnly := false;
-  ButtonOKExemplar.Enabled := true;
+  ButtonOKExemplar.Enabled := True;
 end;
 
 procedure TFormSuper.SpeedButtonAddPublishigClick(Sender: TObject);
@@ -450,7 +534,7 @@ begin
   dm.TPublishing.Insert;
   DBEditPublishingName.ReadOnly := false;
   DBEditPublishingCity.ReadOnly := false;
-  ButtonEditPublishing.Enabled := true;
+  ButtonEditPublishing.Enabled := True;
 end;
 
 procedure TFormSuper.SpeedButtonDeleteBookClick(Sender: TObject);
@@ -470,7 +554,7 @@ begin
   DBEditAuthorFirstName.ReadOnly := false;
   DBEditAuthorLastName.ReadOnly := false;
   DBEditAuthorMiddleName.ReadOnly := false;
-  ButtonEditAuthor.Enabled := true;
+  ButtonEditAuthor.Enabled := True;
 end;
 
 procedure TFormSuper.SpeedButtonEditBookClick(Sender: TObject);
@@ -483,9 +567,9 @@ begin
   DBEditBookYear.ReadOnly := false;
   DBLookupComboBoxAuthor.ReadOnly := false;
   DBGrid2.ReadOnly := false;
-  ButtonBookAddAuthor.Enabled := true;
-  ButtonCanselAuthor.Enabled := true;
-  ButtonOKBookAuthor.Enabled := true;
+  ButtonBookAddAuthor.Enabled := True;
+  ButtonCanselAuthor.Enabled := True;
+  ButtonOKBookAuthor.Enabled := True;
 end;
 
 procedure TFormSuper.SpeedButtonEditExemplarClick(Sender: TObject);
@@ -494,7 +578,7 @@ begin
   DBGrid3.ReadOnly := false;
   DBEditPlace.ReadOnly := false;
   DBEditISBM.ReadOnly := false;
-  ButtonOKExemplar.Enabled := true;
+  ButtonOKExemplar.Enabled := True;
 end;
 
 procedure TFormSuper.SpeedButtonEditPublishigClick(Sender: TObject);
@@ -502,7 +586,7 @@ begin
   dm.TPublishing.Edit;
   DBEditPublishingName.ReadOnly := false;
   DBEditPublishingCity.ReadOnly := false;
-  ButtonEditPublishing.Enabled := true;
+  ButtonEditPublishing.Enabled := True;
 end;
 
 end.
