@@ -1,7 +1,7 @@
 object DM: TDM
   OldCreateOrder = False
   Height = 541
-  Width = 758
+  Width = 1068
   object ADOConnection1: TADOConnection
     Connected = True
     ConnectionString = 
@@ -840,5 +840,138 @@ object DM: TDM
     DataSet = TOrders
     Left = 560
     Top = 352
+  end
+  object TRepReaderActivity: TADOQuery
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    Parameters = <
+      item
+        Name = 'id'
+        Attributes = [paSigned]
+        DataType = ftInteger
+        Precision = 10
+        Size = 4
+        Value = Null
+      end
+      item
+        Name = 'start'
+        Attributes = [paNullable]
+        DataType = ftWideString
+        NumericScale = 255
+        Precision = 255
+        Size = 10
+        Value = Null
+      end
+      item
+        Name = 'end'
+        Attributes = [paNullable]
+        DataType = ftWideString
+        NumericScale = 255
+        Precision = 255
+        Size = 10
+        Value = Null
+      end>
+    SQL.Strings = (
+      'SELECT'
+      '  b.Title'
+      ' ,bi.DateIssue'
+      ' ,bi.DateReturnReal'
+      'FROM LibraryDB.dbo.BookIssuing bi'
+      'LEFT JOIN Exemplar e'
+      '  ON bi.Exemplar_id = e.id'
+      'LEFT JOIN Book b'
+      '  ON e.ISBN = b.ISBN'
+      'WHERE bi.Reader_id = :id'
+      'AND bi.DateIssue > :start'
+      'AND bi.DateReturnReal < :end')
+    Left = 936
+    Top = 256
+    object TRepReaderActivityTitle: TStringField
+      DisplayLabel = #1050#1085#1080#1075#1072
+      FieldName = 'Title'
+      Size = 40
+    end
+    object TRepReaderActivityDateIssue: TWideStringField
+      DisplayLabel = #1044#1072#1090#1072' '#1074#1099#1076#1072#1095#1080
+      FieldName = 'DateIssue'
+      Size = 10
+    end
+    object TRepReaderActivityDateReturnReal: TWideStringField
+      DisplayLabel = #1044#1072#1090#1072' '#1074#1086#1079#1074#1088#1072#1090#1072
+      FieldName = 'DateReturnReal'
+      Size = 10
+    end
+  end
+  object DSRepReaderActivity: TDataSource
+    DataSet = TRepReaderActivity
+    Left = 936
+    Top = 312
+  end
+  object ADOQueryReportOverdueBooks: TADOQuery
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    Parameters = <>
+    SQL.Strings = (
+      'SELECT'
+      '  bi.id'
+      ' ,b.Title'
+      ' ,bi.DateIssue'
+      ' ,bi.DateReturnExpected'
+      
+        ' ,r.FirstName + '#39' '#39' + SUBSTRING(r.LastName, 1, 1) + '#39'.'#39' + SUBSTR' +
+        'ING(r.MiddleName, 1, 1) + '#39'.'#39' AS '#39'Reader'#39
+      ' ,r.Phone'
+      'FROM LibraryDB.dbo.BookIssuing bi'
+      'LEFT JOIN Exemplar e'
+      '  ON bi.Exemplar_id = e.id'
+      'LEFT JOIN Book b'
+      '  ON e.ISBN = b.ISBN'
+      'LEFT JOIN Reader r'
+      '  ON bi.Reader_id = r.id'
+      'WHERE bi.DateReturnReal IS NULL')
+    Left = 808
+    Top = 256
+    object ADOQueryReportOverdueBooksid: TAutoIncField
+      FieldName = 'id'
+      ReadOnly = True
+      Visible = False
+    end
+    object ADOQueryReportOverdueBooksTitle: TStringField
+      DisplayLabel = #1050#1085#1080#1075#1072
+      DisplayWidth = 31
+      FieldName = 'Title'
+      Size = 40
+    end
+    object ADOQueryReportOverdueBooksDateIssue: TWideStringField
+      DisplayLabel = #1044#1072#1090#1072' '#1074#1099#1076#1072#1095#1080
+      DisplayWidth = 11
+      FieldName = 'DateIssue'
+      Size = 10
+    end
+    object ADOQueryReportOverdueBooksDateReturnExpected: TWideStringField
+      DisplayLabel = #1054#1078#1080#1076#1072#1077#1084#1072#1103' '#1076#1072#1090#1072' '#1074#1086#1079#1074#1088#1072#1090#1072
+      DisplayWidth = 22
+      FieldName = 'DateReturnExpected'
+      Size = 10
+    end
+    object ADOQueryReportOverdueBooksReader: TStringField
+      DisplayLabel = #1063#1080#1090#1072#1090#1077#1083#1100
+      DisplayWidth = 25
+      FieldName = 'Reader'
+      ReadOnly = True
+      Size = 25
+    end
+    object ADOQueryReportOverdueBooksPhone: TStringField
+      DisplayLabel = #1058#1077#1083#1077#1092#1086#1085
+      DisplayWidth = 16
+      FieldName = 'Phone'
+      Size = 16
+    end
+  end
+  object DSOverdueBooks: TDataSource
+    DataSet = ADOQueryReportOverdueBooks
+    Left = 808
+    Top = 320
   end
 end

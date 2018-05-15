@@ -122,6 +122,14 @@
             <Form>FormSuper</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="UnitReportReaderActivity.pas">
+            <Form>Form1</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UnitReportOverdueBooks.pas">
+            <Form>FormReportOverdueBooks</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

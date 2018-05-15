@@ -30,7 +30,7 @@ object FormLibrary: TFormLibrary
         Top = 0
         Width = 844
         Height = 480
-        ActivePage = TabSheet5
+        ActivePage = TabSheet7
         Align = alClient
         TabOrder = 0
         object TabSheet5: TTabSheet
@@ -488,6 +488,7 @@ object FormLibrary: TFormLibrary
     object TabSheet3: TTabSheet
       Caption = #1041#1088#1086#1085#1100
       ImageIndex = 2
+      TabVisible = False
       object DBGridReservations: TDBGrid
         Left = 0
         Top = 0

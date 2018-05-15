@@ -20,13 +20,11 @@ object FormSuper: TFormSuper
     Top = 0
     Width = 892
     Height = 658
-    ActivePage = TabSheet3
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
-    ExplicitHeight = 687
     object TabSheet1: TTabSheet
       Caption = #1050#1072#1076#1088#1099
-      ExplicitHeight = 656
       object PageControl2: TPageControl
         Left = 0
         Top = 0
@@ -38,7 +36,6 @@ object FormSuper: TFormSuper
         object TabSheetReaders: TTabSheet
           Caption = #1063#1080#1090#1072#1090#1077#1083#1080
           TabVisible = False
-          ExplicitHeight = 622
           object DBGridReader: TDBGrid
             Left = 0
             Top = 0
@@ -139,7 +136,6 @@ object FormSuper: TFormSuper
             Align = alClient
             Caption = #1044#1072#1085#1085#1099#1077' '#1083#1080#1095#1085#1086#1075#1086' '#1082#1072#1073#1080#1085#1077#1090#1072
             TabOrder = 2
-            ExplicitHeight = 317
             object Label1: TLabel
               Left = 48
               Top = 29
@@ -285,7 +281,6 @@ object FormSuper: TFormSuper
         object TabSheetWorker: TTabSheet
           Caption = #1041#1080#1073#1083#1080#1086#1090#1077#1082#1072#1088#1080
           ImageIndex = 1
-          ExplicitHeight = 622
           object DBGridWorkers: TDBGrid
             Left = 0
             Top = 0
@@ -309,42 +304,8 @@ object FormSuper: TFormSuper
             Height = 80
             Align = alTop
             TabOrder = 1
-            ExplicitTop = 249
-            object SpeedButton2: TSpeedButton
-              Left = 308
-              Top = 26
-              Width = 23
-              Height = 23
-              Glyph.Data = {
-                36030000424D3603000000000000360000002800000010000000100000000100
-                18000000000000030000C40E0000C40E00000000000000000000FFFFFF60C0E7
-                05B1E905B1E9B3E2F4FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-                FFFFFFFFFFFFFFFFFFFFFFFFFF05B1E901E4FD01E4FD05B1E9EFF9FDFFFFFFFF
-                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF30B3E3
-                01E4FD01E4FD05B1E950BAE5FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-                FFFFFFFFFFFFFFFFFFFFFFFFFFEFF9FD30B3E301E4FD01E4FD05B1E9B3E2F4FF
-                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-                D7EFF905B1E901E4FD01E4FD3B9EC8D7EFF9FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB3E2F405B1E9C8B3B3C19C9CC1
-                9C9CBA8E8EC19C9CC8B3B3F4EAEAFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-                FFFFFFFFFFFFB3E2F4C8B3B3BA8E8ED9BABAD9BABAD9BABAC19C9CBA8E8EE3D3
-                D3FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE3D3D3C19C9CECC1A3F3
-                B66EF3B66EE6C9C5EDDEDDD5ABABBA8E8EE3D3D3FFFFFFFFFFFFFFFFFFFFFFFF
-                FFFFFFFFFFFFC8A8A8EECDB6FFB235FFB235FFB235FEBB51ECC1A3F4EAEAD5AB
-                ABBA8E8EF4EAEAFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD9BABAECC1A3FEBB51FE
-                BB51FEBB51FEBB51FEBB51EECDB6F4EAEAD5ABABC8B3B3FFFFFFFFFFFFFFFFFF
-                FFFFFFFFFFFFC8B3B3E6C9C5FEBB51FFCB70FFCB70FFCB70FFCB70FFCB70EDDE
-                DDE6C9C5BA8E8EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE3D3D3D9BABAF3B66EFF
-                CB70FFD587FFD587FFD587FFD587EECDB6F4EAEAC8A8A8FFFFFFFFFFFFFFFFFF
-                FFFFFFFFFFFFFBF8F8C8A8A8D9BABAFEBB51FFD587FEDF9CFEDF9CFEDF9CFEDF
-                9CF4EAEAC19C9CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEDDEDDD9BABAEC
-                C1A3F3B66EFFCB70FEDF9CFFE6A7FCE7CAEDDEDDC8A8A8FFFFFFFFFFFFFFFFFF
-                FFFFFFFFFFFFFFFFFFFFFFFFEDDEDDD9BABAE6C9C5ECC1A3F3B66EFFD587EDDE
-                DDC8A8A8FBF8F8FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF4
-                EAEAD9BABADAC3C3E6C9C5DAC3C3C8B3B3FBF8F8FFFFFFFFFFFF}
-            end
-            object SpeedButton3: TSpeedButton
-              Left = 337
+            object SpeedButtonSearchWorkerCancel: TSpeedButton
+              Left = 311
               Top = 26
               Width = 23
               Height = 23
@@ -375,6 +336,7 @@ object FormSuper: TFormSuper
                 6C82F95055F68984F9FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDBDAFD6561
                 F65455F76B7EF84A4FF7B9B7FB5353F65C5FF76763F6F5F5FFFFFFFFFFFFFFFF
                 FFFFFFFFFFFFFFFFFFFFFFFFFFFFE4E3FE9E9BF96566F66D6CF7}
+              OnClick = SpeedButtonSearchWorkerCancelClick
             end
             object ButtonRetire: TButton
               Left = 720
@@ -403,23 +365,25 @@ object FormSuper: TFormSuper
               TabOrder = 2
               OnClick = Button3Click
             end
-            object Edit1: TEdit
-              Left = 32
+            object SearchBoxWorker: TSearchBox
+              Left = 64
               Top = 26
-              Width = 278
+              Width = 241
               Height = 24
               TabOrder = 3
+              OnKeyPress = SearchBoxWorkerKeyPress
+              OnInvokeSearch = SearchBoxWorkerInvokeSearch
             end
           end
-          object GroupBox8: TGroupBox
+          object GroupBoxWorker: TGroupBox
             Left = 0
             Top = 349
             Width = 876
             Height = 261
             Align = alClient
             Caption = #1044#1072#1085#1085#1099#1077' '#1083#1080#1095#1085#1086#1075#1086' '#1082#1072#1073#1080#1085#1077#1090#1072
+            Enabled = False
             TabOrder = 2
-            ExplicitHeight = 276
             object Button4: TButton
               Left = 672
               Top = 216
@@ -506,6 +470,15 @@ object FormSuper: TFormSuper
                 TabOrder = 1
               end
             end
+            object ButtonWorkerEditCancel: TButton
+              Left = 560
+              Top = 216
+              Width = 75
+              Height = 25
+              Caption = #1054#1090#1084#1077#1085#1072
+              TabOrder = 3
+              OnClick = ButtonWorkerEditCancelClick
+            end
           end
         end
       end
@@ -514,7 +487,6 @@ object FormSuper: TFormSuper
       Caption = #1050#1072#1090#1072#1083#1086#1075
       ImageIndex = 1
       TabVisible = False
-      ExplicitHeight = 656
       object GroupBox6: TGroupBox
         Left = 0
         Top = 408
@@ -523,7 +495,6 @@ object FormSuper: TFormSuper
         Align = alBottom
         Caption = #1069#1082#1079#1077#1084#1087#1083#1103#1088#1099
         TabOrder = 0
-        ExplicitTop = 437
         object Panel7: TPanel
           Left = 2
           Top = 18
@@ -1022,7 +993,6 @@ object FormSuper: TFormSuper
       Caption = #1057#1087#1088#1072#1074#1086#1095#1085#1080#1082#1080
       ImageIndex = 2
       TabVisible = False
-      ExplicitHeight = 656
       object GroupBox2: TGroupBox
         Left = 0
         Top = 449
@@ -1031,7 +1001,6 @@ object FormSuper: TFormSuper
         Align = alClient
         Caption = #1046#1072#1085#1088#1099
         TabOrder = 0
-        ExplicitHeight = 207
         object DBGridCategory: TDBGrid
           Left = 2
           Top = 47
@@ -1096,7 +1065,6 @@ object FormSuper: TFormSuper
           Height = 15
           Align = alClient
           TabOrder = 2
-          ExplicitHeight = 44
           object Label18: TLabel
             Left = 35
             Top = 15
@@ -1451,7 +1419,6 @@ object FormSuper: TFormSuper
     object TabSheet3: TTabSheet
       Caption = #1041#1080#1073#1083#1080#1086#1090#1077#1095#1085#1099#1081' '#1092#1086#1085#1076
       ImageIndex = 3
-      ExplicitHeight = 656
       object PageControl3: TPageControl
         Left = 0
         Top = 0
@@ -1460,10 +1427,8 @@ object FormSuper: TFormSuper
         ActivePage = TabSheet5
         Align = alClient
         TabOrder = 0
-        ExplicitHeight = 656
         object TabSheet4: TTabSheet
           Caption = #1047#1072#1082#1072#1079
-          ExplicitHeight = 625
           object DBGridOrders: TDBGrid
             Left = 0
             Top = 0
@@ -1488,7 +1453,6 @@ object FormSuper: TFormSuper
             Align = alBottom
             ShowCaption = False
             TabOrder = 1
-            ExplicitTop = 223
             object ButtonCreateorder: TButton
               Left = 24
               Top = 40
@@ -1586,19 +1550,16 @@ object FormSuper: TFormSuper
         object TabSheet5: TTabSheet
           Caption = #1050#1072#1090#1072#1083#1086#1075
           ImageIndex = 1
-          ExplicitHeight = 625
           object PageControl4: TPageControl
             Left = 0
             Top = 0
             Width = 876
             Height = 596
-            ActivePage = TabSheet7
+            ActivePage = TabSheet6
             Align = alClient
             TabOrder = 0
-            ExplicitHeight = 625
             object TabSheet6: TTabSheet
               Caption = #1042#1089#1077' '#1082#1085#1080#1075#1080
-              ExplicitHeight = 594
               object Panel13: TPanel
                 Left = 0
                 Top = 0
@@ -1654,7 +1615,6 @@ object FormSuper: TFormSuper
                 Align = alClient
                 Caption = #1042#1089#1077' '#1082#1085#1080#1075#1080
                 TabOrder = 1
-                ExplicitHeight = 513
                 object DBGridCatalog: TDBGrid
                   Left = 2
                   Top = 18
@@ -1717,7 +1677,6 @@ object FormSuper: TFormSuper
             object TabSheet7: TTabSheet
               Caption = #1044#1086#1089#1090#1091#1087#1085#1099#1077' '#1101#1082#1084#1077#1087#1083#1103#1088#1099
               ImageIndex = 1
-              ExplicitHeight = 594
               object Panel14: TPanel
                 Left = 0
                 Top = 0
@@ -1784,7 +1743,6 @@ object FormSuper: TFormSuper
                 Align = alClient
                 Caption = #1044#1086#1089#1090#1091#1087#1085#1099#1077' '#1101#1082#1079#1077#1084#1087#1083#1103#1088#1099
                 TabOrder = 1
-                ExplicitHeight = 513
                 object DBGridAvailableBooks: TDBGrid
                   Left = 2
                   Top = 18
@@ -1857,7 +1815,6 @@ object FormSuper: TFormSuper
             object TabSheet8: TTabSheet
               Caption = #1048#1089#1090#1086#1088#1080#1103' '#1101#1082#1079#1077#1084#1087#1083#1103#1088#1072
               ImageIndex = 2
-              ExplicitHeight = 594
               object GroupBox13: TGroupBox
                 Left = 0
                 Top = 0
@@ -1866,7 +1823,6 @@ object FormSuper: TFormSuper
                 Align = alLeft
                 Caption = #1042#1099#1073#1086#1088' '#1101#1082#1079#1077#1084#1087#1083#1103#1088#1072
                 TabOrder = 0
-                ExplicitHeight = 594
                 object Label23: TLabel
                   Left = 24
                   Top = 48
@@ -1934,6 +1890,223 @@ object FormSuper: TFormSuper
                 TitleFont.Name = 'Tahoma'
                 TitleFont.Style = []
               end
+            end
+          end
+        end
+      end
+    end
+    object TabSheet9: TTabSheet
+      Caption = #1054#1090#1095#1077#1090#1099
+      ImageIndex = 4
+      object Panel16: TPanel
+        Left = 0
+        Top = 0
+        Width = 193
+        Height = 627
+        Align = alLeft
+        Caption = 'Panel16'
+        ShowCaption = False
+        TabOrder = 0
+        object ButtonReaderActivity: TButton
+          Left = 24
+          Top = 70
+          Width = 145
+          Height = 25
+          Caption = #1040#1082#1090#1080#1074#1085#1086#1089#1090#1100' '#1095#1080#1090#1072#1090#1077#1083#1103
+          TabOrder = 0
+          OnClick = ButtonReaderActivityClick
+        end
+        object ButtonOverdueBooks: TButton
+          Left = 24
+          Top = 118
+          Width = 145
+          Height = 25
+          Caption = #1047#1072#1076#1086#1083#1078#1077#1085#1086#1089#1090#1080
+          TabOrder = 1
+          OnClick = ButtonOverdueBooksClick
+        end
+      end
+      object PageControlReports: TPageControl
+        Left = 193
+        Top = 0
+        Width = 691
+        Height = 627
+        Align = alClient
+        TabOrder = 1
+        object TabSheet10: TTabSheet
+          Caption = 'TabSheet10'
+          ParentShowHint = False
+          ShowHint = False
+          TabVisible = False
+          ExplicitTop = 27
+          ExplicitWidth = 651
+          ExplicitHeight = 596
+          object DBGrid4: TDBGrid
+            Left = 0
+            Top = 122
+            Width = 683
+            Height = 495
+            Align = alClient
+            DataSource = DM.DSRepReaderActivity
+            TabOrder = 0
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -13
+            TitleFont.Name = 'Tahoma'
+            TitleFont.Style = []
+          end
+          object Panel17: TPanel
+            Left = 0
+            Top = 0
+            Width = 683
+            Height = 122
+            Align = alTop
+            Caption = 'Panel17'
+            ShowCaption = False
+            TabOrder = 1
+            ExplicitLeft = 2
+            ExplicitTop = 14
+            object Label33: TLabel
+              Left = 16
+              Top = 90
+              Width = 55
+              Height = 16
+              Caption = #1063#1080#1090#1072#1090#1077#1083#1100
+            end
+            object Button1: TButton
+              Left = 479
+              Top = 64
+              Width = 75
+              Height = 25
+              Caption = #1055#1088#1086#1089#1084#1086#1090#1088
+              TabOrder = 0
+              OnClick = Button1Click
+            end
+            object GroupBox14: TGroupBox
+              Left = 16
+              Top = 10
+              Width = 401
+              Height = 57
+              Caption = #1055#1077#1088#1080#1086#1076
+              TabOrder = 1
+              object Label21: TLabel
+                Left = 18
+                Top = 32
+                Width = 8
+                Height = 16
+                Caption = #1057
+              end
+              object Label25: TLabel
+                Left = 202
+                Top = 32
+                Width = 15
+                Height = 16
+                Caption = #1055#1086
+              end
+              object DateTimePickerStart: TDateTimePicker
+                Left = 32
+                Top = 24
+                Width = 153
+                Height = 24
+                Date = 43235.939236435190000000
+                Time = 43235.939236435190000000
+                TabOrder = 0
+              end
+              object DateTimePickerEnd: TDateTimePicker
+                Left = 223
+                Top = 24
+                Width = 153
+                Height = 24
+                Date = 43235.939236435190000000
+                Time = 43235.939236435190000000
+                TabOrder = 1
+              end
+            end
+            object DBLookupComboBox6: TDBLookupComboBox
+              Left = 88
+              Top = 82
+              Width = 209
+              Height = 24
+              KeyField = 'id'
+              ListField = 'FirstName;LastName'
+              ListSource = DM.DSReader
+              TabOrder = 2
+            end
+            object Button2: TButton
+              Left = 559
+              Top = 64
+              Width = 75
+              Height = 25
+              Caption = #1055#1077#1095#1072#1090#1100
+              TabOrder = 3
+              OnClick = Button2Click
+            end
+            object Button5: TButton
+              Left = 479
+              Top = 26
+              Width = 154
+              Height = 25
+              Caption = #1057#1092#1086#1088#1084#1080#1088#1086#1074#1072#1090#1100
+              TabOrder = 4
+              OnClick = Button5Click
+            end
+          end
+        end
+        object TabSheet11: TTabSheet
+          Caption = 'TabSheet11'
+          ImageIndex = 1
+          TabVisible = False
+          ExplicitTop = 27
+          ExplicitHeight = 596
+          object DBGrid5: TDBGrid
+            Left = 0
+            Top = 68
+            Width = 683
+            Height = 549
+            Align = alClient
+            DataSource = DM.DSOverdueBooks
+            TabOrder = 0
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -13
+            TitleFont.Name = 'Tahoma'
+            TitleFont.Style = []
+          end
+          object Panel18: TPanel
+            Left = 0
+            Top = 0
+            Width = 683
+            Height = 68
+            Align = alTop
+            Caption = 'Panel18'
+            ShowCaption = False
+            TabOrder = 1
+            object Button6: TButton
+              Left = 39
+              Top = 27
+              Width = 154
+              Height = 25
+              Caption = #1057#1092#1086#1088#1084#1080#1088#1086#1074#1072#1090#1100
+              TabOrder = 0
+              OnClick = Button6Click
+            end
+            object Button7: TButton
+              Left = 486
+              Top = 27
+              Width = 75
+              Height = 25
+              Caption = #1055#1088#1086#1089#1084#1086#1090#1088
+              TabOrder = 1
+              OnClick = Button7Click
+            end
+            object Button8: TButton
+              Left = 567
+              Top = 27
+              Width = 75
+              Height = 25
+              Caption = #1055#1077#1095#1072#1090#1100
+              TabOrder = 2
+              OnClick = Button8Click
             end
           end
         end

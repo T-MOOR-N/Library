@@ -109,13 +109,10 @@ type
     DBEditAddres: TDBEdit;
     DBEditPhone: TDBEdit;
     Panel6: TPanel;
-    SpeedButton2: TSpeedButton;
-    SpeedButton3: TSpeedButton;
     ButtonRetire: TButton;
     ButtonNewLibrarian: TButton;
     Button3: TButton;
-    Edit1: TEdit;
-    GroupBox8: TGroupBox;
+    GroupBoxWorker: TGroupBox;
     ButtonOKUser: TButton;
     Button4: TButton;
     SearchBox1: TSearchBox;
@@ -200,6 +197,33 @@ type
     TOrderscount: TIntegerField;
     TOrdersprocessed: TBooleanField;
     ButtonWriteOffExemplar: TButton;
+    TabSheet9: TTabSheet;
+    Panel16: TPanel;
+    ButtonReaderActivity: TButton;
+    PageControlReports: TPageControl;
+    TabSheet10: TTabSheet;
+    DBGrid4: TDBGrid;
+    Panel17: TPanel;
+    Button1: TButton;
+    GroupBox14: TGroupBox;
+    Label21: TLabel;
+    DateTimePickerStart: TDateTimePicker;
+    Label25: TLabel;
+    DateTimePickerEnd: TDateTimePicker;
+    Label33: TLabel;
+    DBLookupComboBox6: TDBLookupComboBox;
+    Button2: TButton;
+    Button5: TButton;
+    TabSheet11: TTabSheet;
+    ButtonOverdueBooks: TButton;
+    DBGrid5: TDBGrid;
+    Panel18: TPanel;
+    Button6: TButton;
+    Button7: TButton;
+    Button8: TButton;
+    SearchBoxWorker: TSearchBox;
+    SpeedButtonSearchWorkerCancel: TSpeedButton;
+    ButtonWorkerEditCancel: TButton;
     procedure ButtonCreateUserClick(Sender: TObject);
     procedure ButtonOKUserClick(Sender: TObject);
     procedure ButtonEditUserClick(Sender: TObject);
@@ -235,6 +259,18 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure DBGridWorkersCellClick(Column: TColumn);
     procedure ButtonWriteOffExemplarClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure ButtonReaderActivityClick(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
+    procedure Button7Click(Sender: TObject);
+    procedure Button8Click(Sender: TObject);
+    procedure ButtonOverdueBooksClick(Sender: TObject);
+    procedure SpeedButtonSearchWorkerCancelClick(Sender: TObject);
+    procedure SearchBoxWorkerInvokeSearch(Sender: TObject);
+    procedure SearchBoxWorkerKeyPress(Sender: TObject; var Key: Char);
+    procedure ButtonWorkerEditCancelClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -248,6 +284,13 @@ implementation
 
 {$R *.dfm}
 
+uses UnitReportReaderActivity, UnitReportOverdueBooks;
+
+procedure TFormSuper.ButtonReaderActivityClick(Sender: TObject);
+begin
+  PageControlReports.ActivePageIndex := 0;
+end;
+
 procedure TFormSuper.ButtonRetireClick(Sender: TObject);
 begin
   dm.TWorker.Edit;
@@ -259,6 +302,16 @@ procedure TFormSuper.ButtonNewLibrarianClick(Sender: TObject);
 begin
   dm.TWorker.Insert;
   DBGridWorkers.Enabled := false;
+  GroupBoxWorker.Enabled := True;
+  EditLogin.Text := '';
+  EditPass.Text := '';
+end;
+
+procedure TFormSuper.ButtonWorkerEditCancelClick(Sender: TObject);
+begin
+  dm.TWorker.Cancel;
+  DBGridWorkers.Enabled := True;
+  GroupBoxWorker.Enabled := false;
 end;
 
 procedure TFormSuper.ButtonWriteOffExemplarClick(Sender: TObject);
@@ -273,6 +326,16 @@ begin
     dm.TExemplar.FieldByName('IsDelete').Value := True;
     dm.TExemplar.Post;
   end;
+end;
+
+procedure TFormSuper.Button1Click(Sender: TObject);
+begin
+  Form1.QuickRep1.Preview;
+end;
+
+procedure TFormSuper.Button2Click(Sender: TObject);
+begin
+  Form1.QuickRep1.Print;
 end;
 
 procedure TFormSuper.Button3Click(Sender: TObject);
@@ -313,9 +376,43 @@ begin
     dm.TWorker.Post;
 
   DBGridWorkers.Enabled := True;
+  GroupBoxWorker.Enabled := false;
 
   // обновим пароль MD5
   dm.ADOQueryUpdatePassMD5.ExecSQL;
+end;
+
+procedure TFormSuper.Button5Click(Sender: TObject);
+begin
+  with dm do
+  begin
+
+    TRepReaderActivity.Close;
+    TRepReaderActivity.Parameters.ParamByName('id').Value :=
+      TReader.Fields[0].Value;
+    TRepReaderActivity.Parameters.ParamByName('start').Value :=
+      DateToStr(DateTimePickerStart.Date);
+    TRepReaderActivity.Parameters.ParamByName('end').Value :=
+      DateToStr(DateTimePickerEnd.Date);
+
+    TRepReaderActivity.Open;
+
+  end;
+end;
+
+procedure TFormSuper.Button6Click(Sender: TObject);
+begin
+  dm.ADOQueryReportOverdueBooks.Open;
+end;
+
+procedure TFormSuper.Button7Click(Sender: TObject);
+begin
+  FormReportOverdueBooks.QuickRep1.Preview;
+end;
+
+procedure TFormSuper.Button8Click(Sender: TObject);
+begin
+  FormReportOverdueBooks.QuickRep1.Print;
 end;
 
 procedure TFormSuper.ButtonSaveOrderClick(Sender: TObject);
@@ -452,6 +549,11 @@ begin
   ButtonOKBookAuthor.Enabled := True;
 end;
 
+procedure TFormSuper.ButtonOverdueBooksClick(Sender: TObject);
+begin
+  PageControlReports.ActivePageIndex := 1;
+end;
+
 procedure TFormSuper.DBGridOrdersCellClick(Column: TColumn);
 begin
   if orders.FieldByName('processed').Value = True then
@@ -485,6 +587,33 @@ begin
         if not dm.TReader.Locate('Addres', SearchBox1.Text, [loPartialKey]) then
 
           dm.TReader.Locate('Phone', SearchBox1.Text, [loPartialKey]);
+end;
+
+procedure TFormSuper.SearchBoxWorkerInvokeSearch(Sender: TObject);
+var
+  SearchTerm: string;
+begin
+  SearchTerm := SearchBoxWorker.Text;
+  if SearchTerm = '' then
+    dm.TWorker.Filtered := false
+  else
+  begin
+    dm.TWorker.Filter := 'LastName' + ' LIKE ' + QuotedStr(SearchTerm + '*') +
+      ' OR ' + 'FirstName' + ' LIKE ' + QuotedStr(SearchTerm + '*');
+    dm.TWorker.Filtered := True;
+  end;
+end;
+
+procedure TFormSuper.SearchBoxWorkerKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #27 then
+    SpeedButtonSearchWorkerCancelClick(Sender);
+end;
+
+procedure TFormSuper.SpeedButtonSearchWorkerCancelClick(Sender: TObject);
+begin
+  dm.TWorker.Filtered := false;
+  SearchBoxWorker.Text := '';
 end;
 
 procedure TFormSuper.SpeedButtonAddAuthorClick(Sender: TObject);

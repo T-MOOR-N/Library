@@ -8,7 +8,9 @@ uses
   UnitLibrarianAccount in 'UnitLibrarianAccount.pas' {FormLibrary},
   UnitReader in 'UnitReader.pas' {FormAddReadTicket},
   UDM in 'UDM.pas' {DM: TDataModule},
-  UnitSuperUser in 'UnitSuperUser.pas' {FormSuper};
+  UnitSuperUser in 'UnitSuperUser.pas' {FormSuper},
+  UnitReportReaderActivity in 'UnitReportReaderActivity.pas' {Form1},
+  UnitReportOverdueBooks in 'UnitReportOverdueBooks.pas' {FormReportOverdueBooks};
 
 {$R *.res}
 
@@ -21,5 +23,7 @@ begin
   Application.CreateForm(TFormLibrary, FormLibrary);
   Application.CreateForm(TFormAddReadTicket, FormAddReadTicket);
   Application.CreateForm(TFormSuper, FormSuper);
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TFormReportOverdueBooks, FormReportOverdueBooks);
   Application.Run;
 end.
