@@ -1,7 +1,7 @@
 ﻿--
 -- Скрипт сгенерирован Devart dbForge Studio for SQL Server, Версия 5.5.327.0
 -- Домашняя страница продукта: http://www.devart.com/ru/dbforge/sql/studio
--- Дата скрипта: 14.05.2018 23:08:27
+-- Дата скрипта: 16.05.2018 0:07:51
 -- Версия сервера: 10.50.4042
 --
 
@@ -36,7 +36,7 @@ PRINT (N'Создать таблицу [dbo].[Users]')
 GO
 CREATE TABLE dbo.Users (
   id int IDENTITY,
-  type varchar(10) NOT NULL DEFAULT ('reader'),
+  type varchar(10) NOT NULL DEFAULT ('librarian'),
   user_id int NOT NULL,
   login varchar(50) NOT NULL,
   password varchar(50) NOT NULL,
@@ -286,8 +286,10 @@ GO
 GO
 PRINT (N'Создать представление [dbo].[AvailableBooks]')
 GO
-CREATE VIEW dbo.AvailableBooks 
-AS SELECT
+
+CREATE VIEW dbo.AvailableBooks
+AS
+SELECT
   ex.id
  ,b.ISBN
  ,b.Title
@@ -313,7 +315,7 @@ AND ex.id NOT IN (SELECT
   FROM Reservation r
   LEFT JOIN ReservationStatus rs
     ON r.status = rs.id
-  WHERE rs.name IN ('Забронирован', 'Ожидание выдачи'))
+  WHERE rs.name IN ('Забронирован', 'Ожидание выдачи')) AND ex.IsDelete <> 1
 GO
 
 --
@@ -432,7 +434,7 @@ INSERT dbo.BookIssuing(id, Exemplar_id, Reader_id, DateIssue, DateReturnExpected
 INSERT dbo.BookIssuing(id, Exemplar_id, Reader_id, DateIssue, DateReturnExpected, DateReturnReal, Worker_id, DateCreate) VALUES (3, 3, 2, '2018-04-16', '2018-04-23', '2018-04-23', 1, NULL)
 INSERT dbo.BookIssuing(id, Exemplar_id, Reader_id, DateIssue, DateReturnExpected, DateReturnReal, Worker_id, DateCreate) VALUES (6, 1, 3, '2017-04-16', '2017-04-23', '2017-04-23', 1, NULL)
 INSERT dbo.BookIssuing(id, Exemplar_id, Reader_id, DateIssue, DateReturnExpected, DateReturnReal, Worker_id, DateCreate) VALUES (10, 1, 4, '2016-04-13', '2016-04-20', '2016-04-25', 1, NULL)
-INSERT dbo.BookIssuing(id, Exemplar_id, Reader_id, DateIssue, DateReturnExpected, DateReturnReal, Worker_id, DateCreate) VALUES (12, 5, 4, '2018-04-16', '2018-04-20', '2018-04-20', 1, NULL)
+INSERT dbo.BookIssuing(id, Exemplar_id, Reader_id, DateIssue, DateReturnExpected, DateReturnReal, Worker_id, DateCreate) VALUES (12, 5, 4, '2018-04-16', '2018-04-20', NULL, 1, NULL)
 INSERT dbo.BookIssuing(id, Exemplar_id, Reader_id, DateIssue, DateReturnExpected, DateReturnReal, Worker_id, DateCreate) VALUES (15, 14, 4, '2018-04-15', '2018-04-15', '2018-04-20', 1, NULL)
 GO
 SET IDENTITY_INSERT dbo.BookIssuing OFF
@@ -442,23 +444,28 @@ GO
 --
 SET IDENTITY_INSERT dbo.Exemplar ON
 GO
-INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (1, N'1 полка   ', N'9785699648986', NULL, NULL)
-INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (2, N'1 полка   ', N'9785699648986', NULL, NULL)
-INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (3, N'2 полка   ', N'9785995505792', NULL, NULL)
-INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (4, N'1 полка   ', N'9785699648986', NULL, NULL)
-INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (5, N'1 полка   ', N'9785995505792', NULL, NULL)
-INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (6, N'полка 3   ', N'9785941576307', NULL, NULL)
-INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (7, N'полка 3   ', N'9785977501743', NULL, NULL)
-INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (8, N'полка 3   ', N'9785977503617', NULL, NULL)
-INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (9, N'полка 3   ', N'9785941576307', NULL, NULL)
-INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (10, N'полка 3   ', N'9785977501743', NULL, NULL)
-INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (11, N'полка 3   ', N'9785977503617', NULL, NULL)
-INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (12, N'полка 3   ', N'9785941576307', NULL, NULL)
-INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (13, N'полка 3   ', N'9785977501743', NULL, NULL)
-INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (14, N'полка 3   ', N'9785977503617', NULL, NULL)
-INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (16, N'полка 1', N'9785941576307', NULL, NULL)
-INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (17, N'полка 1', N'9785941576307', NULL, NULL)
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (1, N'1 полка   ', N'9785699648986', NULL, CONVERT(bit, 'False'))
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (2, N'1 полка   ', N'9785699648986', NULL, CONVERT(bit, 'False'))
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (3, N'2 полка   ', N'9785995505792', NULL, CONVERT(bit, 'False'))
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (4, N'1 полка   ', N'9785699648986', NULL, CONVERT(bit, 'False'))
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (5, N'1 полка   ', N'9785995505792', NULL, CONVERT(bit, 'False'))
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (6, N'полка 3   ', N'9785941576307', NULL, CONVERT(bit, 'False'))
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (7, N'полка 3   ', N'9785977501743', NULL, CONVERT(bit, 'False'))
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (8, N'полка 3   ', N'9785977503617', NULL, CONVERT(bit, 'False'))
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (9, N'полка 3   ', N'9785941576307', NULL, CONVERT(bit, 'False'))
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (10, N'полка 3   ', N'9785977501743', NULL, CONVERT(bit, 'False'))
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (11, N'полка 3   ', N'9785977503617', NULL, CONVERT(bit, 'False'))
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (12, N'полка 3   ', N'9785941576307', NULL, CONVERT(bit, 'False'))
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (13, N'полка 3   ', N'9785977501743', NULL, CONVERT(bit, 'False'))
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (14, N'полка 3   ', N'9785977503617', NULL, CONVERT(bit, 'False'))
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (16, N'полка 1', N'9785941576307', NULL, CONVERT(bit, 'False'))
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (17, N'полка 1', N'9785941576307', NULL, CONVERT(bit, 'False'))
 INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (18, N'полка 1', N'9785941576307', NULL, NULL)
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (19, N'полка 1', N'9785941576307', '2018-05-15 20:58:07.603', CONVERT(bit, 'False'))
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (20, N'полка 1', N'9785941576307', '2018-05-15 20:58:40.880', CONVERT(bit, 'False'))
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (21, N'полка 1', N'9785941576307', '2018-05-15 21:06:15.263', CONVERT(bit, 'False'))
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (22, N'полка 1', N'9785941576307', '2018-05-15 21:06:15.267', CONVERT(bit, 'False'))
+INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (23, N'полка 1', N'9785941576307', '2018-05-15 21:07:29.860', CONVERT(bit, 'True'))
 GO
 SET IDENTITY_INSERT dbo.Exemplar OFF
 GO
@@ -468,6 +475,9 @@ GO
 SET IDENTITY_INSERT dbo.Orders ON
 GO
 INSERT dbo.Orders(id, publishing_id, book_id, count, processed) VALUES (1, 2, N'9785941576307', 3, CONVERT(bit, 'True'))
+INSERT dbo.Orders(id, publishing_id, book_id, count, processed) VALUES (2, 4, N'9785941576307', 2, CONVERT(bit, 'True'))
+INSERT dbo.Orders(id, publishing_id, book_id, count, processed) VALUES (3, 4, N'9785977501743', 1, CONVERT(bit, 'True'))
+INSERT dbo.Orders(id, publishing_id, book_id, count, processed) VALUES (4, 4, N'9785977503617', 1, CONVERT(bit, 'True'))
 GO
 SET IDENTITY_INSERT dbo.Orders OFF
 GO
@@ -517,6 +527,7 @@ SET IDENTITY_INSERT dbo.Users ON
 GO
 INSERT dbo.Users(id, type, user_id, login, password, passMD5) VALUES (3, N'librarian', 1, N'librarian', N'pass', 0x1A1DC91C907325C69271DDF0C944BC72)
 INSERT dbo.Users(id, type, user_id, login, password, passMD5) VALUES (4, N'admin', 2, N'admin', N'admin', 0x21232F297A57A5A743894A0E4A801FC3)
+INSERT dbo.Users(id, type, user_id, login, password, passMD5) VALUES (5, N'reader', 5, N'login', N'qwerty', 0xD8578EDF8458CE06FBC5BB76A58C5CA4)
 GO
 SET IDENTITY_INSERT dbo.Users OFF
 GO
@@ -525,8 +536,9 @@ GO
 --
 SET IDENTITY_INSERT dbo.Worker ON
 GO
-INSERT dbo.Worker(id, FirstName, LastName, IsDelete, DateCreate) VALUES (1, N'Валишна', N'Наталья', NULL, NULL)
-INSERT dbo.Worker(id, FirstName, LastName, IsDelete, DateCreate) VALUES (2, N'Седова', N'Екатерина', NULL, NULL)
+INSERT dbo.Worker(id, FirstName, LastName, IsDelete, DateCreate) VALUES (1, N'Валишна', N'Наталья', CONVERT(bit, 'False'), '2017-01-11 20:17:51.393')
+INSERT dbo.Worker(id, FirstName, LastName, IsDelete, DateCreate) VALUES (2, N'Седова', N'Екатерина', CONVERT(bit, 'False'), '2017-06-22 20:17:59.570')
+INSERT dbo.Worker(id, FirstName, LastName, IsDelete, DateCreate) VALUES (5, N'Иван', N'Иванов', CONVERT(bit, 'True'), '2018-05-15 20:03:15.100')
 GO
 SET IDENTITY_INSERT dbo.Worker OFF
 GO
