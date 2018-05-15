@@ -83,6 +83,9 @@ type
     ComboBoxAvailableBooks: TComboBox;
     ButtonSearchBoxAvailableBooksClear: TButton;
     ButtonSearchBoxReaderClear: TButton;
+    Label4: TLabel;
+    DBLookupComboBox6: TDBLookupComboBox;
+    Button3: TButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure ButtonSearchBoxCatalogClearClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -97,6 +100,7 @@ type
     procedure ButtonReturnBookClick(Sender: TObject);
     procedure ButtonSearchBoxAvailableBooksClearClick(Sender: TObject);
     procedure ButtonSearchBoxReaderClearClick(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -186,6 +190,14 @@ begin
         DM.TUsers.Cancel;
       end;
   end;
+end;
+
+procedure TFormLibrary.Button3Click(Sender: TObject);
+begin
+  DM.TBookIssuing.Cancel;
+  GroupBoxBookIssue.Visible := false;
+  ButtonReturnBook.Enabled := true;
+  DBGridBookIssuing.Enabled := true;
 end;
 
 procedure TFormLibrary.ButtonSearchBoxReaderClearClick(Sender: TObject);

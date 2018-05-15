@@ -271,6 +271,10 @@ type
     procedure SearchBoxWorkerInvokeSearch(Sender: TObject);
     procedure SearchBoxWorkerKeyPress(Sender: TObject; var Key: Char);
     procedure ButtonWorkerEditCancelClick(Sender: TObject);
+    procedure SearchBoxCatalogInvokeSearch(Sender: TObject);
+    procedure ButtonSearchBoxCatalogClearClick(Sender: TObject);
+    procedure SearchBoxAvailableBooksInvokeSearch(Sender: TObject);
+    procedure ButtonSearchBoxAvailableBooksClearClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -421,6 +425,16 @@ begin
   orders.Post;
   DBGridOrders.Enabled := True;
   GroupBoxCreateOrder.Enabled := false;
+end;
+
+procedure TFormSuper.ButtonSearchBoxAvailableBooksClearClick(Sender: TObject);
+begin
+  dm.ViewAvailableBooks.Filtered := false;
+end;
+
+procedure TFormSuper.ButtonSearchBoxCatalogClearClick(Sender: TObject);
+begin
+  dm.ViewCatalog.Filtered := false;
 end;
 
 procedure TFormSuper.ButtonBookAddAuthorClick(Sender: TObject);
@@ -587,6 +601,42 @@ begin
         if not dm.TReader.Locate('Addres', SearchBox1.Text, [loPartialKey]) then
 
           dm.TReader.Locate('Phone', SearchBox1.Text, [loPartialKey]);
+end;
+
+procedure TFormSuper.SearchBoxAvailableBooksInvokeSearch(Sender: TObject);
+var
+  FieldName, SearchTerm: string;
+begin
+  case ComboBoxAvailableBooks.ItemIndex of
+    0:
+      FieldName := 'Title';
+    1:
+      FieldName := 'category';
+    2:
+      FieldName := 'publishing';
+  end;
+
+  SearchTerm := SearchBoxAvailableBooks.Text;
+  dm.DoIncrementalFilter(dm.ViewAvailableBooks, FieldName, SearchTerm);
+end;
+
+procedure TFormSuper.SearchBoxCatalogInvokeSearch(Sender: TObject);
+var
+  FieldName, SearchTerm: string;
+begin
+  case ComboBoxBookSearch.ItemIndex of
+    0:
+      FieldName := 'Title';
+    1:
+      FieldName := 'category';
+    2:
+      FieldName := 'Author';
+    3:
+      FieldName := 'name';
+  end;
+
+  SearchTerm := SearchBoxCatalog.Text;
+  dm.DoIncrementalFilter(dm.ViewCatalog, FieldName, SearchTerm);
 end;
 
 procedure TFormSuper.SearchBoxWorkerInvokeSearch(Sender: TObject);

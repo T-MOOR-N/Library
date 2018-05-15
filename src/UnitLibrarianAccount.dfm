@@ -20,11 +20,11 @@ object FormLibrary: TFormLibrary
     Top = 0
     Width = 852
     Height = 508
-    ActivePage = TabSheet2
+    ActivePage = TabSheet4
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
-      Caption = #1050#1072#1090#1086#1083#1086#1075
+      Caption = #1050#1072#1090#1072#1083#1086#1075
       object PageControl2: TPageControl
         Left = 0
         Top = 0
@@ -457,6 +457,42 @@ object FormLibrary: TFormLibrary
           TitleFont.Height = -11
           TitleFont.Name = 'MS Sans Serif'
           TitleFont.Style = []
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'id'
+              Visible = False
+            end
+            item
+              Expanded = False
+              FieldName = 'FirstName'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'LastName'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'MiddleName'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Phone'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Adress'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'abr'
+              Visible = False
+            end>
         end
       end
       object GroupBox9: TGroupBox
@@ -482,6 +518,57 @@ object FormLibrary: TFormLibrary
           TitleFont.Height = -11
           TitleFont.Name = 'MS Sans Serif'
           TitleFont.Style = []
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'id'
+              Visible = False
+            end
+            item
+              Expanded = False
+              FieldName = 'BookName'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Exemplar_id'
+              Visible = False
+            end
+            item
+              Expanded = False
+              FieldName = 'Reader_id'
+              Visible = False
+            end
+            item
+              Expanded = False
+              FieldName = 'DateIssue'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'DateReturnExpected'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'DateReturnReal'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Worker_id'
+              Visible = False
+            end
+            item
+              Expanded = False
+              FieldName = 'ReaderName'
+              Visible = False
+            end
+            item
+              Expanded = False
+              FieldName = 'WorkerName'
+              Visible = False
+            end>
         end
       end
     end
@@ -628,49 +715,53 @@ object FormLibrary: TFormLibrary
           item
             Expanded = False
             FieldName = 'id'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'Exemplar_id'
-            Title.Caption = #1050#1086#1076' '#1101#1082#1079#1077#1084#1087#1083#1103#1088#1072
-            Width = 110
+            Title.Caption = #1050#1086#1076' '
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'BookName'
-            Width = 110
             Visible = True
           end
           item
             Expanded = False
-            FieldName = 'ReaderName'
-            Width = 110
-            Visible = True
+            FieldName = 'Exemplar_id'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'Reader_id'
+            Visible = False
           end
           item
             Expanded = False
             FieldName = 'DateIssue'
-            Width = 110
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DateReturnExpected'
-            Width = 110
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DateReturnReal'
-            Width = 110
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'Worker_id'
+            Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'ReaderName'
+            Title.Caption = #1063#1080#1090#1072#1090#1077#1083#1100
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'WorkerName'
-            Width = 110
             Visible = True
           end>
       end
@@ -686,7 +777,7 @@ object FormLibrary: TFormLibrary
         Visible = False
         object Label5: TLabel
           Left = 16
-          Top = 69
+          Top = 117
           Width = 57
           Height = 13
           Caption = #1069#1082#1079#1077#1084#1087#1083#1103#1088
@@ -711,6 +802,13 @@ object FormLibrary: TFormLibrary
           Width = 78
           Height = 13
           Caption = #1044#1072#1090#1072' '#1079#1072#1082#1088#1099#1090#1080#1103
+        end
+        object Label4: TLabel
+          Left = 16
+          Top = 71
+          Width = 82
+          Height = 13
+          Caption = #1053#1072#1079#1074#1072#1085#1080#1077' '#1082#1085#1080#1075#1080
         end
         object DateTimePicker1: TDateTimePicker
           Left = 448
@@ -741,14 +839,14 @@ object FormLibrary: TFormLibrary
         end
         object DBLookupComboBox2: TDBLookupComboBox
           Left = 16
-          Top = 88
+          Top = 136
           Width = 265
           Height = 21
           DataField = 'Exemplar_id'
           DataSource = DM.DSBookIssuing
           KeyField = 'id'
           ListField = 'id'
-          ListSource = DM.DSExemplar
+          ListSource = DSTBHExemplar
           TabOrder = 3
         end
         object DBLookupComboBox1: TDBLookupComboBox
@@ -762,6 +860,25 @@ object FormLibrary: TFormLibrary
           ListField = 'abr'
           ListSource = DM.DSReader
           TabOrder = 4
+        end
+        object DBLookupComboBox6: TDBLookupComboBox
+          Left = 16
+          Top = 90
+          Width = 265
+          Height = 21
+          KeyField = 'ISBN'
+          ListField = 'Title'
+          ListSource = DSTBHBook
+          TabOrder = 5
+        end
+        object Button3: TButton
+          Left = 616
+          Top = 136
+          Width = 75
+          Height = 25
+          Caption = #1054#1090#1084#1077#1085#1072
+          TabOrder = 6
+          OnClick = Button3Click
         end
       end
     end

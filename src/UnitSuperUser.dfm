@@ -1581,6 +1581,7 @@ object FormSuper: TFormSuper
                     Width = 241
                     Height = 24
                     TabOrder = 0
+                    OnInvokeSearch = SearchBoxCatalogInvokeSearch
                   end
                   object ComboBoxBookSearch: TComboBox
                     Left = 32
@@ -1601,9 +1602,10 @@ object FormSuper: TFormSuper
                     Left = 440
                     Top = 26
                     Width = 75
-                    Height = 21
+                    Height = 24
                     Caption = #1054#1095#1080#1089#1090#1080#1090#1100
                     TabOrder = 2
+                    OnClick = ButtonSearchBoxCatalogClearClick
                   end
                 end
               end
@@ -1698,6 +1700,7 @@ object FormSuper: TFormSuper
                     Width = 241
                     Height = 24
                     TabOrder = 0
+                    OnInvokeSearch = SearchBoxAvailableBooksInvokeSearch
                   end
                   object ComboBoxAvailableBooks: TComboBox
                     Left = 32
@@ -1720,6 +1723,7 @@ object FormSuper: TFormSuper
                     Height = 24
                     Caption = #1054#1095#1080#1089#1090#1080#1090#1100
                     TabOrder = 2
+                    OnClick = ButtonSearchBoxAvailableBooksClearClick
                   end
                   object ButtonWriteOffExemplar: TButton
                     Left = 607

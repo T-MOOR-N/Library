@@ -710,6 +710,7 @@ object DM: TDM
       DisplayWidth = 10
       FieldName = 'id'
       ReadOnly = True
+      Visible = False
     end
     object IntegerField1: TIntegerField
       DisplayWidth = 10
