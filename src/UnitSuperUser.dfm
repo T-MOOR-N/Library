@@ -20,7 +20,7 @@ object FormSuper: TFormSuper
     Top = 0
     Width = 892
     Height = 658
-    ActivePage = TabSheet1
+    ActivePage = TabSheet3
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -1424,7 +1424,7 @@ object FormSuper: TFormSuper
         Top = 0
         Width = 884
         Height = 627
-        ActivePage = TabSheet5
+        ActivePage = TabSheet4
         Align = alClient
         TabOrder = 0
         object TabSheet4: TTabSheet
@@ -1555,7 +1555,7 @@ object FormSuper: TFormSuper
             Top = 0
             Width = 876
             Height = 596
-            ActivePage = TabSheet6
+            ActivePage = TabSheet7
             Align = alClient
             TabOrder = 0
             object TabSheet6: TTabSheet
@@ -1942,9 +1942,6 @@ object FormSuper: TFormSuper
           ParentShowHint = False
           ShowHint = False
           TabVisible = False
-          ExplicitTop = 27
-          ExplicitWidth = 651
-          ExplicitHeight = 596
           object DBGrid4: TDBGrid
             Left = 0
             Top = 122
@@ -1968,8 +1965,6 @@ object FormSuper: TFormSuper
             Caption = 'Panel17'
             ShowCaption = False
             TabOrder = 1
-            ExplicitLeft = 2
-            ExplicitTop = 14
             object Label33: TLabel
               Left = 16
               Top = 90
@@ -2060,8 +2055,6 @@ object FormSuper: TFormSuper
           Caption = 'TabSheet11'
           ImageIndex = 1
           TabVisible = False
-          ExplicitTop = 27
-          ExplicitHeight = 596
           object DBGrid5: TDBGrid
             Left = 0
             Top = 68

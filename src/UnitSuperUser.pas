@@ -449,21 +449,24 @@ var
   count: integer;
   I: integer;
 begin
-  count := orders.FieldByName('count').Value;
+  count := DSOrders.DataSet.FieldByName('count').Value;
 
   for I := 1 to count do
   begin
     dm.TExemplar.Insert;
     dm.TExemplar.FieldByName('ISBN').Value :=
-      dm.TOrders.FieldByName('book_id').Value;
+      DSOrders.DataSet.FieldByName('book_id').Value;
     dm.TExemplar.FieldByName('placement').Value := 'полка 1';
     dm.TExemplar.Post;
   end;
 
-  orders.Edit;
-  orders.FieldByName('processed').Value := True;
-  orders.Post;
+  DSOrders.DataSet.Edit;
+  DSOrders.DataSet.FieldByName('processed').Value := True;
+  DSOrders.DataSet.Post;
   ShowMessage('Успешно создан(ы) ' + count.ToString + ' экземпляров книг ');
+
+  dm.ViewAvailableBooks.Close;
+  dm.ViewAvailableBooks.OPEN;
 
   if MessageDlg('Перейти в каталог?', mtConfirmation, [mbYes, mbNO], 0) = mrYes
   then
