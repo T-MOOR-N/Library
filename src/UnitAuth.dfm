@@ -88,6 +88,7 @@ object FormAuth: TFormAuth
         Size = 16
         Value = Null
       end>
+    Prepared = True
     SQL.Strings = (
       'SELECT'
       '  u.user_id'

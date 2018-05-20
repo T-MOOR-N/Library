@@ -626,7 +626,11 @@ object DM: TDM
     end
     object ViewCatalogCount: TIntegerField
       DisplayLabel = #1050#1086#1083#1080#1095#1077#1089#1090#1074#1086
-      FieldName = 'Count'
+      FieldName = 'CountAll'
+    end
+    object ViewCatalogAvailableCount: TIntegerField
+      DisplayLabel = #1044#1086#1089#1090#1091#1087#1085#1086
+      FieldName = 'AvailableCount'
     end
   end
   object DSCatalog: TDataSource

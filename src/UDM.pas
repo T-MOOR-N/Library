@@ -153,6 +153,7 @@ type
     ADOQueryReportOverdueBooksDateReturnExpected: TWideStringField;
     ADOQueryReportOverdueBooksReader: TStringField;
     ADOQueryReportOverdueBooksPhone: TStringField;
+    ViewCatalogAvailableCount: TIntegerField;
     procedure TAuthorCalcFields(DataSet: TDataSet);
     procedure TReaderCalcFields(DataSet: TDataSet);
     procedure DoIncrementalFilter(DataSet: TDataSet;

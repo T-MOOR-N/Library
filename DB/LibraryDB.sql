@@ -1,8 +1,9 @@
 ﻿--
--- Скрипт сгенерирован Devart dbForge Studio for SQL Server, Версия 5.5.327.0
--- Домашняя страница продукта: http://www.devart.com/ru/dbforge/sql/studio
--- Дата скрипта: 16.05.2018 0:07:51
--- Версия сервера: 10.50.4042
+-- Скрипт сгенерирован Devart dbForge Studio for SQL Server, Версия 5.4.275.0
+-- Домашняя страница продукта: http://devart.com/ru/dbforge/sql/studio
+-- Дата скрипта: 20.05.2018 18:07:26
+-- Версия сервера: 10.50.4000
+-- Версия клиента: 
 --
 
 
@@ -182,46 +183,20 @@ CREATE TABLE dbo.Author (
 ON [PRIMARY]
 GO
 
-SET QUOTED_IDENTIFIER, ANSI_NULLS ON
-GO
-
 --
--- Создать представление [dbo].[catalog]
+-- Создать таблицу [dbo].[Reservation]
 --
+PRINT (N'Создать таблицу [dbo].[Reservation]')
 GO
-PRINT (N'Создать представление [dbo].[catalog]')
-GO
-
-CREATE VIEW dbo.catalog
-AS
-SELECT
-  b.ISBN
- ,bc.name AS 'category'
- ,b.Title
- ,FirstName + ' ' + SUBSTRING(a.LastName, 1, 1) + '.' + SUBSTRING(a.MiddleName, 1, 1) + '.' AS 'Author'
- ,p.name
- ,p.city
- ,b.year
- ,COUNT(*) AS 'Count'
-FROM LibraryDB.dbo.Exemplar e
-LEFT JOIN Book b
-  ON e.ISBN = b.ISBN
-LEFT JOIN BookCategory bc
-  ON b.category = bc.id
-LEFT JOIN Publishing p
-  ON b.publishing_id = p.id
-LEFT JOIN AuthorBook ab
-  ON b.ISBN = ab.ISBN
-LEFT JOIN Author a
-  ON ab.author_id = a.id
-
-GROUP BY b.ISBN
-        ,bc.name
-        ,b.Title
-        ,FirstName + ' ' + SUBSTRING(a.LastName, 1, 1) + '.' + SUBSTRING(a.MiddleName, 1, 1) + '.'
-        ,p.name
-        ,p.city
-        ,b.year
+CREATE TABLE dbo.Reservation (
+  id int IDENTITY,
+  date datetime NULL,
+  exemplar_id int NULL,
+  reader_id int NULL,
+  status int NULL,
+  CONSTRAINT PK_Reservation_id PRIMARY KEY CLUSTERED (id)
+)
+ON [PRIMARY]
 GO
 
 --
@@ -243,6 +218,9 @@ CREATE TABLE dbo.BookIssuing (
 ON [PRIMARY]
 GO
 
+SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+
 --
 -- Создать представление [dbo].[exemplar_history]
 --
@@ -262,22 +240,6 @@ LEFT JOIN Reader r
   ON bi.Reader_id = r.id
 --  WHERE bi.Exemplar_id = @id
 --ORDER BY bi.DateIssue
-GO
-
---
--- Создать таблицу [dbo].[Reservation]
---
-PRINT (N'Создать таблицу [dbo].[Reservation]')
-GO
-CREATE TABLE dbo.Reservation (
-  id int IDENTITY,
-  date datetime NULL,
-  exemplar_id int NULL,
-  reader_id int NULL,
-  status int NULL,
-  CONSTRAINT PK_Reservation_id PRIMARY KEY CLUSTERED (id)
-)
-ON [PRIMARY]
 GO
 
 --
@@ -316,6 +278,51 @@ AND ex.id NOT IN (SELECT
   LEFT JOIN ReservationStatus rs
     ON r.status = rs.id
   WHERE rs.name IN ('Забронирован', 'Ожидание выдачи')) AND ex.IsDelete <> 1
+GO
+
+--
+-- Создать представление [dbo].[catalog]
+--
+GO
+PRINT (N'Создать представление [dbo].[catalog]')
+GO
+CREATE VIEW dbo.catalog 
+AS SELECT
+  b.ISBN
+ ,bc.name AS 'category'
+ ,b.Title
+ ,FirstName + ' ' + SUBSTRING(a.LastName, 1, 1) + '.' + SUBSTRING(a.MiddleName, 1, 1) + '.' AS 'Author'
+ ,p.name
+ ,p.city
+ ,b.year
+ ,COUNT(*) AS 'CountAll'
+ ,avb.cnt AS 'AvailableCount'
+FROM LibraryDB.dbo.Exemplar e
+LEFT JOIN Book b
+  ON e.ISBN = b.ISBN
+LEFT JOIN BookCategory bc
+  ON b.category = bc.id
+LEFT JOIN Publishing p
+  ON b.publishing_id = p.id
+LEFT JOIN AuthorBook ab
+  ON b.ISBN = ab.ISBN
+LEFT JOIN Author a
+  ON ab.author_id = a.id
+JOIN (SELECT
+    ISBN
+   ,COUNT(*) AS 'cnt'
+  FROM LibraryDB.dbo.AvailableBooks
+  GROUP BY ISBN) avb
+  ON b.ISBN = avb.ISBN
+
+GROUP BY b.ISBN
+        ,bc.name
+        ,b.Title
+        ,FirstName + ' ' + SUBSTRING(a.LastName, 1, 1) + '.' + SUBSTRING(a.MiddleName, 1, 1) + '.'
+        ,p.name
+        ,p.city
+        ,b.year
+        ,avb.cnt
 GO
 
 --
@@ -461,11 +468,6 @@ INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (14, N'п�
 INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (16, N'полка 1', N'9785941576307', NULL, CONVERT(bit, 'False'))
 INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (17, N'полка 1', N'9785941576307', NULL, CONVERT(bit, 'False'))
 INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (18, N'полка 1', N'9785941576307', NULL, NULL)
-INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (19, N'полка 1', N'9785941576307', '2018-05-15 20:58:07.603', CONVERT(bit, 'False'))
-INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (20, N'полка 1', N'9785941576307', '2018-05-15 20:58:40.880', CONVERT(bit, 'False'))
-INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (21, N'полка 1', N'9785941576307', '2018-05-15 21:06:15.263', CONVERT(bit, 'False'))
-INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (22, N'полка 1', N'9785941576307', '2018-05-15 21:06:15.267', CONVERT(bit, 'False'))
-INSERT dbo.Exemplar(id, placement, ISBN, DateCreate, IsDelete) VALUES (23, N'полка 1', N'9785941576307', '2018-05-15 21:07:29.860', CONVERT(bit, 'True'))
 GO
 SET IDENTITY_INSERT dbo.Exemplar OFF
 GO
@@ -525,9 +527,8 @@ GO
 --
 SET IDENTITY_INSERT dbo.Users ON
 GO
-INSERT dbo.Users(id, type, user_id, login, password, passMD5) VALUES (3, N'librarian', 1, N'librarian', N'pass', 0x1A1DC91C907325C69271DDF0C944BC72)
-INSERT dbo.Users(id, type, user_id, login, password, passMD5) VALUES (4, N'admin', 2, N'admin', N'admin', 0x21232F297A57A5A743894A0E4A801FC3)
-INSERT dbo.Users(id, type, user_id, login, password, passMD5) VALUES (5, N'reader', 5, N'login', N'qwerty', 0xD8578EDF8458CE06FBC5BB76A58C5CA4)
+INSERT dbo.Users(id, type, user_id, login, password, passMD5) VALUES (3, N'librarian', 6, N'librarian', N'pass', 0x1A1DC91C907325C69271DDF0C944BC72)
+INSERT dbo.Users(id, type, user_id, login, password, passMD5) VALUES (4, N'admin', 1, N'admin', N'admin', 0x21232F297A57A5A743894A0E4A801FC3)
 GO
 SET IDENTITY_INSERT dbo.Users OFF
 GO
@@ -536,9 +537,8 @@ GO
 --
 SET IDENTITY_INSERT dbo.Worker ON
 GO
-INSERT dbo.Worker(id, FirstName, LastName, IsDelete, DateCreate) VALUES (1, N'Валишна', N'Наталья', CONVERT(bit, 'False'), '2017-01-11 20:17:51.393')
-INSERT dbo.Worker(id, FirstName, LastName, IsDelete, DateCreate) VALUES (2, N'Седова', N'Екатерина', CONVERT(bit, 'False'), '2017-06-22 20:17:59.570')
-INSERT dbo.Worker(id, FirstName, LastName, IsDelete, DateCreate) VALUES (5, N'Иван', N'Иванов', CONVERT(bit, 'True'), '2018-05-15 20:03:15.100')
+INSERT dbo.Worker(id, FirstName, LastName, IsDelete, DateCreate) VALUES (1, N'Валишна', N'Наталья', CONVERT(bit, 'False'), '2017-11-01 20:17:51.393')
+INSERT dbo.Worker(id, FirstName, LastName, IsDelete, DateCreate) VALUES (6, N'Сидоров', N'Сергей', CONVERT(bit, 'False'), '2018-05-20 18:05:42.593')
 GO
 SET IDENTITY_INSERT dbo.Worker OFF
 GO
@@ -547,15 +547,6 @@ USE LibraryDB
 GO
 
 IF DB_NAME() <> N'LibraryDB' SET NOEXEC ON
-GO
-
---
--- Создать внешний ключ [FK_Users_Worker_id] для объекта типа таблица [dbo].[Users]
---
-PRINT (N'Создать внешний ключ [FK_Users_Worker_id] для объекта типа таблица [dbo].[Users]')
-GO
-ALTER TABLE dbo.Users
-  ADD CONSTRAINT FK_Users_Worker_id FOREIGN KEY (user_id) REFERENCES dbo.Worker (id)
 GO
 
 --

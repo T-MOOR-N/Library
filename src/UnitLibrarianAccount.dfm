@@ -20,7 +20,7 @@ object FormLibrary: TFormLibrary
     Top = 0
     Width = 852
     Height = 508
-    ActivePage = TabSheet4
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -30,7 +30,7 @@ object FormLibrary: TFormLibrary
         Top = 0
         Width = 844
         Height = 480
-        ActivePage = TabSheet7
+        ActivePage = TabSheet5
         Align = alClient
         TabOrder = 0
         object TabSheet5: TTabSheet
@@ -145,7 +145,12 @@ object FormLibrary: TFormLibrary
                 end
                 item
                   Expanded = False
-                  FieldName = 'Count'
+                  FieldName = 'CountAll'
+                  Visible = True
+                end
+                item
+                  Expanded = False
+                  FieldName = 'AvailableCount'
                   Visible = True
                 end>
             end
