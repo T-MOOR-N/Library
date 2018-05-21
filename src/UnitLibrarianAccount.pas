@@ -86,6 +86,23 @@ type
     Label4: TLabel;
     DBLookupComboBox6: TDBLookupComboBox;
     Button3: TButton;
+    Panel5: TPanel;
+    Panel6: TPanel;
+    Button4: TButton;
+    Button5: TButton;
+    Button6: TButton;
+    DBLookupComboBox7: TDBLookupComboBox;
+    Label8: TLabel;
+    Label9: TLabel;
+    DBLookupComboBox8: TDBLookupComboBox;
+    Label11: TLabel;
+    DBLookupComboBox9: TDBLookupComboBox;
+    Label12: TLabel;
+    DBLookupComboBox10: TDBLookupComboBox;
+    Label13: TLabel;
+    DBLookupComboBox11: TDBLookupComboBox;
+    Button8: TButton;
+    Button9: TButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure ButtonSearchBoxCatalogClearClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -101,6 +118,11 @@ type
     procedure ButtonSearchBoxAvailableBooksClearClick(Sender: TObject);
     procedure ButtonSearchBoxReaderClearClick(Sender: TObject);
     procedure Button3Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure Button8Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure Button9Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -200,6 +222,32 @@ begin
   DBGridBookIssuing.Enabled := true;
 end;
 
+procedure TFormLibrary.Button4Click(Sender: TObject);
+begin
+  DM.TReservation.Insert;
+end;
+
+procedure TFormLibrary.Button5Click(Sender: TObject);
+begin
+  ButtonIssueBookClick(Sender);
+  DM.DSBookIssuing.DataSet.FieldByName('Exemplar_id').Value :=
+    DM.TReservation.FieldByName('exemplar_id').Value;
+  DM.DSBookIssuing.DataSet.FieldByName('Reader_id').Value :=
+    DM.TReservation.FieldByName('reader_id').Value;
+  DM.TReservation.FieldByName('exemplar_id').Value;
+//  DM.DSBookIssuing.DataSet.FieldByName('').Value := '';
+//  DM.DSBookIssuing.DataSet.FieldByName('').Value := '';
+
+  PageControl1.ActivePageIndex := 3;
+end;
+
+procedure TFormLibrary.Button6Click(Sender: TObject);
+begin
+  DM.TReservation.Edit;
+  DM.TReservation.FieldByName('status').Value := 3;
+  DM.TReservation.Post;
+end;
+
 procedure TFormLibrary.ButtonSearchBoxReaderClearClick(Sender: TObject);
 begin
   DM.TReader.Filtered := false
@@ -225,6 +273,19 @@ begin
   // end;
 end;
 
+procedure TFormLibrary.Button8Click(Sender: TObject);
+begin
+  DM.TReservation.FieldByName('exemplar_id').Value :=
+    DSTBHExemplar.DataSet.Fields[0].Value;
+  DM.TReservation.FieldByName('date').Value := Now;
+  DM.TReservation.Post;
+end;
+
+procedure TFormLibrary.Button9Click(Sender: TObject);
+begin
+  DM.TReservation.Cancel;
+end;
+
 procedure TFormLibrary.ButtonIssueBookClick(Sender: TObject);
 begin
   DM.TBookIssuing.Insert;
@@ -238,7 +299,7 @@ procedure TFormLibrary.ButtonReturnBookClick(Sender: TObject);
 begin
   DM.TBookIssuing.Edit;
 
-  DM.TBookIssuing.FieldByName('DateReturnReal').Value := now();
+  DM.TBookIssuing.FieldByName('DateReturnReal').Value := Now();
 
   DM.TBookIssuing.Post;
 end;

@@ -20,7 +20,7 @@ object FormLibrary: TFormLibrary
     Top = 0
     Width = 852
     Height = 508
-    ActivePage = TabSheet1
+    ActivePage = TabSheet3
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -30,7 +30,7 @@ object FormLibrary: TFormLibrary
         Top = 0
         Width = 844
         Height = 480
-        ActivePage = TabSheet5
+        ActivePage = TabSheet7
         Align = alClient
         TabOrder = 0
         object TabSheet5: TTabSheet
@@ -580,12 +580,11 @@ object FormLibrary: TFormLibrary
     object TabSheet3: TTabSheet
       Caption = #1041#1088#1086#1085#1100
       ImageIndex = 2
-      TabVisible = False
       object DBGridReservations: TDBGrid
         Left = 0
         Top = 0
         Width = 844
-        Height = 480
+        Height = 271
         Align = alClient
         DataSource = DM.DSReservation
         ReadOnly = True
@@ -595,54 +594,164 @@ object FormLibrary: TFormLibrary
         TitleFont.Height = -11
         TitleFont.Name = 'MS Sans Serif'
         TitleFont.Style = []
-        Columns = <
-          item
-            Expanded = False
-            FieldName = 'id'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'date'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'exemplar_id'
-            Visible = False
-          end
-          item
-            Expanded = False
-            FieldName = 'reader_id'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'status'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'book_LF'
-            Width = 246
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'BookName'
-            Visible = False
-          end
-          item
-            Expanded = False
-            FieldName = 'ReaderName'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'StatusNAme'
-            Width = 82
-            Visible = True
-          end>
+      end
+      object Panel5: TPanel
+        Left = 0
+        Top = 312
+        Width = 844
+        Height = 168
+        Align = alBottom
+        Caption = 'Panel5'
+        ShowCaption = False
+        TabOrder = 1
+        ExplicitTop = 318
+        object Label8: TLabel
+          Left = 64
+          Top = 29
+          Width = 48
+          Height = 13
+          Caption = #1063#1080#1090#1072#1090#1077#1083#1100
+        end
+        object Label9: TLabel
+          Left = 64
+          Top = 77
+          Width = 34
+          Height = 13
+          Caption = #1057#1090#1072#1090#1091#1089
+        end
+        object Label11: TLabel
+          Left = 240
+          Top = 24
+          Width = 53
+          Height = 13
+          Caption = #1050#1072#1090#1077#1075#1086#1088#1080#1103
+        end
+        object Label12: TLabel
+          Left = 240
+          Top = 70
+          Width = 82
+          Height = 13
+          Caption = #1053#1072#1079#1074#1072#1085#1080#1077' '#1082#1085#1080#1075#1080
+        end
+        object Label13: TLabel
+          Left = 240
+          Top = 115
+          Width = 57
+          Height = 13
+          Caption = #1069#1082#1079#1084#1077#1087#1083#1103#1088
+        end
+        object DBLookupComboBox7: TDBLookupComboBox
+          Left = 64
+          Top = 48
+          Width = 145
+          Height = 21
+          DataField = 'reader_id'
+          DataSource = DM.DSReservation
+          KeyField = 'id'
+          ListField = 'abr'
+          ListSource = DM.DSReader
+          TabOrder = 0
+        end
+        object DBLookupComboBox8: TDBLookupComboBox
+          Left = 64
+          Top = 96
+          Width = 145
+          Height = 21
+          DataField = 'status'
+          DataSource = DM.DSReservation
+          KeyField = 'id'
+          ListField = 'name'
+          ListSource = DM.DSReservationStatus
+          TabOrder = 1
+        end
+        object DBLookupComboBox9: TDBLookupComboBox
+          Left = 240
+          Top = 43
+          Width = 225
+          Height = 21
+          KeyField = 'id'
+          ListField = 'name'
+          ListSource = DSTBHCategory
+          TabOrder = 2
+        end
+        object DBLookupComboBox10: TDBLookupComboBox
+          Left = 240
+          Top = 88
+          Width = 225
+          Height = 21
+          KeyField = 'ISBN'
+          ListField = 'Title'
+          ListSource = DSTBHBook
+          TabOrder = 3
+        end
+        object DBLookupComboBox11: TDBLookupComboBox
+          Left = 240
+          Top = 134
+          Width = 225
+          Height = 21
+          KeyField = 'id'
+          ListField = 'id'
+          ListSource = DSTBHExemplar
+          TabOrder = 4
+        end
+        object Button8: TButton
+          Left = 536
+          Top = 128
+          Width = 75
+          Height = 25
+          Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
+          TabOrder = 5
+          OnClick = Button8Click
+        end
+        object Button9: TButton
+          Left = 648
+          Top = 128
+          Width = 75
+          Height = 25
+          Caption = #1054#1090#1084#1077#1085#1072
+          TabOrder = 6
+          OnClick = Button9Click
+        end
+      end
+      object Panel6: TPanel
+        Left = 0
+        Top = 271
+        Width = 844
+        Height = 41
+        Align = alBottom
+        Caption = 'Panel6'
+        ShowCaption = False
+        TabOrder = 2
+        ExplicitLeft = 344
+        ExplicitTop = -24
+        ExplicitWidth = 185
+        object Button4: TButton
+          Left = 64
+          Top = 6
+          Width = 75
+          Height = 25
+          Caption = #1057#1086#1079#1076#1072#1090#1100
+          TabOrder = 0
+          OnClick = Button4Click
+        end
+        object Button5: TButton
+          Left = 192
+          Top = 6
+          Width = 97
+          Height = 25
+          Caption = #1042#1099#1076#1072#1090#1100' '#1082#1085#1080#1075#1091
+          TabOrder = 1
+          OnClick = Button5Click
+        end
+        object Button6: TButton
+          Left = 336
+          Top = 6
+          Width = 75
+          Height = 25
+          Caption = #1054#1090#1084#1077#1085#1080#1090#1100
+          TabOrder = 2
+          OnClick = Button6Click
+        end
       end
     end
     object TabSheet4: TTabSheet

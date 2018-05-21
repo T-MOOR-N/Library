@@ -69,7 +69,6 @@ type
     TExemplarISBN: TStringField;
     TAuthorBookAuthorName: TStringField;
     TReservationdate: TDateTimeField;
-    TReservationexemplar_id: TIntegerField;
     TReservationreader_id: TIntegerField;
     TReservationstatus2: TIntegerField;
     TBookIssuingid: TAutoIncField;
@@ -154,6 +153,7 @@ type
     ADOQueryReportOverdueBooksReader: TStringField;
     ADOQueryReportOverdueBooksPhone: TStringField;
     ViewCatalogAvailableCount: TIntegerField;
+    TReservationexemplar_id: TIntegerField;
     procedure TAuthorCalcFields(DataSet: TDataSet);
     procedure TReaderCalcFields(DataSet: TDataSet);
     procedure DoIncrementalFilter(DataSet: TDataSet;

@@ -504,11 +504,6 @@ object DM: TDM
       DisplayLabel = #1044#1072#1090#1072
       FieldName = 'date'
     end
-    object TReservationexemplar_id: TIntegerField
-      DisplayLabel = #1050#1086#1076' '#1101#1082#1079#1077#1084#1087#1083#1103#1088#1072
-      FieldName = 'exemplar_id'
-      Visible = False
-    end
     object TReservationreader_id: TIntegerField
       DisplayLabel = #1063#1080#1090#1072#1090#1077#1083#1100
       FieldName = 'reader_id'
@@ -527,6 +522,7 @@ object DM: TDM
       LookupKeyFields = 'id'
       LookupResultField = 'book_LF'
       KeyFields = 'exemplar_id'
+      Visible = False
       Size = 50
       Lookup = True
     end
@@ -563,6 +559,10 @@ object DM: TDM
       KeyFields = 'status'
       Size = 19
       Lookup = True
+    end
+    object TReservationexemplar_id: TIntegerField
+      FieldName = 'exemplar_id'
+      Visible = False
     end
   end
   object DSReservation: TDataSource
