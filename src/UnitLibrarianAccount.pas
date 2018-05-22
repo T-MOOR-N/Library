@@ -103,6 +103,8 @@ type
     DBLookupComboBox11: TDBLookupComboBox;
     Button8: TButton;
     Button9: TButton;
+    Label14: TLabel;
+    DBLookupComboBox12: TDBLookupComboBox;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure ButtonSearchBoxCatalogClearClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
