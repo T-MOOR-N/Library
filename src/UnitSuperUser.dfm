@@ -20,7 +20,7 @@ object FormSuper: TFormSuper
     Top = 0
     Width = 892
     Height = 658
-    ActivePage = TabSheet3
+    ActivePage = TabSheet9
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -339,7 +339,7 @@ object FormSuper: TFormSuper
               OnClick = SpeedButtonSearchWorkerCancelClick
             end
             object ButtonRetire: TButton
-              Left = 720
+              Left = 560
               Top = 22
               Width = 134
               Height = 27
@@ -356,21 +356,12 @@ object FormSuper: TFormSuper
               TabOrder = 1
               OnClick = ButtonNewLibrarianClick
             end
-            object Button3: TButton
-              Left = 560
-              Top = 24
-              Width = 134
-              Height = 25
-              Caption = #1057#1084#1077#1085#1080#1090#1100' '#1087#1072#1088#1086#1083#1100
-              TabOrder = 2
-              OnClick = Button3Click
-            end
             object SearchBoxWorker: TSearchBox
               Left = 64
               Top = 26
               Width = 241
               Height = 24
-              TabOrder = 3
+              TabOrder = 2
               OnKeyPress = SearchBoxWorkerKeyPress
               OnInvokeSearch = SearchBoxWorkerInvokeSearch
             end
@@ -1935,6 +1926,7 @@ object FormSuper: TFormSuper
         Top = 0
         Width = 691
         Height = 627
+        ActivePage = TabSheet10
         Align = alClient
         TabOrder = 1
         object TabSheet10: TTabSheet
@@ -2027,7 +2019,7 @@ object FormSuper: TFormSuper
               Width = 209
               Height = 24
               KeyField = 'id'
-              ListField = 'FirstName;LastName'
+              ListField = 'abr'
               ListSource = DM.DSReader
               TabOrder = 2
             end

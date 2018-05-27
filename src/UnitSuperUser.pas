@@ -111,7 +111,6 @@ type
     Panel6: TPanel;
     ButtonRetire: TButton;
     ButtonNewLibrarian: TButton;
-    Button3: TButton;
     GroupBoxWorker: TGroupBox;
     ButtonOKUser: TButton;
     Button4: TButton;
@@ -334,6 +333,12 @@ end;
 
 procedure TFormSuper.Button1Click(Sender: TObject);
 begin
+
+  Form1.QRLabel1.Caption := 'Отчёт: Активность читателя: ' +
+    dm.TReaderabr.Value;
+  Form1.QRLabel5.Caption := ' за период с:' +
+    DateToStr(DateTimePickerStart.Date) + ' по: ' +
+    DateToStr(DateTimePickerEnd.Date);
   Form1.QuickRep1.Preview;
 end;
 
@@ -454,8 +459,8 @@ begin
   for I := 1 to count do
   begin
     dm.TExemplar.Insert;
-    dm.TExemplar.FieldByName('ISBN').Value :=
-      DSOrders.DataSet.FieldByName('book_id').Value;
+    dm.TExemplar.FieldByName('ISBN').Value := DSOrders.DataSet.FieldByName
+      ('book_id').Value;
     dm.TExemplar.FieldByName('placement').Value := 'полка 1';
     dm.TExemplar.Post;
   end;
@@ -466,7 +471,7 @@ begin
   ShowMessage('Успешно создан(ы) ' + count.ToString + ' экземпляров книг ');
 
   dm.ViewAvailableBooks.Close;
-  dm.ViewAvailableBooks.OPEN;
+  dm.ViewAvailableBooks.Open;
 
   if MessageDlg('Перейти в каталог?', mtConfirmation, [mbYes, mbNO], 0) = mrYes
   then

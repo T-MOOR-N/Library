@@ -888,7 +888,8 @@ object DM: TDM
       '  ON e.ISBN = b.ISBN'
       'WHERE bi.Reader_id = :id'
       'AND bi.DateIssue > :start'
-      'AND bi.DateReturnReal < :end')
+      'AND (bi.DateReturnReal < :end'
+      'OR bi.DateReturnReal IS NULL)')
     Left = 936
     Top = 256
     object TRepReaderActivityTitle: TStringField
